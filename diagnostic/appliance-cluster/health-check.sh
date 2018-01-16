@@ -32,7 +32,7 @@ Info()
 	echo "================================================================================"
 	echo "SYSTEM INFO"
 	echo "================================================================================"
-	grep HostName "$SUPPORT_FILE_TOP_DIR/etc/policies/cml/mesa/gw_net/gw_net1_1_0.xml" | awk '{ print $2 }'
+	grep HostName $SUPPORT_FILE_TOP_DIR/etc/policies/cml/mesa/gw_net/gw*.xml | awk '{ print $2 }'
 	grep sys.product.version "$SUPPORT_FILE_TOP_DIR/etc/settings.sys" | awk '{ print $3 }'
 	grep sys.build.label "$SUPPORT_FILE_TOP_DIR/etc/settings.sys" | awk '{ print $3 }'
 }
