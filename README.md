@@ -5,6 +5,10 @@ These are unsupported and not maintained as official assets.
 Please use the Issue tab to report problems, offer suggestions, etc.
 
 
+
+=====================================================
+C O N T E N T S
+=====================================================
 diagnostic/appliance-cluster
      Various scripts, etc. for analyzing cluster state.
 
