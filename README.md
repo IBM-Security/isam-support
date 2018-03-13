@@ -14,6 +14,10 @@ config-example/docker/isam-controller
      
 diagnostic/appliance-cluster
      Various scripts, etc. for analyzing cluster state.
+     
+     
+diagnostic/pdweb
+     Tools for working with pdweb trace.
 
 
 tuning
