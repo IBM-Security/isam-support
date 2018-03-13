@@ -1,1 +1,87 @@
-Test
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<title>pdweb.snoop parsing utility</title>
+<script type="text/javascript">
+
+	function processHexChars(s) {
+		result = '';
+		if (s != null) {
+			var i = 0;
+			while (i < s.length) {
+				// skip spaces
+				while (i < s.length && s.charAt(i) == ' ') {
+					i++;
+				}
+				
+				if (i < s.length-1) {
+					// take next two chars as hex character and print it
+					var hexStr = s.substr(i,2);
+					console.log("processing hextStr: " + hexStr + " as int: " + parseInt(hexStr, 16));
+					result += String.fromCharCode(parseInt(hexStr, 16));
+					
+					// move over these chars
+					i += 2;
+				}
+			}
+		}
+		return result;
+	}
+	
+	function processLine(l) {
+		console.log("processing line: " + l);
+		var result = '';
+		if (l != null) {
+			if (l.length > 9 && l.indexOf('0x') == 0) {
+				if (l.length < 48) {
+					// shouldn't happen
+					console.log("Not parsing line (bad format): " + l);
+				} else {
+					result = processHexChars(l.substr(9,40));
+				}
+			} else {
+				// just return the line
+				result = (l+'\n');
+			}
+		}
+		console.log("line result: " + result);
+		return result;
+	}
+
+	function processSnoop() {
+		var rawText = document.getElementById("rawsnoop").value;
+		var out = '';
+		
+		var lines = rawText.split('\n');
+		if (lines != null && lines.length > 0) {
+			for (var i = 0; i < lines.length; i++) {
+				out += processLine(lines[i]);				
+			}
+		}
+		
+		document.getElementById("prettysnoop").value = out;
+	}
+</script>
+<style>
+	textarea {
+		font-family: "Courier"
+	}
+</style>
+
+</head>
+<body>
+<div id="rawcontent">
+<form action="#">
+    <b>Paste your raw pdweb.snoop text here</b>
+    <br><textarea rows="10" cols="200" id="rawsnoop"></textarea>
+	<br><input type="button" value="Pretty Print" onClick="processSnoop()" />
+</form> 
+</div>
+<hr>
+<b>Formatted Output</b>
+<div id="parsedcontent">
+	<textarea rows="10" cols="200" id="prettysnoop" readonly></textarea>
+</div>
+</body>
+</html>
