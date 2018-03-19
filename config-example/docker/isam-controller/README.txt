@@ -25,7 +25,7 @@ Edit the file ./isam-files/create-junction.json:
 "server_port":"80",			<==== TCP Junction at this point.
 
 
-III) Run the command.
+III) Run the command.  Make sure to set execute permission on Controller.sh and SystemBuild.sh
 
 The command is very simple:
 
