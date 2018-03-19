@@ -1,0 +1,9 @@
+{
+  "inst_name":"default",
+  "host":"isamconfig.%SERVICE%",
+  "admin_id":"sec_master",
+  "admin_pwd":"%PASSWORD%",
+  "domain":"Default",
+  "http_yn":"on",
+  "https_yn":"on"
+}

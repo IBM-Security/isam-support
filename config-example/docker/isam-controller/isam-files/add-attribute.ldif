@@ -1,0 +1,4 @@
+dn: cn=testuser,dc=%DC1%,dc=%DC2%
+changetype: modify
+add: mail
+mail: user@addr.org

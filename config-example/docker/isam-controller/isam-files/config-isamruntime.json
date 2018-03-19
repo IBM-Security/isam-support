@@ -1,0 +1,16 @@
+{
+  "user_registry":"ldap",
+  "ps_mode":"local",
+  "ps_mode_radio":"on",
+  "registry":"on",
+  "ldap_suffix":"",
+  "domain":"Default",
+  "admin_pwd":"%PASSWORD%",
+  "admin_pwd_confirm":"%PASSWORD%",
+  "admin_cert_lifetime":1460,
+  "ssl_compliance":"fips",
+  "ldap_host":"%SERVICE%-openldap",
+  "ldap_port":"389",
+  "ldap_dn":"cn=root,secAuthority=Default",
+  "ldap_pwd":"%PASSWORD%"
+}

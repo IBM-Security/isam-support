@@ -1,0 +1,9 @@
+{
+    "admin_domain": "Default",
+    "admin_id": "sec_master",
+    "admin_pwd": "%PASSWORD%",
+    "commands": [
+        "user create testuser cn=testuser,dc=%DC1%,dc=%DC2% Test User %PASSWORD%",
+        "user modify testuser account-valid yes"
+    ]
+}

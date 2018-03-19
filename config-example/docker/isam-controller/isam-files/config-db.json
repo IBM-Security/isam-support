@@ -1,0 +1,9 @@
+{
+  "hvdb_db_type":"postgresql",
+  "hvdb_address":"%SERVICE%-postgres",
+  "hvdb_port":"5432",
+  "hvdb_db_secure":false,
+  "hvdb_user":"postgres",
+  "hvdb_password":"%PASSWORD%",
+  "hvdb_db_name":"isam"
+}

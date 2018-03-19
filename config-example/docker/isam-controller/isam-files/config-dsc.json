@@ -1,0 +1,14 @@
+{
+   "worker_threads": 64,
+   "max_session_lifetime": 3600,
+   "client_grace": 600,
+   "service_port": 443,
+   "replication_port": 444,
+   "servers": [
+     {
+       "ip": "%SERVICE%-isamdsc",
+       "service_port": 443,
+       "replication_port": 444
+     }
+   ]
+}
