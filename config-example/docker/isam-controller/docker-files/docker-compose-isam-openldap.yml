@@ -1,1 +1,187 @@
-update
+version: '2.0'
+
+services:
+  openldap-%SERVICE%:
+    image: ibmcom/isam-openldap:latest
+    container_name: $DOMAIN_NAME-openldap
+    environment:
+      LDAP_LOG_LEVEL: "256"
+      LDAP_ORGANISATION: "$ORG_NAME"
+      LDAP_DOMAIN: "$DOMAIN_NAME"
+      LDAP_BASE_DN: "dc=$DC1,dc=$DC2"
+      LDAP_ADMIN_PASSWORD: "$PASSWORD"
+      LDAP_CONFIG_PASSWORD: "$PASSWORD"
+      LDAP_READONLY_USER: "false"
+      LDAP_READONLY_USER_USERNAME: "readonly"
+      LDAP_READONLY_USER_PASSWORD: "$PASSWORD"
+      LDAP_RFC2307BIS_SCHEMA: "false"
+      LDAP_BACKEND: "hdb"
+      LDAP_TLS: "true"
+      LDAP_TLS_CRT_FILENAME: "ldap.crt"
+      LDAP_TLS_KEY_FILENAME: "ldap.key"
+      LDAP_TLS_CA_CRT_FILENAME: "ca.crt"
+      LDAP_TLS_ENFORCE: "false"
+      LDAP_TLS_CIPHER_SUITE: "SECURE256:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1"
+      LDAP_TLS_PROTOCOL_MIN: "3.3"
+      LDAP_TLS_VERIFY_CLIENT: "never"
+      LDAP_REPLICATION: "false"
+      KEEP_EXISTING_CONFIG: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_SSL_HELPER_PREFIX: "ldap"
+      LDAP_ENABLE_PORT_389: "true"
+    tty: true
+    stdin_open: true
+    volumes:
+      - A:/var/lib/ldap
+      - B:/etc/ldap/slapd.d
+      - C:/container/service/slapd/assets/certs:rw
+      - D:/var/lib/ldap.secAuthority
+    expose:
+      - "389"
+      - "636"
+    ports:
+      - 0.0.0.0:$LDAP_PORT:389
+    domainname: "$DOMAIN_NAME"
+    hostname: "openldap.$DOMAIN_NAME"
+
+  postgres-%SERVICE%:
+    image: ibmcom/isam-postgresql
+    container_name: $DOMAIN_NAME-postgres
+    environment:
+      POSTGRES_UNSECURE: "true"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWSORD: "$PASSWORD"
+      POSTGRES_DB: "isam"
+    tty: true
+    stdin_open: true
+    volumes:
+      - E:/var/lib/postgres/cert:rw
+      - F:/var/lib/postgresql/data
+    expose:
+      - "5423"
+    domainname: "$DOMAIN_NAME"
+    hostname: "postgres"
+    depends_on:
+      - openldap-%SERVICE% 
+
+  isamconfig-%SERVICE%:
+    image: store/ibmcorp/isam:9.0.4.0
+    container_name: $DOMAIN_NAME-isamconfig
+    environment:
+      - CONTAINER_TIMEZONE=America/Chicago
+      - SERVICE=config
+    volumes:
+      - G:/var/shared
+      - H:/var/application.logs
+    ports:
+      - 0.0.0.0:$LMI_PORT:9443
+    expose:
+      - "9443"
+    cap_add:
+      - SYS_PTRACE
+      - SYS_RESOURCE
+    depends_on:
+      - openldap-%SERVICE% 
+      - postgres-%SERVICE% 
+    domainname: "$DOMAIN_NAME"
+    hostname: "isamconfig"
+
+  isamdsc-%SERVICE%:
+    image: store/ibmcorp/isam:9.0.4.0
+    container_name: $DOMAIN_NAME-isamdsc
+    environment:
+      - CONTAINER_TIMEZONE=America/Chicago
+      - SERVICE=dsc
+      - INSTANCE=1
+    volumes:
+      - G:/var/shared
+      - H:/var/application.logs
+    expose:
+      - "443"
+      - "444"
+    cap_add:
+      - SYS_PTRACE
+      - SYS_RESOURCE
+    depends_on:
+      - openldap-%SERVICE% 
+      - postgres-%SERVICE% 
+      - isamconfig-%SERVICE% 
+    domainname: "$DOMAIN_NAME"
+    hostname: "iasmdsc-one"
+
+  isamruntime-%SERVICE%:
+    image: store/ibmcorp/isam:9.0.4.0
+    container_name: $DOMAIN_NAME-isamruntime
+    environment:
+      - CONTAINER_TIMEZONE=America/Chicago
+      - SERVICE=runtime
+    volumes:
+      - G:/var/shared
+      - H:/var/application.logs
+    expose:
+      - "443"
+      - "80"
+    cap_add:
+      - SYS_PTRACE
+      - SYS_RESOURCE
+    depends_on:
+      - openldap-%SERVICE% 
+      - postgres-%SERVICE% 
+      - isamconfig-%SERVICE% 
+      - isamdsc-%SERVICE%
+    domainname: "$DOMAIN_NAME"
+    hostname: "iasmruntime"
+
+  isamreverseproxy-%SERVICE%:
+    image: store/ibmcorp/isam:9.0.4.0
+    container_name: $DOMAIN_NAME-isamreverseproxy
+    environment:
+      - CONTAINER_TIMEZONE=America/Chicago
+      - SERVICE=webseal
+      - INSTANCE=default
+    volumes:
+      - G:/var/shared
+      - H:/var/application.logs
+    expose:
+      - "443"
+      - "80"
+    ports:
+      - 0.0.0.0:$HTTPS_PORT:443
+      - 0.0.0.0:$HTTP_PORT:80
+    cap_add:
+      - SYS_PTRACE
+      - SYS_RESOURCE
+    depends_on:
+      - openldap-%SERVICE% 
+      - postgres-%SERVICE% 
+      - isamconfig-%SERVICE% 
+      - isamdsc-%SERVICE%
+      - isamruntime-%SERVICE%
+    domainname: "$DOMAIN_NAME"
+    hostname: "iasmreverseproxy"
+
+volumes:
+  A:
+    external:
+      name: $DOMAIN_NAME-var-lib-ldap
+  B:
+    external:
+      name: $DOMAIN_NAME-etc-ldap-slapd
+  C:
+    external:
+      name: $DOMAIN_NAME-container-service-slapd-assests-certs
+  D:
+    external:
+      name: $DOMAIN_NAME-var-lib-ldap.secAuthority
+  E:
+    external:
+      name: $DOMAIN_NAME-var-lib-postgres-cert
+  F:
+    external:
+      name: $DOMAIN_NAME-var-lib-postgresql-data
+  G:
+    external:
+      name: $DOMAIN_NAME-var-shared
+  H:
+    external:
+      name: $DOMAIN_NAME-var-application.logs
