@@ -103,7 +103,7 @@ if (needsMFA){
 	// Be sure to change the 'PolicyId' to match the Authentication Policy you want the end user to complete
 	//
 	
-	handler.setRedirectUri("<protocol>://<your_idp_host>/<aac_junction> - The name of your AAC Junction/sps/authsvc?PolicyId=<authentication_policy_urn>&Target=/<federation_junction>@ACTION@");
+	handler.setRedirectUri("<protocol>://<your_idp_host>/<aac_junction>/sps/authsvc?PolicyId=<authentication_policy_urn>&Target=/<federation_junction>@ACTION@");
 	
 	var decision = Decision.challenge(handler);
 	context.setDecision(decision);
