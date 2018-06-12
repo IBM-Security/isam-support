@@ -10,6 +10,6 @@ They will have the format of
 ### access_policy : 
 This section contains example Javascript mapping rules intended to be used as 'Access Policy' for the 'Secure Federation' component of ISAM
 
-**mfa_for_partner** : 
+**mfa_for_partner.js** : 
   This rule was created to perform an MFA transaction once per session.
   You can edit the authentication policy used, as well as the URLs and logic to meet your needs
