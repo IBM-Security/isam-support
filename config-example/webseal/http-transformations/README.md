@@ -23,3 +23,5 @@ response-modify-header.xslt: Modify a header by name with find and replace.
 
 response-remove-header.xslt: Remove a header by name.
 
+response-preserveCredAttrsOnEAI.xslt: Update EAI Headers dependent on existence of credential attribute
+
