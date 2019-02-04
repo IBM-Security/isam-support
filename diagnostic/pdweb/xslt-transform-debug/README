@@ -1,0 +1,15 @@
+The program takes 3 arguments:
+
+String                  xsltRule;               // The rule you are creating / testing.
+String                  requestXML;             // The request XML.  Can be pulled from a pdweb.http.transformation trace.
+String                  xmlOutput;              // The output XML that will be sent back to WebSEAL.
+
+The example provide is a rule that deletes a request header by name.
+
+Run the tool with:
+
+java httpTransformationDebug request-delete-header.xslt Header.xml output.xml
+
+We see in output.xml the action to delete the header:
+
+<?xml version="1.0" encoding="UTF-8"?><HTTPRequestChange>GET/jct/resource.htmlHTTP/1.1https<Header action="remove" name="this_was_removed">some_value</Header>1_fLhfFunMIJZSgNDLXSdhc2+CabX7S12BTA3LUy77qVqY2qEeQEs=_AAAAAAA=_2Ayuk10LYCmbc5dpEHsN43+Xi3Y=</HTTPRequestChange>
