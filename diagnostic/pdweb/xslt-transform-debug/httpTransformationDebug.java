@@ -14,9 +14,9 @@ import javax.xml.transform.stream.StreamSource;
 public class httpTransformationDebug {
     public static void main(String[] args) throws IOException, URISyntaxException, TransformerException {
 
-		String			xsltRule;		// The rule you are creating / testing.
-		String			requestXML;		// The request XML.  Can be pulled from a pdweb.http.transformation trace.
-		String			xmlOutput;		// The output XML that will be sent back to WebSEAL.
+		String		xsltRule;		// The rule you are creating / testing.
+		String		requestXML;		// The request XML.  Can be pulled from a pdweb.http.transformation trace.
+		String		xmlOutput;		// The output XML that will be sent back to WebSEAL.
 
 		xsltRule	= args[0];
 		requestXML	= args[1];
