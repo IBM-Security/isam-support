@@ -4,7 +4,7 @@ String                  xsltRule;               // The rule you are creating / t
 String                  requestXML;             // The request XML.  Can be pulled from a pdweb.http.transformation trace.
 String                  xmlOutput;              // The output XML that will be sent back to WebSEAL.
 
-The example provide is a rule that deletes a request header by name.
+The example provided is a rule that deletes a request header by name.
 
 Run the tool with:
 
