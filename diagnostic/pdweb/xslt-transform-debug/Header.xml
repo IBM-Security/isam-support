@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<HTTPRequest>
+  <RequestLine>
+    <Method>GET</Method>
+    <URI>/jct/resource.html</URI>
+    <Version>HTTP/1.1</Version>
+  </RequestLine>
+  <Scheme>https</Scheme>
+  <Headers>
+    <Header name="accept">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</Header>
+    <Header name="accept-language">en-US,en;q=0.5</Header>
+    <Header name="connection">keep-alive</Header>
+    <Header name="content-length">0</Header>
+    <Header name="host">isam.level2.org</Header>
+    <Header name="this_was_removed">some_value</Header>
+    <Header name="user-agent">Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0</Header>
+    <Header name="upgrade-insecure-requests">1</Header>
+  </Headers>
+  <Cookies>
+    <Cookie name="PD-S-SESSION-ID">1_fLhfFunMIJZSgNDLXSdhc2+CabX7S12BTA3LUy77qVqY2qEeQEs=_AAAAAAA=_2Ayuk10LYCmbc5dpEHsN43+Xi3Y=</Cookie>
+  </Cookies>
+</HTTPRequest>
