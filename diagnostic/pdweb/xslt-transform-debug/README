@@ -14,4 +14,4 @@ We see in output.xml the action to delete the header:
 
 <?xml version="1.0" encoding="UTF-8"?><HTTPRequestChange>GET/jct/resource.htmlHTTP/1.1https<Header action="remove" name="this_was_removed">some_value</Header>1_fLhfFunMIJZSgNDLXSdhc2+CabX7S12BTA3LUy77qVqY2qEeQEs=_AAAAAAA=_2Ayuk10LYCmbc5dpEHsN43+Xi3Y=</HTTPRequestChange>
 
-This can also be used for Client Cert, User Name, Password Strength mapping rules.
+This can also be used for Client Cert, User Name, and Password Strength mapping rules.
