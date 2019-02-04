@@ -22,11 +22,11 @@ public class httpTransformationDebug {
 		requestXML	= args[1];
 		xmlOutput	= args[2];
 
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(new File(xsltRule));
-        Transformer transformer = factory.newTransformer(xslt);
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Source xslt = new StreamSource(new File(xsltRule));
+		Transformer transformer = factory.newTransformer(xslt);
 
-        Source text = new StreamSource(new File(requestXML));
-        transformer.transform(text, new StreamResult(new File(xmlOutput)));
-    }
+		Source text = new StreamSource(new File(requestXML));
+		transformer.transform(text, new StreamResult(new File(xmlOutput)));
+	}
 }
