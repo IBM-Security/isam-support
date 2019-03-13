@@ -1,0 +1,32 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <TITLE>Collecting Device Information</TITLE>
+    <SCRIPT SRC="https://isamotp.level2.org/mga/sps/ac/js/info.js"></SCRIPT>
+  </HEAD>
+
+  <BODY>
+    <SCRIPT>
+      function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+      }
+
+      sleep(2000).then(() => {
+         var xhr = new XMLHttpRequest();
+         
+         xhr.onreadystatechange = function() {
+           if (xhr.readyState == XMLHttpRequest.DONE) {
+             document.open();
+             document.write(xhr.responseText);
+             document.close();
+           }
+         }
+
+         var action = "https://isamotp.level2.org/mga" + "@ACTION@";
+         xhr.open("POST", action, true);
+         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+         xhr.send("operation=verify&movealong=true");
+      });
+    </SCRIPT>
+  </BODY>
+</HTML>
