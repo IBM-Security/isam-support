@@ -1,0 +1,18 @@
+To setup:
+
+mkdir git
+cd git
+git clone https://github.com/IBM-Security/isam-support
+Initialized empty Git repository in /home/juser/git/isam-support/.git/
+remote: Enumerating objects: 64, done.
+remote: Counting objects: 100% (64/64), done.
+remote: Compressing objects: 100% (52/52), done.
+remote: Total 545 (delta 17), reused 0 (delta 0), pack-reused 481
+Receiving objects: 100% (545/545), 1.18 MiB | 1.78 MiB/s, done.
+Resolving deltas: 100% (186/186), done.
+
+cd isam-support/appliance/restapi/
+chmod +x -R .
+cd bin
+./create-symlinks.sh
+export PATH=”`pwd`:$PATH"
