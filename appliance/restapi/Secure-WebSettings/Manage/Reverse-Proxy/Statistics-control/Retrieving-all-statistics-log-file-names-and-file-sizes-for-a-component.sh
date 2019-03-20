@@ -9,6 +9,6 @@ component_id=$5
 
 [ "$CURL" ]  || CURL="curl -s -k -u "$username:$password""
 
-${CURL} -H "Accept: application/json" -X GET https://${appliance_hostname}/wga/reverseproxy/${instance_id}/statistics/${component_id}/stat_files
+${CURL} -H "Accept: application/json" -X GET https://${appliance_hostname}/wga/reverseproxy/${instance_id}/statistics/${component_id}/stats_files
 
 exit $?
