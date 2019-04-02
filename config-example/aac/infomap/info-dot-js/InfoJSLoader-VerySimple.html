@@ -1,0 +1,20 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <TITLE>Collecting Device Information</TITLE>
+    <SCRIPT SRC="/sps/ac/js/info.js"></SCRIPT>
+  </HEAD>
+  <BODY>
+    <FORM ID="infojsform" METHOD=POST ACTION="@ACTION@">
+      <INPUT TYPE="HIDDEN" NAME="operation" VALUE="verify">
+      <INPUT TYPE="HIDDEN" NAME="movealong" VALUE="true">
+    </FORM>
+    <SCRIPT>
+      setTimeout(sendPost,3000);
+      function sendPost()
+      {
+         document.getElementById("infojsform").submit();
+      }
+    </SCRIPT>
+  </BODY>
+</HTML>
