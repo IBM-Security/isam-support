@@ -1,0 +1,25 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">
+  <soapenv:Body>
+    <wst:RequestSecurityToken xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512">
+      <wst:TokenType>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#UsernameToken</wst:TokenType>
+      <wst:RequestType>http://docs.oasis-open.org/ws-sx/ws-trust/200512/Validate</wst:RequestType>
+      <wsp:AppliesTo xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing">
+          <wsa:Address>https://isamsts.level2.org/stsuu</wsa:Address>
+        </wsa:EndpointReference>
+      </wsp:AppliesTo>
+      <wst:Issuer>
+        <wsa:Address xmlns:wsa="http://www.w3.org/2005/08/addressing">https://isamsts.level2.org/stsuu</wsa:Address>
+      </wst:Issuer>
+      <wst:ValidateTarget>
+       <stsuuser:STSUniversalUser xmlns:stsuuser="urn:ibm:names:ITFIM:1.0:stsuuser">
+         <stsuuser:Principal>
+           <stsuuser:Attribute name="name" type="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">
+             <stsuuser:Value>F5MONITOR</stsuuser:Value>
+           </stsuuser:Attribute>
+         </stsuuser:Principal>
+       </stsuuser:STSUniversalUser>
+     </wst:ValidateTarget>
+    </wst:RequestSecurityToken>
+  </soapenv:Body>
+</soapenv:Envelope>
