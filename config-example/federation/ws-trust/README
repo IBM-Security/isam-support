@@ -1,0 +1,15 @@
+Miscellaneous Stuff
+
+validate.xml
+Used to send an actual validation to /TrustServerWST13/services/RequestSecurityToken for LB health-check
+Create a Security Token Service:
+1) Create new Template called LB_CHECK_TEMPLATE
+2) Add Default STSUU Module Instance in Validate Mode
+3) Create a new Module Chain named LB_CHECK_CHAIN
+    Request Type: Validate (Oasis)
+    Applies to:
+      Address: https://isamsts.level2/org/stsuu
+    Issuer:
+      Address: https://isamsts.level2.org/stsuu
+      Token Type: Username
+      
