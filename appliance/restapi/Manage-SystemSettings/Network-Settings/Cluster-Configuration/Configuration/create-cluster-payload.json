@@ -1,0 +1,15 @@
+{
+    "cfgdb_embedded": true,
+    "cfgdb_fs": false,
+    "dsc_client_grace_period": 600,
+    "dsc_external_clients": false,
+    "dsc_maximum_session_lifetime": 3600,
+    "dsc_worker_threads": 400,
+    "first_port": 2020,
+    "hvdb_embedded": true,
+    "hvdb_max_size": 40,
+    "master_ere": "192.168.254.1",
+    "primary_master": "192.168.254.70",
+    "secondary_master": "192.168.254.80",
+    "tertiary_master": "192.168.254.90"
+}
