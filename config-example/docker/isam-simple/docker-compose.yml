@@ -105,7 +105,7 @@ services:
       - INSTANCE=1
       - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
-      - CONFIG_SERVICE_USER_PWD="$PASSWORD"
+      - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
     volumes:
       - var-shared:/var/shared
@@ -131,7 +131,7 @@ services:
       - SERVICE=runtime
       - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
-      - CONFIG_SERVICE_USER_PWD="$PASSWORD"
+      - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
     volumes:
       - var-shared:/var/shared
@@ -159,7 +159,7 @@ services:
       - INSTANCE=default
       - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
-      - CONFIG_SERVICE_USER_PWD="$PASSWORD"
+      - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
     volumes:
       - var-shared:/var/shared
