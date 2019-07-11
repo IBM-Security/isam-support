@@ -20,23 +20,21 @@ importClass(Packages.com.tivoli.am.rba.attributes.AttributeIdentifier);
 importPackage(com.tivoli.am.fim.trustserver.sts.utilities);
 
 function hasAttribute (requestedAttribute, category) {
-	var issuerId = instanceName;
+	PluginUtils.trace("entering "+instanceName+".hasAttribute()");
 	
-	PluginUtils.trace("entering "+issuerId+".hasAttribute()");
+	var issuerId = instanceName;
 
 	if (issuerId.equals(requestedAttribute.getIssuer()))
 	{
 	     return true;
 	}
-	PluginUtils.trace("exiting "+issuerId+".hasAttribute()");
+	PluginUtils.trace("exiting "+instanceName+".hasAttribute()");
 	return false;
 }
 
 function getAttributes (context, requestedAttribute, category) {
-	var issuerId = instanceName;
-	
-	PluginUtils.trace("entering "+issuerId+".getAttributes()");
-	
+	PluginUtils.trace("entering "+instanceName+".getAttributes()");
+		
 	// Get the DMAP Cache Time To Live from the JavaScript PIP Properties
 	var cacheTTL = config.get("cacheTTL");
 	
@@ -96,5 +94,5 @@ function getAttributes (context, requestedAttribute, category) {
 		PluginUtils.trace("WARNING :: Could not get attribute from the database or the DMAP Cache");
 	}
 
-	PluginUtils.trace("exiting "+issuerId+".getAttributes()");
+	PluginUtils.trace("exiting "+instanceName+".getAttributes()");
 }
