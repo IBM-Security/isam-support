@@ -30,6 +30,7 @@ PS_OUTPUT=/tmp/ps.$$
 
 numlines=25
 refresh_rate=10
+community_string='public'
 
 cleanUp()
 {
@@ -43,17 +44,18 @@ cleanUp()
 Usage()
 {
     echo ""
-    echo "Usage: $0 -h appliance_hostname [ -l numlines ] [ -r refresh_rate ]"
+    echo "Usage: $0 -h appliance_hostname [ -l numlines ] [ -r refresh_rate ] [-c community_string]"
     echo ""
     echo "where:"
     echo "  -h:             Appliance hostname."
     echo "  -l:             Number of lines to dispay.  The default is 25."
     echo "  -r:             The refresh rate.  The default is 10 seconds."
+    echo "  -c:				The SNMP community name string.  The default is 'public'"
 
     exit 1
 }
 
-while getopts h:l:r: name
+while getopts h:l:r:c: name
 do
 	case $name in
 		h) appliance_hostname="$OPTARG"
@@ -65,6 +67,9 @@ do
 
 		r) refresh_rate="$OPTARG"
 		   ;;
+
+		c) community_string="$OPTARG"
+		   ;;  
 
 		*) Usage
 		   ;;
@@ -80,13 +85,13 @@ do
 	rm -f $MIB_OUTPUT
 	for object in hrSWRunPerfTable hrSWRunTable
 	do
-		snmpwalk -v 2c -c public $HOST HOST-RESOURCES-MIB::$object >> $MIB_OUTPUT
+		snmpwalk -v 2c -c $community_string $HOST HOST-RESOURCES-MIB::$object >> $MIB_OUTPUT
 	done 
 
 	grep HOST-RESOURCES-MIB::hrSWRunIndex $MIB_OUTPUT | awk '{ print $ 4}' > $PROCESS_ID
 
 	tput clear
-	UPTIME=`snmpwalk -m ALL -v 2c -c public $HOST HOST-RESOURCES-MIB::hrSystemUptime | awk -F\) '{ print $2 }' | sed -e 's/ //'`
+	UPTIME=`snmpwalk -m ALL -v 2c -c $community_string $HOST HOST-RESOURCES-MIB::hrSystemUptime | awk -F\) '{ print $2 }' | sed -e 's/ //'`
 	printf "Hostname      = %s\n" "$HOST"
 	printf "System Uptime = %s\n" "$UPTIME"
 	printf "%-25.20s%-20.15s%-20.15s%-20.180s\n" " CPU (Centi-seconds)" "MEM (KBytes)" " Program" " Arguments"
