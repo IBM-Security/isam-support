@@ -12,7 +12,13 @@
 	Please refer to the following documentation for a complete list of classes that are available for use in InfoMap Mapping rules : 
 		- https://www.ibm.com/support/knowledgecenter/en/SSPREK_9.0.7/com.ibm.isam.doc/config/concept/con_otp_customize_mapping_rules_gs_aac.html
 */
+importClass(Packages.com.tivoli.am.fim.trustserver.sts.utilities.IDMappingExtUtils);
+
+IDMappingExtUtils.traceString("Entering insert_credential_attr.js");
 
 // Insert an attribute called 'sample' that has a value of 'value'
+IDMappingExtUtils.traceString("Adding credential attribute 'sample' with value 'value' ");
 context.set(Scope.SESSION, "urn:ibm:security:asf:response:token:attributes", "sample", "value");
 success.setValue(true);
+
+IDMappingExtUtils.traceString("Exiting insert_credential_attr.js");
