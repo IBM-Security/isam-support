@@ -1,4 +1,5 @@
-/* getAttributeFromWebService.js
+/* 
+	Filename : infomap_getAttributeFromDMAPCache.js
 	Author : Jack Yarborough
 	Contact : jcyarbor@us.ibm.com
 	
@@ -10,6 +11,9 @@
 		
 		This can be extended in as many ways as the Database PIPs can be called.
 		The mapping rule / infomap mechanism simply faciliates the pre-otp call to get the attribute.
+		
+		**This JavaScript mapping rule is provided as-is and is supported by the author.
+		** All variable names, attribute names, and logic are provided as an example
 */
 
 // Import the classes/packages we'll need to make a call to the DMAP : 
