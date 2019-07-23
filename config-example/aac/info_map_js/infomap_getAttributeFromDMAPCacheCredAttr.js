@@ -1,5 +1,5 @@
 /* 
-	Filename : infomap_getAttributeFromDMAPCache.js
+	Filename : infomap_getAttributeFromDMAPCacheCredAttr.js
 	Author : Jack Yarborough
 	Contact : jcyarbor@us.ibm.com
 	
