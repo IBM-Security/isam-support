@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>getDMAPAttr InfoMap Error Page</title>
+        <link rel="stylesheet" type="text/css" href="/sps/static/styles.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="brandingLogo"><img src="/sps/static/ibm-logo.png" /></div>
+        </div>
+        <div class="content">
+            <div class="contentHeader">
+                <h1 class="pageTitle error">getDMAPAttr Error</h1>
+                <div class="instructions">@ERROR_MESSAGE@</div>
+            </div>
+            <div class="pageContent">
+                <div id="infoDiv">
+                    <p><em>@REQ_ADDR@</em></p>
+                    <p><em>@TIMESTAMP@</em></p>
+                </div>
+                <br />
+                <div id="detailDiv">
+                    <h4>Error details</h4>
+                    <p>@EXCEPTION_MSG@</p>
+                </div>
+                <br />
+                <div id="stackDiv">
+                    <h4>Stack trace</h4> 
+                    <pre>@EXCEPTION_STACK@</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
