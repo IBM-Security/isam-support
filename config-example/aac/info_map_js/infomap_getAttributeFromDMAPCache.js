@@ -12,7 +12,7 @@
 		This can be extended in as many ways as the Database PIPs can be called.
 		The mapping rule / infomap mechanism simply faciliates the pre-otp call to get the attribute.
 		
-		**This JavaScript mapping rule is provided as-is and is supported by the author.
+		** This JavaScript mapping rule is provided as-is and is supported by the author.
 		** All variable names, attribute names, and logic are provided as an example
 */
 
