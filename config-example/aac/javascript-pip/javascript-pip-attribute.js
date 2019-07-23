@@ -1,98 +1,90 @@
-/*
-	File Name : javascript-pip-attribute.js
+/* getAttributeFromWebService.js
 	Author : Jack Yarborough
 	Contact : jcyarbor@us.ibm.com
 	
-	Usage : This PIP JavaScript is designed to perform the following : 
-		- Retrieve and encode the user's session index as a key for the DMAP cache
-		- Retrieve previously stored values if they exist in the cache
-		- Retrieve the Database PIP Value from the Database if it does not exist in the DMAP Cache
-		- Store the Database PIP Value in the DMAP Cache for later use
+	Purpose : 
+		The purpose of this javascript file is to facilitate acquiring an attribute from a Web Service based off an attribute in the ISAM User's credential.
+		In this example we will call out to a Web Service that takes a username as a parameter and a desired attribute as a parameter in the Web Service URL.
 		
-	**This JavaScript mapping rule is provided as-is and is supported by the author.
-	** All variable names, attribute names, and logic are provided as an example
-	
-	Please refer to the following documentation for a complete list of classes that are available for use in JavaScript PIP Mapping rules : 
-		- https://www.ibm.com/support/knowledgecenter/en/SSPREK_9.0.7/com.ibm.isam.doc/config/concept/con_otp_customize_mapping_rules_gs_aac.html
+		The idea here is that the Web Service is a front end to a database that you want to get attributes for and that a table exists that has desireable information linked to
+		a user's username.
+		
+		This can be extended in many ways depending on how the web service is built.
+		That is out of the scope of this mapping rule. The mapping rule / infomap mechanism simply faciliates the client side of the call to get the attributes.
 */
-importPackage(com.tivoli.am.rba.extensions);
-importClass(Packages.com.tivoli.am.rba.attributes.AttributeIdentifier);
+
+// Import the classes/packages we'll need to make an HTTP Callout to the Web Service : 
+importPackage(com.ibm.security.access.httpclient);
 importPackage(com.tivoli.am.fim.trustserver.sts.utilities);
+importPackage(com.tivoli.am.rba.extensions);
 
-function hasAttribute (requestedAttribute, category) {
-	PluginUtils.trace("entering "+instanceName+".hasAttribute()");
-	
-	var issuerId = instanceName;
+// 1) Acquire the username from the infomap context.
+// Here's an example of getting the ISAM Credential username : 
+var credentialUsername = context.get(Scope.SESSION, "urn:ibm:security:asf:response:token:attribute", "AZN_CRED_PRINCIPAL_NAME")[0];
+IDMappingExtUtils.traceString("Value of 'AZN_CRED_PRINCIPAL_NAME' : " + credentialUsername);
 
-	if (issuerId.equals(requestedAttribute.getIssuer()))
-	{
-	     return true;
-	}
-	PluginUtils.trace("exiting "+instanceName+".hasAttribute()");
-	return false;
+// For this example we'll be retrieving an email from the Web Service.
+
+// Optionally, here is code that would let you make a decision based off of a credential attribute called 'emailSrc' that can be stored in LDAP in any number of attributes.
+
+var emailSrc = context.get(Scope.SESSION, "urn:ibm:security:asf:response:token:attribute", "emailSrc");
+
+// Here we check to see whether the 'emailSrc' credential attribute was specified and get the value
+if(emailSrc != null && emailSrc != "") {
+	IDMappingExtUtils.traceString("Email Source from credential : " + emailSrc);
+} else {
+	// Since we want to get it from a Web Service we'll default to 'database' since the Web Service is supposed to be fronting a database.
+	emailSrc = "database";
 }
 
-function getAttributes (context, requestedAttribute, category) {
-	PluginUtils.trace("entering "+instanceName+".getAttributes()");
-		
-	// Get the DMAP Cache Time To Live from the JavaScript PIP Properties
-	var cacheTTL = config.get("cacheTTL");
-	
-	// If there's not a property specified, we'll just store it for an hour
-	if(cacheTTL == null){
-		cacheTTL = 3600;
-	}
+// Initialize a variable to hold the web service value. It needs to be an array to properly pass it out of the infomap mechanism : 
+var webServiceValue = java.lang.reflect.Array.newInstance(java.lang.String, 1);
 
-	// Retrieve the ISAM User Session Index to use as the DMAP Cache key
-	var userSessionIndex = context.getAttribute(Attribute.Category.SUBJECT, new AttributeIdentifier("tagvalue_session_index", "http://www.w3.org/2001/XMLSchema#string", null));
+// We will conditionally check to see where we want to source the email from. We'll assume you're storing an LDAP email attribute in the standard 'emailAddress' credential attribute.
+if(emailSrc == "credential") {
+	var emailAddr = context.get(Scope.SESSION, "urn:ibm:security:asf:response:token:attribute", "emailAddress");
+} else if(emailSrc == "database") {
+	// Here we will make the call to the Web Service
 	
-	// Normalize the User Session Index to remove special characters
-	var userSessionIndexHash = PluginUtils.encodeBase64(userSessionIndex[0]);
-
-	// Get an instance of the DMAP Cache
-	var cache = IDMappingExtUtils.getIDMappingExtCache();
+	var client = new HttpClient();
+	var headers = new Headers();
 	
-	// Create a place holder for the DB PIP Value
-	var dbPipValue = null;
+	// Let's get a JSON Response : 
+	headers.addHeader("accept", "application/json");
 	
-	// Create a marker to determine whether we need to store the attribute in the cache. By default we'll assume it's not from the cache.
-	var fromCache = false;
+	//Here is optional code to setup basic authentication : 
+	var baUser = "basicauthuser";
+	var baPwd = "basicauthpassw0rd";
 	
-	// Getting the Database PIP value from the PIP every time is not performant. To minimize calls we'll check to see if it's in the cache first.
-	// Check to see whether the Database PIP exists in the DMAP
-	if(cache.exists(userSessionIndexHash)) {
-		// It exists, so get the value from the cache
-		dbPipValue = cache.get(userSessionIndexHash);
-		fromCache = true;
-	} else{
-		// If you've made it here, the PIP value did not exist in the DMAP cache either because one has never been inserted or it's hit its TTL value
-		// Retrieve the Database PIP Value from the Authorization Context which will invoke the Database PIP to make a callout to the database
-		/* We do this by performing a 'getAttribute' call for a 'Subject' attribute with the Identifier of : 
-			- URN
-			- Datatype
-			- Issuer
+	// Let's call the Web Service using variable substitution. Since we depend on the username being present we'll need to abort if it's null : 
+	if(credentialUsername != null && credentialUsername != "") {
+		// Let's make the URL we're going to call so we can identify it on this line : 
+		var url = "https://rhel7-dbwebservice.hyperv.lab/rest/"+credentialUsername+"/attribute/email";
+		IDMappingExtUtils.traceString("url we're requesting : " + url);
 		
-			These are based off of how you have created your attribute at 'Secure Access Control -> Policy -> Attributes'
-		*/
-		dbPipValue = context.getAttribute(Attribute.Category.SUBJECT, new AttributeIdentifier("urn:attrtest:dbrole","http://www.w3.org/2001/XMLSchema#string","attrtest"));
-	}
-	
-	// Trace out the attribute for good measure
-	PluginUtils.trace("urn:attrtest:dbrole : " + dbPipValue[0]);
-	
-	// If the Database PIP Value is not null...
-	if(dbPipValue != null){
-		// Add a value for the AAC JavaScript PIP Attribute into the AAC Authorization Context currenlty being evaluated
-		context.addAttribute(new AttributeIdentifier("urn:jspip:jspipattribute", "http://www.w3.org/2001/XMLSchema#string", requestedAttribute.getIssuer()), [dbPipValue[0]]);
+		var response = client.httpGet(url, headers, null, null, null, null, null);
 		
-		// If we have a non-null and non-empty Session Index Hash and we didn't get the DB PIP Value from the cache, store it
-		if((userSessionIndexHash != null && userSessionIndexHash != "") && !fromCache){
-			// Store the value in the cache with a lifetime specified in the PIP Properties with a default of '3600' seconds.
-			cache.put(userSessionIndex[0], dbPipValue[0], cacheTTL);
+		if(response.getCode() == 200){
+			var body = JSON.parse(response.getBody());
+		} else {
+			success.setValue(false);
 		}
+		// Parse the body and extract the returned value
+		// We'll assume the response was in the format of '{"user_email":"value"}'
+		// We'll also assume the Web Service will always return a value and the value will be 'missing' if the database doesn't have an entry for that user.
+		webServiceValue[0] = parsedBody[user_email];
+		
+		IDMappingExtUtils.traceString("Here is the value from the parsed JSON response : " + webServiceValue[0]);
+		
 	} else {
-		PluginUtils.trace("WARNING :: Could not get attribute from the database or the DMAP Cache");
+		success.setValue(false);
 	}
+}
 
-	PluginUtils.trace("exiting "+instanceName+".getAttributes()");
+// Finally, add the value into the Credential for input into the 
+if(webServiceValue[0] != null && webServiceValue[0] != "" && webServiceValue[0] != "missing") {
+	context.set(Scope.SESSION, "urn:ibm:security:asf:response:token:attribute", "derivedEmail", webServiceValue[0]);
+	success.setValue(true);
+} else {
+	succes.setValue(false);
 }
