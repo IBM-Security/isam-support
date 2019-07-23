@@ -1,4 +1,5 @@
-/* getAttributeFromWebService.js
+/* 
+	Filename : infomap_getAttributeFromWebService.js
 	Author : Jack Yarborough
 	Contact : jcyarbor@us.ibm.com
 	
@@ -11,6 +12,9 @@
 		
 		This can be extended in many ways depending on how the web service is built.
 		That is out of the scope of this mapping rule. The mapping rule / infomap mechanism simply faciliates the client side of the call to get the attributes.
+		
+		**This JavaScript mapping rule is provided as-is and is supported by the author.
+		** All variable names, attribute names, and logic are provided as an example
 */
 
 // Import the classes/packages we'll need to make an HTTP Callout to the Web Service : 
