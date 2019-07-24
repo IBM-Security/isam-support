@@ -1,1 +1,1 @@
-Various simple script to test load, trace points, etc, etc.
+Various simple scripts to test load, trace points, etc, etc.
