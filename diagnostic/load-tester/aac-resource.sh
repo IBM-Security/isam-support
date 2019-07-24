@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Update the actual call with resource and simple grep for expected output
+# Update the actual call with a resource and simple grep for expected output
 # to keep output to a minimum.
 #
 
