@@ -48,6 +48,7 @@ function getAttributes (context, requestedAttribute, category) {
 	
 	// Normalize the User Session Index to remove special characters
 	var userSessionIndexHash = PluginUtils.encodeBase64(userSessionIndex[0]);
+	PluginUtils.trace("Value of the Normalized Key : " + userSessionIndexHash);
 
 	// Get an instance of the DMAP Cache
 	var cache = IDMappingExtUtils.getIDMappingExtCache();
@@ -74,21 +75,21 @@ function getAttributes (context, requestedAttribute, category) {
 		
 			These are based off of how you have created your attribute at 'Secure Access Control -> Policy -> Attributes'
 		*/
-		dbPipValue = context.getAttribute(Attribute.Category.SUBJECT, new AttributeIdentifier("urn:attrtest:dbrole","http://www.w3.org/2001/XMLSchema#string","attrtest"));
+		dbPipValue = context.getAttribute(Attribute.Category.SUBJECT, new AttributeIdentifier("urn:attrtest:dbrole","http://www.w3.org/2001/XMLSchema#string","attrtest"))[0];
 	}
 	
 	// Trace out the attribute for good measure
-	PluginUtils.trace("urn:attrtest:dbrole : " + dbPipValue[0]);
+	PluginUtils.trace("urn:attrtest:dbrole : " + dbPipValue);
 	
 	// If the Database PIP Value is not null...
 	if(dbPipValue != null){
 		// Add a value for the AAC JavaScript PIP Attribute into the AAC Authorization Context currenlty being evaluated
-		context.addAttribute(new AttributeIdentifier("urn:jspip:jspipattribute", "http://www.w3.org/2001/XMLSchema#string", requestedAttribute.getIssuer()), [dbPipValue[0]]);
+		context.addAttribute(new AttributeIdentifier("urn:jspip:jspipattribute", "http://www.w3.org/2001/XMLSchema#string", requestedAttribute.getIssuer()), [dbPipValue]);
 		
 		// If we have a non-null and non-empty Session Index Hash and we didn't get the DB PIP Value from the cache, store it
 		if((userSessionIndexHash != null && userSessionIndexHash != "") && !fromCache){
 			// Store the value in the cache with a lifetime specified in the PIP Properties with a default of '3600' seconds.
-			cache.put(userSessionIndexHash, dbPipValue[0], cacheTTL);
+			cache.put(userSessionIndexHash, dbPipValue, cacheTTL);
 		}
 	} else {
 		PluginUtils.trace("WARNING :: Could not get attribute from the database or the DMAP Cache");
