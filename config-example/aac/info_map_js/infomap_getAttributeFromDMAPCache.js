@@ -25,13 +25,15 @@ importClass(com.tivoli.am.fim.base64.BASE64Utility);
 
 function strToByteArray(string) {
 	var bytes = [];
-	for(var i = 0; i < string.length; i++) {
-		var charCode = str.charCodeAt(i);
-			if(charCode > 0xFF){
-				IDMappingExtUtils.traceString("Encountered a non-USASCII character : "+ string(i));
-			} else {
-				bytes.push(charCode);
-			}
+	for(var i = 0; i < string.length(); i++) {
+		IDMappingExtUtils.traceString("Entering Char loop");
+		var charCode = string.charCodeAt(i);
+		if(charCode > 0xFF) {
+			IDMappingExtUtils.traceString("Encountered a non-USASCII character : "+ string(i));
+		} else {
+			IDMappingExtUtils.traceString("Current Byte : " + charCode);
+			bytes.push(charCode);
+		}
 	}
 	return bytes;
 }
@@ -54,21 +56,28 @@ if(credentialUserSessionIndex != null && credentialUserSessionIndex != "") {
 	
 	// Just make sure that the hash isn't null
 	if(credentialUserSessionIndexHash != null && credentialUserSessionIndexHash != "") {
-		var dmapValue = cache.get(credentialUserSessionIndexHash);
+		var dmapValue = dmapCache.get(credentialUserSessionIndexHash);
 			// Make sure the DMAP value is not null and not an empty string
 		if(dmapValue != null && dmapValue != ""){
 			IDMappingExtUtils.traceString("Here is the value from the DMAP : " + dmapValue);
 		} else {
+			IDMappingExtUtils.traceString("The retrieved value from the DMAP was null or empty.");
+			macros.put("@ERROR_MESSAGE@","The retrieved value from the DMAP was null or empty.");
 			success.setValue(false);
-		}
+		} 
+	} else {
+		IDMappingExtUtils.traceString("The base64 encoded value of the DMAP key was null or empty.");
+		macros.put("@ERROR_MESSAGE@","The base64 encoded value of the DMAP key was null or empty.");
 	}
 } else {
+	IDMappingExtUtils.traceString("The DMAP key was null or empty.");
+	macros.put("@ERROR_MESSAGE@","The DMAP key was null or empty.");
 	success.setValue(false);
 }
 
 // Finally, add the value into the Credential for input into the 
 if(dmapValue != null && dmapValue != "") {
-	context.set(Scope.SESSION, "urn:ibm:security:asf:cba:attribute", "dmapEmail", dmapValue);
+	context.set(Scope.SESSION, "urn:ibm:security:asf:request:token:attribute", "dmapEmail", dmapValue);
 	success.setValue(true);
 } else {
 	success.setValue(false);
