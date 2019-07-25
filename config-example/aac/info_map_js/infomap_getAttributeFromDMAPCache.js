@@ -18,7 +18,19 @@
 
 // Import the classes/packages we'll need to make a call to the DMAP : 
 importPackage(com.tivoli.am.fim.trustserver.sts.utilities);
-importPackage(com.tivoli.am.rba.extensions);
+importClass(com.tivoli.am.fim.base64.BASE64Utility);
+
+function strToByteArray(string) {
+	var bytes = [];
+	for(var i = 0; i < string.length; i++) {
+		var charCode = str.charCodeAt(i);
+		if(charCode > 0xFF){
+			
+		} else {
+			bytes.push(charCode);
+		}
+	return bytes;
+}
 
 // 1) Acquire the attribute used as the DMAP key : 
 // Here's an example of getting the ISAM Credential 'tagvalue_session_index' : 
@@ -33,7 +45,8 @@ var dmapCache = IDMappingExtUtils.getIDMappingExtCache();
 if(credentialUserSessionIndex != null && credentialUserSessionIndex != "") {
 	
 	// Since the tagvalue_session_index is not null let's base64 encode it to normalize the characters
-	var credentialUserSessionIndexHash = PluginUtils.encodeBase64(credentialUserSessionIndex);
+	var credentialUserSessionIndexHash = BASE64Utility.encode(strToByteArray(credentialUserSessionIndex));
+	IDMappingExtUtils.traceString("Here is the base64 encoded value : " + credentialUserSessionIndexHash);
 	
 	// Just make sure that the hash isn't null
 	if(credentialUserSessionIndexHash != null && credentialUserSessionIndexHash != "") {
