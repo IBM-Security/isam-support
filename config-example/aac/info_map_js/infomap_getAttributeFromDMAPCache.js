@@ -24,11 +24,12 @@ function strToByteArray(string) {
 	var bytes = [];
 	for(var i = 0; i < string.length; i++) {
 		var charCode = str.charCodeAt(i);
-		if(charCode > 0xFF){
-			
-		} else {
-			bytes.push(charCode);
-		}
+			if(charCode > 0xFF){
+				IDMappingExtUtils.traceString("Encountered a non-USASCII character : "+ string(i));
+			} else {
+				bytes.push(charCode);
+			}
+	}
 	return bytes;
 }
 
