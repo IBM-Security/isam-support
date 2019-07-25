@@ -121,7 +121,7 @@ services:
       - postgres
       - isamconfig
     domainname: "$DOMAIN_NAME"
-    hostname: "iasmdscone"
+    hostname: "isamdscone"
 
   isamruntimeone:
     image: store/ibmcorp/isam:${ISAM_VERSION}
