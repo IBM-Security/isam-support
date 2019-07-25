@@ -71,5 +71,5 @@ if(dmapValue != null && dmapValue != "") {
 	context.set(Scope.SESSION, "urn:ibm:security:asf:cba:attribute", "dmapEmail", dmapValue);
 	success.setValue(true);
 } else {
-	succes.setValue(false);
+	success.setValue(false);
 }
