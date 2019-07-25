@@ -14,6 +14,9 @@
 		
 		** This JavaScript mapping rule is provided as-is and is supported by the author.
 		** All variable names, attribute names, and logic are provided as an example
+		
+		This mapping rule references the following : 
+		 - https://stackoverflow.com/questions/6226189/how-to-convert-a-string-to-bytearray
 */
 
 // Import the classes/packages we'll need to make a call to the DMAP : 
