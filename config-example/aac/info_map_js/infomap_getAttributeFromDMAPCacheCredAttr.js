@@ -14,11 +14,29 @@
 		
 		** This JavaScript mapping rule is provided as-is and is supported by the author.
 		** All variable names, attribute names, and logic are provided as an example
+		
+		This mapping rule references the following : 
+		 - https://stackoverflow.com/questions/6226189/how-to-convert-a-string-to-bytearray
 */
 
 // Import the classes/packages we'll need to make a call to the DMAP : 
 importPackage(com.tivoli.am.fim.trustserver.sts.utilities);
-importPackage(com.tivoli.am.rba.extensions);
+importClass(com.tivoli.am.fim.base64.BASE64Utility);
+
+function strToByteArray(string) {
+	var bytes = [];
+	for(var i = 0; i < string.length(); i++) {
+		IDMappingExtUtils.traceString("Entering Char loop");
+		var charCode = string.charCodeAt(i);
+		if(charCode > 0xFF) {
+			IDMappingExtUtils.traceString("Encountered a non-USASCII character : "+ string(i));
+		} else {
+			IDMappingExtUtils.traceString("Current Byte : " + charCode);
+			bytes.push(charCode);
+		}
+	}
+	return bytes;
+}
 
 // 1) Acquire the attribute used as the DMAP key : 
 // Here's an example of getting the ISAM Credential 'tagvalue_session_index' : 
@@ -51,20 +69,29 @@ if(emailSrc == "credential") {
 	if(credentialUserSessionIndex != null && credentialUserSessionIndex != "") {
 		
 		// Since the tagvalue_session_index is not null let's base64 encode it to normalize the characters
-		var credentialUserSessionIndexHash = PluginUtils.encodeBase64(credentialUserSessionIndex);
+		var credentialUserSessionIndexHash = PluginUtils.encodeBase64(strToByteArray(credentialUserSessionIndex));
+		IDMappingExtUtils.traceString("Here is the base64 encoded value : " + credentialUserSessionIndexHash);
 		
 		// Just make sure that the hash isn't null
 		if(credentialUserSessionIndexHash != null && credentialUserSessionIndexHash != "") {
-			var dmapValue = cache.get(credentialUserSessionIndexHash);
+			var dmapValue = dmapCache.get(credentialUserSessionIndexHash);
 
 			// Make sure the DMAP value is not null and not an empty string
 			if(dmapValue != null && dmapValue != ""){
 				IDMappingExtUtils.traceString("Here is the value from the DMAP : " + dmapValue);
 			} else {
+				IDMappingExtUtils.traceString("The retrieved value from the DMAP was null or empty.");
+				macros.put("@ERROR_MESSAGE@","The retrieved value from the DMAP was null or empty.");
 				success.setValue(false);
 			}
+		} else {
+			IDMappingExtUtils.traceString("The base64 encoded value of the DMAP key was null or empty.");
+			macros.put("@ERROR_MESSAGE@","The base64 encoded value of the DMAP key was null or empty.");
+			success.setValue(false);
 		}
 	} else {
+		IDMappingExtUtils.traceString("The DMAP key was null or empty.");
+		macros.put("@ERROR_MESSAGE@","The DMAP key was null or empty.");
 		success.setValue(false);
 	}
 }
