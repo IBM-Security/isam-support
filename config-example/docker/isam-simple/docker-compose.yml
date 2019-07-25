@@ -148,7 +148,7 @@ services:
       - isamconfig
       - isamdscone
     domainname: "$DOMAIN_NAME"
-    hostname: "iasmruntimeone"
+    hostname: "isamruntimeone"
 
   isamrpone:
     image: store/ibmcorp/isam:${ISAM_VERSION}
@@ -180,4 +180,4 @@ services:
       - isamdscone
       - isamruntimeone
     domainname: "$DOMAIN_NAME"
-    hostname: "iasmrpone"
+    hostname: "isamrpone"
