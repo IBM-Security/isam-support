@@ -6,6 +6,6 @@ appliance_hostname=$1
 username=$2
 password=$3
 
-./run-cli-command.sh $appliance_hostname $username $password "tools connections"
+./run-cli-command.sh $appliance_hostname $username $password "tools connections" | sed -e 's/\\n/\n/g'
 
 exit $?
