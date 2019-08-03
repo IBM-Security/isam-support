@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 [ "$DEBUG" ] && set -x
 [ "$CURL" ]  || CURL="curl -s -k"
 
