@@ -11,7 +11,7 @@
 	**This JavaScript mapping rule is provided as-is and is supported by the author.
 	** All variable names, attribute names, and logic are provided as an example
 	** All non-customized JS default as provided by the ISAM Appliance AAC Module when creating an API Protection Definition
-	** General AAC/Federatio Auditing is available since 9.0.6.0
+	** General AAC/Federation Auditing is available since 9.0.6.0
 	
 	Please refer to the following documentation for a complete list of classes that are available for use in InfoMap Mapping rules : 
 		- https://www.ibm.com/support/knowledgecenter/en/SSPREK_9.0.7/com.ibm.isam.doc/config/concept/con_otp_customize_mapping_rules_gs_aac.html
