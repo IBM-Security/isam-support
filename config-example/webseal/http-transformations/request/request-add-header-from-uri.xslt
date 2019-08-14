@@ -3,6 +3,7 @@
 
   <xsl:strip-space elements="*" />
 
+<xsl:comment> Declare a variable named varUriGlobal. Assign the value of //HTTPRequest/RequestLine/URI </xsl:comment>
   
   <xsl:variable name="varUriGlobal">
     <xsl:value-of select="//HTTPRequest/RequestLine/URI"/>
@@ -15,7 +16,8 @@
     </HTTPRequestChange>
   </xsl:template>
   
-
+<xsl:comment> Test to determine if the header named hatch already exists. If it does not exist, then add a header named hatch and the value is the variable varUriGlobal </xsl:comment>
+  
   <xsl:template match="//HTTPRequest/Headers">
     <xsl:choose>
       <xsl:when test="Header/@name='hatch'" />
