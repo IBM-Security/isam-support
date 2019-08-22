@@ -8,9 +8,9 @@
       <xsl:apply-templates />
     </HTTPResponseChange>
   </xsl:template>
-  
+
   <xsl:template match="//HTTPResponse/Headers">
-	<xsl:variable name="originvalue" select="//HTTPRequest/Headers/Header/@name['origin']/node()" />
+    <xsl:variable name="originvalue" select="//HTTPResponse/HTTPRequest/Headers/Header[@name='origin']/node()" />
     <xsl:choose>
       <xsl:when test="Header/@name='access-control-allow-origin'"/>
       <xsl:otherwise>
@@ -30,5 +30,4 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
 </xsl:stylesheet>
