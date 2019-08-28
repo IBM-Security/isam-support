@@ -7,7 +7,7 @@ password=$3
 
 [ "$CURL" ]  || CURL="curl -s -k -u "$username:$password""
 
-${CURL} -u "$username:$password" -H "Accept: application/json" -H "Content-Type: application/json"      \
+${CURL} -H "Accept: application/json" -H "Content-Type: application/json"      \
                     -X GET https://${appliance_hostname}/setup_complete
 
 exit $?
