@@ -8,6 +8,6 @@ payload=$4
 
 [ "$CURL" ]  || CURL="curl -s -k -u "$username:password""
 
-${CURL} -u "$username:$password" -H "Accept: application/json" --data-ascii @${payload} -X PUT "https://${appliance_hostname}/isam/application_logs?action=delete"
+${CURL} -H "Accept: application/json" --data-ascii @${payload} -X PUT "https://${appliance_hostname}/isam/application_logs?action=delete"
 
 exit $?
