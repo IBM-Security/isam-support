@@ -42,7 +42,7 @@ function storeMultiValuedAttribute(inputAttribute,outputAttributeName,multiValue
         
 			if(attrToBeStored != null && attrToBeStored.length > 0) {
 			stsuu.addContextAttribute(new Attribute("number_"+outputAttributeName,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored.length));
-			for(var i = 0; i < inputAttribute.length; i++){
+			for(var i = 0; i < attrToBeStored.length; i++){
 				stsuu.addContextAttribute(new Attribute(outputAttributeName+"_"+i,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored[i]));
 			}
 			multivaluedAttrs += ","+outputAttributeName;
