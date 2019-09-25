@@ -1,3 +1,24 @@
+/*
+  Name : processMultiValuedAttributesAznCodeFlow.js
+  Author : jcyarbor@us.ibm.com
+  
+  Intended use : 
+    This mapping rule function was created as a method of retrieving and processing multi-valued attributes to be inserted 
+    into the ID Token during an Authorization Code flow.
+    
+    This function should be invoked at the '/token' endpoint.
+    Please update your code appropriately.
+      
+    ====
+    Usage : 
+    
+	} else if (request_type == "access_token") {
+...		
+		processMultiValuedAttributesAznCodeFlow();
+	}
+    
+    You can take the 'function' from this mapping rule and put it at the end of your PreTokenGeneration mapping rule.
+*/
 function processMultiValuedAttributesAznCodeFlow(){
 	var multiValueAttrs = stsuu.getAttributeContainer().getAttributeValueByName("multivaluedAttributes");
 	if(multiValueAttrs != null && multiValueAttrs != "") {
