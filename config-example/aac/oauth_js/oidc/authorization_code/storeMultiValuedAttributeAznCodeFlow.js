@@ -6,6 +6,9 @@
     This mapping rule function was created as a method of storing multi-valued attributes to be inserted into the ID Token
     during an Authorization Code flow.
     
+    This is meant to be invoked at the '/authorize' endpoint.
+    Please update your code appropriately.
+    
     It takes 3 inputs : 
     1) inputAttribute - A String which is the name of the multivalued attribute in the 'STSUU:AttributeList' that you want
                         to store in the JWT
@@ -16,7 +19,8 @@
     
     ====
     Usage : 
-    
+    	if (request_type == "authorization") {
+...
 		// Added to support multi-valued attributes
 		var multivaluedAttrs = "";
 		
@@ -26,6 +30,8 @@
 			stsuu.addContextAttribute(new Attribute("multivaluedAttributes","urn:ibm:names:ITFIM:oidc:claim:value",multivaluedAttrs));
 		}
 		// End add to support multi-valued attributes
+...
+    ====
     
     You can take the 'function' from this mapping rule and put it at the end of your PreTokenGeneration mapping rule.
 */
