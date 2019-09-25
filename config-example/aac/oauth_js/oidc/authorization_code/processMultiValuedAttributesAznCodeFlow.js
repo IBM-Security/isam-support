@@ -1,5 +1,5 @@
 /*
-  Name : processMultiValuedAttributesAznCodeFlow.js
+  Name : processMultiValuedAttributes.js
   Author : jcyarbor@us.ibm.com
   
   Intended use : 
@@ -14,12 +14,12 @@
     
 	} else if (request_type == "access_token") {
 ...		
-		processMultiValuedAttributesAznCodeFlow();
+		processMultiValuedAttributes();
 	}
     
     You can take the 'function' from this mapping rule and put it at the end of your PreTokenGeneration mapping rule.
 */
-function processMultiValuedAttributesAznCodeFlow(){
+function processMultiValuedAttributes(){
 	var multiValueAttrs = stsuu.getAttributeContainer().getAttributeValueByName("multivaluedAttributes");
 	if(multiValueAttrs != null && multiValueAttrs != "") {
 		multiValueAttrList = multiValueAttrs.split(",");
