@@ -24,7 +24,7 @@
 		// Added to support multi-valued attributes
 		var multivaluedAttrs = "";
 		
-		storeMultiValuedAttributeAznCodeFlow("AZN_CRED_GROUPS","groups",multivaluedAttrs);
+		storeMultiValuedAttribute("AZN_CRED_GROUPS","groups",multivaluedAttrs);
 		
 		if(multivaluedAttrs != null && multivaluedAttrs != ""){
 			stsuu.addContextAttribute(new Attribute("multivaluedAttributes","urn:ibm:names:ITFIM:oidc:claim:value",multivaluedAttrs));
@@ -36,7 +36,7 @@
     You can take the 'function' from this mapping rule and put it at the end of your PreTokenGeneration mapping rule.
 */
 
-function storeMultiValuedAttributeAznCodeFlow(inputAttribute,outputAttributeName,multiValueAttrListHolder){
+function storeMultiValuedAttribute(inputAttribute,outputAttributeName,multiValueAttrListHolder){
 		if(inputAttribute != null && inputAttribute != ""){
 			var attrToBeStored = stsuu.getAttributeContainer().getAttributeValuesByNameAndType(inputAttribute,"urn:ibm:names:ITFIM:5.1:accessmanager");
         
