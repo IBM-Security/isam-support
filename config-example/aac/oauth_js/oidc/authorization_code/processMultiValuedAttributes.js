@@ -37,7 +37,7 @@ function processMultiValuedAttributes(){
 							attrJavaArray[i] = temp_attr;
 						}
 					}
-					stsuu.addAttribute(new Attribute(currentAttr,"urn:ibm:jwt:claim",attrJavaArray));
+					stsuu.addAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute(currentAttr,"urn:ibm:jwt:claim",attrJavaArray));
 				}
 			}
 		}
