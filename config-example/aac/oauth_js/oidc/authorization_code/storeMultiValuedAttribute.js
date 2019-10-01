@@ -27,7 +27,7 @@
 		storeMultiValuedAttribute("AZN_CRED_GROUPS","groups",multivaluedAttrs);
 		
 		if(multivaluedAttrs != null && multivaluedAttrs != ""){
-			stsuu.addContextAttribute(new Attribute("multivaluedAttributes","urn:ibm:names:ITFIM:oidc:claim:value",multivaluedAttrs));
+			stsuu.addContextAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute("multivaluedAttributes","urn:ibm:names:ITFIM:oidc:claim:value",multivaluedAttrs));
 		}
 		// End add to support multi-valued attributes
 ...
@@ -41,9 +41,9 @@ function storeMultiValuedAttribute(inputAttribute,outputAttributeName,multiValue
 			var attrToBeStored = stsuu.getAttributeContainer().getAttributeValuesByNameAndType(inputAttribute,"urn:ibm:names:ITFIM:5.1:accessmanager");
         
 			if(attrToBeStored != null && attrToBeStored.length > 0) {
-			stsuu.addContextAttribute(new Attribute("number_"+outputAttributeName,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored.length));
+			stsuu.addContextAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute("number_"+outputAttributeName,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored.length));
 			for(var i = 0; i < attrToBeStored.length; i++){
-				stsuu.addContextAttribute(new Attribute(outputAttributeName+"_"+i,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored[i]));
+				stsuu.addContextAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute(outputAttributeName+"_"+i,"urn:ibm:names:ITFIM:oidc:claim:value",attrToBeStored[i]));
 			}
 			multivaluedAttrs += ","+outputAttributeName;
 		}
