@@ -3,18 +3,22 @@
 	version="1.0" xmlns:external="http://xsltfunctions.isam.ibm.com">
 
 <!--
-	This is a template stylesheet which should be used as a guide when
-	using WebSEAL's HTTP Transformation engine. This sample is relevant to
-	a response only.
--->
+	This HTTP Transformation can only be used at ISAM 9.0.7.0+
 
-	<!-- Firstly, strip any space elements -->
+	Add this to your Reverse Proxy configuration file using : 
+	
+	[http-transformations]
+	...
+	apiauthsvcerrors = response-isam9070-customize-apiauthsvc-errors.xslt
+	
+	[http-transformations:apiauthsvcerrors]
+	request-match = response:GET /mga/sps/apiauthsvc*
+	request-match = response:POST /mga/sps/apiauthsvc*
+	request-match = response:PUT /mga/sps/apiauthsvc*
+	
+-->
 	<xsl:strip-space elements="*" />
 
-	<!--
-		Perform a match on the root of the document. Output the required
-		HTTPResponseChange elements and then process templates.
-	-->
 	<xsl:template match="/">
 		<HTTPResponseChange>
 			<xsl:apply-templates />
@@ -58,7 +62,7 @@
 			<!-- When non-JSON data is provided on a 'POST' operation -->
 			<xsl:when test="//HTTPResponse/ResponseLine/StatusCode/node() = '415' ">
 				<HTTPResponseChange action="update">
-					<Body>%7B%22exceptionMsg%22%3A%22The%20POST%20did%20not%20send%20JSON%20as%20expected%22%7D</Body>
+					<Body>%7B%22exceptionMsg%22%3A%22The%20<xsl:value-of select="$method" />%20did%20not%20send%20JSON%20or%20the%20expected%20'Content-type'%20header%22%7D</Body>
 				</HTTPResponseChange>
 			</xsl:when>
 			<xsl:otherwise />
