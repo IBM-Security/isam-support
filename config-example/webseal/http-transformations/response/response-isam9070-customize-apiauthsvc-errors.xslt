@@ -47,6 +47,12 @@
 							<Body>%7B%22exceptionMsg%22%3A%22The%20request%20has%20provided%20an%20invalid%20'TransactionId'%20query%20parameter%22%7D</Body>
 						</HTTPResponseChange>
 					</xsl:when>
+					<!-- When there is only a 'PolicyId' provided and it's invalid -->
+					<xsl:when test="contains($queryargs,'PolicyId') and not(contains($queryargs,'StateId')) and not(contains($queryargs,'TransactionId'))">
+						<HTTPResponseChange action="update">
+							<Body>%7B%22exceptionMsg%22%3A%22The%20request%20has%20provided%20an%20invalid%20'PolicyId'%20query%20parameter%22%7D</Body>
+						</HTTPResponseChange>
+					</xsl:when>
 				</xsl:choose>
 			</xsl:when>
 			<!-- When non-JSON data is provided on a 'POST' operation -->
