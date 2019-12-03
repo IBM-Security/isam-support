@@ -2,7 +2,7 @@
 **ISAM Level II Support Diagnostic Tools, Configuration Examples, and Best-Practices.**
 
 These are unsupported and not maintained as official assets.
-Please use the Issue tab to report problems, offer suggestions, etc.
+Please use the Issues tab to report problems, offer suggestions, etc.
 
 
 ======== C O N T E N T S ========
