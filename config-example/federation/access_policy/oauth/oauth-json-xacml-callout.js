@@ -6,6 +6,13 @@
 *		Intended purpose :
 *			This is an example access policy of how to call the JSON XACML engine included with AAC to get a Risk Score evaluation from the access policy.
 *
+*		Appliance Implementation :
+*			1) Navigate to 'Secure Access Control -> Global Settings -> Access Policies'
+*			2) Select 'Add' to create a new mapping rule
+*				- Name : 'oauth-json-xacml-callout'
+*				- Type : JavaScript
+*				- Category : 
+*
 */
 
 // Import statements from documentation : https://www.ibm.com/support/knowledgecenter/en/SSPREK_9.0.7/com.ibm.isam.doc/config/reference/ref_accpol_sample.html
@@ -31,10 +38,10 @@ buildDefaultBehaviorRiskProfile(behaviorJSONBody);
 IDMappingExtUtils.traceString("Behavior JSON Body : " +JSON.stringify(behaviorJSONBody));
 
 // Add a Resource ID that maps to the WebSEAL resource : /resource
-behaviorJSONBody.Request.Resource.Attribute.push({"AttributeId":"urn:oasis:names:tc:xacml:1.0:resource:resource-id","DataType":"string","Value":"/index.html"});
+addResourceId("/index.html", behaviorJSONBody)
 
 // Add a Context ID that maps to the WebSEAL resources : /WebSEAL/server-name/resource
-behaviorJSONBody.Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":"/WebSEAL/isam9070lmi.hyperv.lab-default/index.html","Issuer":"http://security.tivoli.ibm.com/policy/distribution"});
+addContextId("/WebSEAL/isam9070lmi.hyperv.lab-default/index.html", behaviorJSONBody)
 
 // Get the username from the request Access Policy Request
 // You have to append the output to a JavaScript String to not anger the JSON parser.
