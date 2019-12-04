@@ -1,7 +1,8 @@
 /*
 *		Title: oauth-access-policy-utilities.js
-*		Author: jcyarbor@us.ibm.com`
-*		Purpose : 
+*		Author : Jack Yarborough (jcyarbor@us.ibm.com)
+*
+*		Intended Purpose : 
 *			This mapping rule will contain utility functions for the different contexts.
 *
 *		Appliance Implementation :
