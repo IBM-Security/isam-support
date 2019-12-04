@@ -1,0 +1,195 @@
+/*
+*		Title: json-rtss-utilities.js
+*		Author: jcyarbor@us.ibm.com`
+*		Purpose : 
+*			This mapping rule will contain utility functions for setting up and creating JSON formatted RTSS requests.
+*
+*		Appliance Implementation :
+*			1) Navigate to 'Secure Access Control -> Global Settings -> Mapping Rules'
+*			2) Select 'Add' to create a new mapping rule
+*				- Name : 'oauth-access-policy-utilities'
+*				- Category : infomap
+*
+*/
+
+importClass(Packages.com.tivoli.am.fim.trustserver.sts.utilities.IDMappingExtUtils);
+importMappingRule("oauth-access-policy-utilities");
+
+function buildEmptyJSONBody() {
+	var JSONBody = {};
+	JSONBody.Request = {"Action":{"Attribute":[]},"Resource":{"Attribute":[]},"Environment":{"Attribute":[]},"AccessSubject":{"Attribute":[]}};
+	return JSONBody;
+}
+
+function envAttrExists(attrId, JSONBody) {
+	var exists = false;
+	var attrs = JSONBody.Request.Environment.Attribute;
+	for(attribute in attrs) {
+		if(attribute.AttributeId === attrId){
+			exists = true;
+		}
+	}
+	return exists;	
+}
+
+function subjAttrExists(attrId, JSONBody) {
+	var exists = false;
+	var attrs = JSONBody.Request.AccessSubject.Attribute;
+	for(attribute in attrs) {
+		if(attribute.AttributeId === attrId){
+			exists = true;
+		}
+	}
+	return exists;	
+}
+
+function addStringEnvAttr(attrId, attrvalue, JSONBody) {
+	var stringId = "" + attrId;
+	var stringValue = "" + attrvalue;
+	if(!envAttrExists(attrId, JSONBody)) {
+		if(stringValue != "null"){
+			JSONBody.Request.Environment.Attribute.push({"AttributeId":stringId,"DataType":"string","Value":stringValue});
+		}
+	}
+}
+
+function addStringSubjAttr(attrId, attrvalue, JSONBody){
+	var stringId = "" + attrId;
+	var stringValue = "" + attrvalue;
+	if(!envAttrExists(attrId, JSONBody)) {
+		if(stringValue != "null"){
+			JSONBody.Request.AccessSubject.Attribute.push({"AttributeId":stringId,"DataType":"string","Value":stringValue});
+		}
+	}
+}
+
+function addResourceId(resourceValue, JSONBody){
+	
+}
+
+function addContextId(contextValue, JSONBody){
+	
+}
+
+function buildDefaultBehaviorRiskProfile(JSONBody) {
+	/*
+	*		Attributes provided by RTSS : 
+	*			accessTime
+	*
+	*		Attributes provided by request context : 
+	*			ac.uuid
+	*			http:userAgent
+	*
+	*		Attributes provided by 'info.js' call : 
+	*			browserPlugins
+	*			deviceFonts
+	*/
+	
+	// We need to include the acuuid each time
+	var acuuid = requestJSON.cookies["ac.uuid"];
+	if(acuuid != null) {
+		acuuidvalue = acuuid.value;
+	} else {
+		acuuidvalue = "";
+	}
+	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	
+	// Get headers and add them
+	var httpUserAgent = requestJSON.headers["userAgent"];
+	
+	addStringEnvAttr("urn:ibm:security:environment:http:userAgent",httpUserAgent,JSONBody);
+	
+	return JSONBody;
+}
+
+function buildDefaultBrowserRiskProfile (JSONBody) {
+	/*
+	*		Attributes provided by RTSS : 
+	*
+	*		Attributes provided by request context : 
+	*			http:accept
+	*			http:acceptEncoding
+	*			http:acceptLanguage
+	*			http:userAgent
+	*
+	*		Attributes provided by 'info.js' call : 
+	*			browserPlugins
+	*			deviceFonts
+	*/
+	
+	// We need to include the acuuid each time
+	var acuuid = requestJSON.cookies["ac.uuid"];
+	if(acuuid != null) {
+		acuuidvalue = acuuid.value;
+	} else {
+		acuuidvalue = "";
+	}
+	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	
+	// Get headers and add them
+	var httpAccept = requestJSON.headers["accept"];
+	var httpAcceptEncoding = requestJSON.headers["acceptEncoding"];
+	var httpAcceptLanguage = requestJSON.headers["acceptLanguage"];
+	var httpUserAgent = requestJSON.headers["userAgent"];
+	
+	addStringEnvAttr("urn:ibm:security:environment:http:accept",httpAccept,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:acceptEncoding",httpAcceptEncoding,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:acceptLanguage",httpAcceptLanguage,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:userAgent",httpUserAgent,JSONBody);
+	
+	return JSONBody;
+}
+
+function buildDefaultDeviceRiskProfile(JSONBody) {
+	/*
+	*		Attributes provided by RTSS : 
+	*
+	*		Attributes provided by request context : 
+	*
+	*		Attributes provided by 'info.js' call : 
+	*			browserPlugins
+	*			deviceFonts
+	*			deviceLanguage
+	*			devicePlatform
+	*			screenAvailableHeight
+	*			screenAvailableWidth
+	*			screenHeight
+	*			screenWidth
+	*/
+	
+	// We need to include the acuuid each time
+	var acuuid = requestJSON.cookies["ac.uuid"];
+	if(acuuid != null) {
+		acuuidvalue = acuuid.value;
+	} else {
+		acuuidvalue = "";
+	}
+	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	
+	return JSONBody;
+}
+
+function buildDefaultLocationRiskProfile (JSONBody) {
+	/*
+	*		Attributes provided by RTSS : 
+	*
+	*		Attributes provided by request context : 
+	*
+	*		Attributes provided by 'info.js' call : 
+	*			geoCity
+	*			geoCountryCode
+	*			geoLocation
+	*			geoRegionCode
+	*/
+	
+	// We need to include the acuuid each time
+	var acuuid = requestJSON.cookies["ac.uuid"];
+	if(acuuid != null) {
+		acuuidvalue = acuuid.value;
+	} else {
+		acuuidvalue = "";
+	}
+	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	
+	return JSONBody;
+}
