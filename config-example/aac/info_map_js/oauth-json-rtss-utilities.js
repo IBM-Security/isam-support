@@ -1,7 +1,8 @@
 /*
-*		Title: json-rtss-utilities.js
-*		Author: jcyarbor@us.ibm.com`
-*		Purpose : 
+*		Title: oauth-json-rtss-utilities.js
+*		Author : Jack Yarborough (jcyarbor@us.ibm.com)
+*
+*		Intended Purpose : 
 *			This mapping rule will contain utility functions for setting up and creating JSON formatted RTSS requests.
 *
 *		Appliance Implementation :
