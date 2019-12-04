@@ -101,3 +101,4 @@ if(rspJSONObligations != null) {
 		handler.setMacro("@MESSAGE@", "This user is not allowed to preform sso");
 		context.setDecision(Decision.deny(handler));
 }
+
