@@ -7,7 +7,7 @@
 *		Appliance Implementation :
 *			1) Navigate to 'Secure Access Control -> Global Settings -> Mapping Rules'
 *			2) Select 'Add' to create a new mapping rule
-*				- Name : 'oauth-access-policy-utilities'
+*				- Name : 'oauth-json-rtss-utilities'
 *				- Category : infomap
 *
 */
@@ -70,7 +70,7 @@ function addResourceId(resourceValue, JSONBody){
 
 function addContextId(contextValue, JSONBody){
 	var stringValue = "" + contextValue;
-	Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
+	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
 }
 
 function buildDefaultBehaviorRiskProfile(JSONBody) {
@@ -97,7 +97,7 @@ function buildDefaultBehaviorRiskProfile(JSONBody) {
 	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
 	
 	// Get headers and add them
-	var httpUserAgent = requestJSON.headers["userAgent"];
+	var httpUserAgent = requestJSON.headers["User-Agent"];
 	
 	addStringEnvAttr("urn:ibm:security:environment:http:userAgent",httpUserAgent,JSONBody);
 	
@@ -129,10 +129,10 @@ function buildDefaultBrowserRiskProfile (JSONBody) {
 	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
 	
 	// Get headers and add them
-	var httpAccept = requestJSON.headers["accept"];
-	var httpAcceptEncoding = requestJSON.headers["acceptEncoding"];
-	var httpAcceptLanguage = requestJSON.headers["acceptLanguage"];
-	var httpUserAgent = requestJSON.headers["userAgent"];
+	var httpAccept = requestJSON.headers["Accept"];
+	var httpAcceptEncoding = requestJSON.headers["Accept-Encoding"];
+	var httpAcceptLanguage = requestJSON.headers["Accept-Language"];
+	var httpUserAgent = requestJSON.headers["User-Agent"];
 	
 	addStringEnvAttr("urn:ibm:security:environment:http:accept",httpAccept,JSONBody);
 	addStringEnvAttr("urn:ibm:security:environment:http:acceptEncoding",httpAcceptEncoding,JSONBody);
