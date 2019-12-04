@@ -64,11 +64,13 @@ function addStringSubjAttr(attrId, attrvalue, JSONBody){
 }
 
 function addResourceId(resourceValue, JSONBody){
-	
+	var stringValue = "" + resourceValue;
+	JSONBody.Request.Resource.Attribute.push({"AttributeId":"urn:oasis:names:tc:xacml:1.0:resource:resource-id","DataType":"string","Value":stringValue});
 }
 
 function addContextId(contextValue, JSONBody){
-	
+	var stringValue = "" + contextValue;
+	Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
 }
 
 function buildDefaultBehaviorRiskProfile(JSONBody) {
