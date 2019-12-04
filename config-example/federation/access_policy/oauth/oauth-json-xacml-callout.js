@@ -1,9 +1,8 @@
 /*
-*		oauth-json-xacml-callout.js
-*
+*		Title: oauth-json-xacml-callout.js
 *		Author : Jack Yarborough (jcyarbor@us.ibm.com)
 *		
-*		Intended purpose :
+*		Intended Purpose :
 *			This is an example access policy of how to call the JSON XACML engine included with AAC to get a Risk Score evaluation from the access policy.
 *
 *		Appliance Implementation :
@@ -101,4 +100,3 @@ if(rspJSONObligations != null) {
 		handler.setMacro("@MESSAGE@", "This user is not allowed to preform sso");
 		context.setDecision(Decision.deny(handler));
 }
-
