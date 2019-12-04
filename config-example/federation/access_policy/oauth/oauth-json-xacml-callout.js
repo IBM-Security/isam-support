@@ -50,9 +50,9 @@ addContextId("/WebSEAL/isam9070lmi.hyperv.lab-default/index.html", behaviorJSONB
 
 var userName = ""+ userJSON.username;
 
-behaviorJSONBody.Request.AccessSubject.Attribute.push({"AttributeId":"urn:ibm:security:subject:username","DataType":"string","Value":userName});
+addStringSubjAttr("urn:ibm:security:subject:username", userName, behaviorJSONBody)
 
-IDMappingExtUtils.traceString(JSON.stringify(behaviorJSONBody));
+IDMappingExtUtils.traceString("Final JSON Body : " +JSON.stringify(behaviorJSONBody));
 
 // Now we build the HTTPS Call to the JSON RTSS Authz Service
 var url = "https://localhost/rtss/rest/authz/json";
