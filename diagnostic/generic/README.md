@@ -11,6 +11,7 @@ cipherTester.sh - a Bash script that loops through openssl ciphers to confirm wh
 Requires 'bash' and 'openssl' to run as intended
 
 ====================================================================
+
 pdjar.sh - Execute this script to find any *PD.jar* files, the details of the files, and their versions.
 
 Requires read access so it is recommended to run as root to ensure you have permissions to find them all.
