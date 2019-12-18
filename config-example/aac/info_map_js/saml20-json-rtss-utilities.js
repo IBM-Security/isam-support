@@ -56,7 +56,11 @@ function addStringEnvAttr(attrId, attrvalue, JSONBody) {
 
 function addStringSubjAttr(attrId, attrvalue, JSONBody){
 	var stringId = "" + attrId;
-	var stringValue = "" + attrvalue;
+	if(attrvalue.length > 1)
+		var stringValue = attrvalue;
+	} else {
+		var stringValue = "" + attrvalue;
+	}
 	if(!envAttrExists(attrId, JSONBody)) {
 		if(stringValue != "null"){
 			JSONBody.Request.AccessSubject.Attribute.push({"AttributeId":stringId,"DataType":"string","Value":stringValue});
