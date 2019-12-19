@@ -57,9 +57,11 @@ function addStringEnvAttr(attrId, attrvalue, JSONBody) {
 function addStringSubjAttr(attrId, attrvalue, JSONBody){
 	var stringId = "" + attrId;
 	var stringValue = null;
-	if(attrvalue.length > 1) {
-		stringValue = attrvalue;
-	} else {
+	if(attrvalue != null) {
+		if(attrvalue.length > 1) {
+			stringValue = attrvalue;
+		} 
+	}else {
 		stringValue = "" + attrvalue;
 	}
 	if(!envAttrExists(attrId, JSONBody)) {
