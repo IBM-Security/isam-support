@@ -39,11 +39,19 @@ var userJSON = (function() {
               for (var it = attributes.iterator(); it.hasNext();) {
                      var attribute = it.next();
                      var attributeName = attribute.getName();
-                     var attributeValue = attribute.getValue();
-
-                     attributesReturn["" + attributeName] = "" + attributeValue;
+					 var attributeValue = [];
+                     var attributeValues = attribute.getValues();
+					 if(attributeValues.size() > 1 || attributeValues.get(0).includes(",")) {
+						for(var attr = attributeValues.iterator(); attr.hasNext();) {
+							var currentAttr = attr.next();
+							attributeValue.push(currentAttr);
+						}
+						attributesReturn["" + attributeName] = attributeValue;
+					 } else {
+						 attributeValue = attributeValues.get(0);
+						 attributesReturn["" + attributeName] = "" + attributeValue;
+					 }
               }
-
               return attributesReturn;
        })();
       
