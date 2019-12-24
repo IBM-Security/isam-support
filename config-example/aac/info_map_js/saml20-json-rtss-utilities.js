@@ -46,7 +46,17 @@ function subjAttrExists(attrId, JSONBody) {
 
 function addStringEnvAttr(attrId, attrvalue, JSONBody) {
 	var stringId = "" + attrId;
-	var stringValue = "" + attrvalue;
+	var stringValue = null;
+	if(typeof attrvalue != "string" && typeof attrvalue!= "undefined"){
+		var values = attrvalue.toString().split(",");
+		var jsonarray = [];
+		for( var j = 0; j < values.length; j++) {
+			jsonarray.push(values[j].toString());
+		}
+		stringValue = jsonarray;
+	}else {
+		stringValue = "" + attrvalue;
+	}
 	if(!envAttrExists(attrId, JSONBody)) {
 		if(stringValue != "null"){
 			JSONBody.Request.Environment.Attribute.push({"AttributeId":stringId,"DataType":"string","Value":stringValue});
@@ -57,10 +67,13 @@ function addStringEnvAttr(attrId, attrvalue, JSONBody) {
 function addStringSubjAttr(attrId, attrvalue, JSONBody){
 	var stringId = "" + attrId;
 	var stringValue = null;
-	if(attrvalue != null) {
-		if(attrvalue.length > 1) {
-			stringValue = attrvalue;
-		} 
+	if(typeof attrvalue != "string" && typeof attrvalue!= "undefined"){
+		var values = attrvalue.toString().split(",");
+		var jsonarray = [];
+		for( var j = 0; j < values.length; j++) {
+			jsonarray.push(values[j].toString());
+		}
+		stringValue = jsonarray;
 	}else {
 		stringValue = "" + attrvalue;
 	}
