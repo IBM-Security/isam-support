@@ -13,7 +13,7 @@ Requires 'bash' and 'openssl' to run as intended
 
 ====================================================================
 
-pdjar.sh - Execute this script to find any *PD.jar* files, the details of the files, and their versions.
+pdjar.sh - Execute this script to find any *PD.jar* files, the details of the files, and their versions.   At the same time this script will also collect java information from the system.
 
 Requires read access so it is recommended to run as root to ensure you have permissions to find them all.
 Relies on the "unzip" command being avialble.
