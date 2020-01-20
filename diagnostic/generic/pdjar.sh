@@ -9,9 +9,13 @@ do
         printf "%s%s%s\n" "$(ls -l $jar)" ": " "$(unzip -p $jar META-INF/MANIFEST.MF 2>/dev/null|grep Implementation-Version|cut -d " " -f 2)";
 done;
 
-printf "\n\nJava informatrion:\n"
+printf "\nJava informatrion:\n"
 
 for jar in $(find / -name java -perm -111 -type f);
 do
-        printf "%s%s%s\n" "$(echo $jar)" "  ->  " "$($jar -fullversion 2>&1|cut -f 4- -d " ")";
+        printf "%s%s%s\n" "$(echo $jar)" " -> " "$($jar -fullversion 2>&1|cut -f 4- -d " ")";
 done;
+
+printf "\n\$JAVA_HOME: $JAVA_HOME\n"
+printf "\"which java\": %s\n" "$(which java)"
+printf "\$PATH: $PATH\n"
