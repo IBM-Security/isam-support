@@ -9,7 +9,7 @@ do
         printf "%s%s%s\n" "$(ls -l $jar)" ": " "$(unzip -p $jar META-INF/MANIFEST.MF 2>/dev/null|grep Implementation-Version|cut -d " " -f 2)";
 done;
 
-printf "\nJava informatrion:\n"
+printf "\nJava information:\n"
 
 for jar in $(find / -name java -perm -111 -type f);
 do
