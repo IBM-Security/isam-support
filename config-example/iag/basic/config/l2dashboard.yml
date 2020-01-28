@@ -12,7 +12,7 @@ resource_servers:
     path: "/dashboard"
     servers:
       - host: "<ip of application>"
-        port: 8089
+        port: <port>
     transparent_path: false
     identity_headers:
       encoding: utf8_uri
