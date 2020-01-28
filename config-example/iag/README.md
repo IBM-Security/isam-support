@@ -1,1 +1,1 @@
-Simple demo lab for IBM Application Gateway
+Various labs for IBM Application Gateway
