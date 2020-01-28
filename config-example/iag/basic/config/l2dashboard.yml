@@ -1,0 +1,63 @@
+version: 19.12
+
+identity:
+  ci_oidc:
+    client_id: "<Your CI Client ID>"
+    client_secret: "<Your CI Client Secret>"
+    tenant: "<tenant>.ice.ibmcloud.com"
+    hostname: "<tenant>.ice.ibmcloud.com"
+
+resource_servers:
+  - connection_type: "tcp"
+    path: "/dashboard"
+    servers:
+      - host: "<ip of application>"
+        port: 8089
+    transparent_path: false
+    identity_headers:
+      encoding: utf8_uri
+      basic_auth: filter
+      ip_address: true
+      attributes:
+        - attribute: emailAddress
+          header: email
+        - attribute: AUTHENTICATION_LEVEL
+          header: authlevel
+        - attribute: displayName
+          header: Name
+      session_cookie: true
+
+server:
+  worker_threads: 500
+  ssl:
+    front_end:
+      certificate: "@iag.pem"
+      tlsv10: false
+      tlsv11: false
+      tlsv12: true
+      tlsv13: false
+    ciphers:
+    - AES-128
+    - AES-256
+    - TLS_RSA_WITH_AES_128_CBC_SHA
+
+  failover:
+    key: "@oct-512-bit.bin"
+    cookie_name: iag-failover
+    domain_cookie: false
+
+  local_applications:
+    cred_viewer:
+      path_segment: ivcreds
+      enable_html: true
+
+advanced:
+  configuration:
+    - stanza: junction
+      entry: max-cached-persistent-connections
+      operation: set
+      value: ["100"]
+    - stanza: junction
+      entry: persistent-con-timeout
+      operation: set
+      value: ["5"]
