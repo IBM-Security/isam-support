@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  haproxy:
+    image: haproxy-l2dashboard
+    container_name: haproxy-l2dashboard
+    expose:
+      - "443"
+    ports:
+      - 0.0.0.0:${HAPROXY_HTTPS_PORT}:443
+    domainname: "$DOMAIN_NAME"
+    hostname: "haproxy-l2dashboard"
+    depends_on:
+      - iag1
+      - iag2
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://9.48.172.17:514"
+        syslog-format: rfc3164
+        tag: haproxy-l2dashboard
+
+  iag1:
+    image: iag-l2dashboard
+    container_name: iag-l2dashboard1
+    expose:
+      - "8443"
+    domainname: "$DOMAIN_NAME"
+    hostname: "iag-l2dashboard1"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://9.48.172.17:514"
+        syslog-format: rfc3164
+        tag: iag-l2dashboard1
+
+  iag2:
+    image: iag-l2dashboard
+    container_name: iag-l2dashboard2
+    expose:
+      - "8443"
+    domainname: "$DOMAIN_NAME"
+    hostname: "iag-l2dashboard2"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://9.48.172.17:514"
+        syslog-format: rfc3164
+        tag: iag-l2dashboard2
+
