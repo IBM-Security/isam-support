@@ -16,7 +16,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "udp://9.48.172.17:514"
+        syslog-address: "udp://ip:514"
         syslog-format: rfc3164
         tag: haproxy-l2dashboard
 
@@ -30,7 +30,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "udp://9.48.172.17:514"
+        syslog-address: "udp://ip:514"
         syslog-format: rfc3164
         tag: iag-l2dashboard1
 
@@ -44,7 +44,7 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "udp://9.48.172.17:514"
+        syslog-address: "udp://ip:514"
         syslog-format: rfc3164
         tag: iag-l2dashboard2
 
