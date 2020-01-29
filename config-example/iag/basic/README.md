@@ -19,7 +19,12 @@ identity:
         port: <port>
     transparent_path: false
 ```
- 
+
+docker-compose.yml
+```
+syslog-address: "udp://<ip>:<port>"
+```
+
   
   
 
