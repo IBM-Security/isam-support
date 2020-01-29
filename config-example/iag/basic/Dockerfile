@@ -1,4 +1,4 @@
-FROM ibmcom/ibm-application-gateway:19.12
+FROM ibmcom/ibm-application-gateway:20.01
 LABEL maintainer="nlloyd@us.ibm.com" vendor="ISAML2"
 
 
