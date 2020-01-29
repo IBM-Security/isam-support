@@ -4,10 +4,11 @@
 # Version 2.0: Jan 20, 2020 Added collection for java versions found on the system
 
 # Notes: 
-# Execute this script to find any PD.jar files, the details of the files, and their versions. 
-# At the same time this script will also collect java information from the system.
-# Requires read access so it is recommended to run as root to ensure you have permissions to find them all. 
-# Relies on the "unzip" command being avialble.
+# - Relies on the "unzip" command being avialble.
+# - Execute this script to find any PD.jar files, the details of the files, and their versions. 
+# - At the same time this script will also collect java information from the system.
+# - Requires read access so it is recommended to run as root to ensure you have permissions to find them all. 
+
 
 printf "PD.jar information:\n"
 for jar in $(find / -name \*PD.jar\*);
