@@ -13,7 +13,7 @@ help:
         @echo "start:                           Start the containers."
         @echo "restart:                 Restart the containers."
         @echo "down:                            Bring down the containers."
-        @echo "destroy:                 Bring down the containers and destory the volumes."
+        @echo "destroy:                 Bring down the containers and destory the volumes and images."
         @echo "build:                           Rebuild the IAG image."
         @echo "buildha:                 Rebuild the HAProxy image."
 
