@@ -2,7 +2,7 @@ There are only a few places which need to be updated to get this lab up.
 ========================================================================
 
 
-config/l2dashboard.yml
+config/l2dashboard.yml  
 <code>
 identity:
   ci_oidc:
