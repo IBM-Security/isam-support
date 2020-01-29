@@ -1,6 +1,8 @@
 There are only a few places which need to be updated to get this lab up.
 
+
 config/l2dashboard.yml
+<code>
 identity:
   ci_oidc:
     client_id: "<client-id>"
@@ -15,6 +17,7 @@ identity:
       - host: "<ip>"
         port: <port>
     transparent_path: false
+  </code>
   
   
 
