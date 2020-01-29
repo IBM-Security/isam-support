@@ -8,7 +8,7 @@ help:
         @echo ""
         @echo "Help Intructions for the ISAM L2 Dashboard Application Gateway"
         @echo ""
-        @echo "up:                              Create a new containers using Docker Compose."
+        @echo "up:                              Create new containers using Docker Compose."
         @echo "stop:                            Stop the containers."
         @echo "start:                           Start the containers."
         @echo "restart:                 Restart the containers."
@@ -40,9 +40,10 @@ down:
 
 destroy:
         $(DOCKER-COMPOSE) down --volumes
+        $(DOCKER) image rm $(HAPROXY_IMAGE)
+        $(DOCKER) image rm $(IMAGE)
 
-all:
-        build
+all: build buildha up
 
 clean:
         docker image rm $(IMAGE) $(HAPROXY_IMAGE)
