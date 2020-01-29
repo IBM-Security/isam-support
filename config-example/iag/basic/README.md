@@ -25,6 +25,11 @@ docker-compose.yml
 syslog-address: "udp://<ip>:<port>"
 ```
 
+Use the following openssl command to create the failover cookie key
+```
+openssl rand -out oct-512-bit.bin 64
+```
+
   
   
 
