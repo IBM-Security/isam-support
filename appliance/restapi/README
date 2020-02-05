@@ -12,6 +12,7 @@ Receiving objects: 100% (545/545), 1.18 MiB | 1.78 MiB/s, done.
 Resolving deltas: 100% (186/186), done.
 
 cd isam-support/appliance/restapi/
+curl https://raw.githubusercontent.com/dominictarr/JSON.sh/master/JSON.sh > JSON.sh
 chmod +x -R .
 cd bin
 ./create-symlinks.sh
