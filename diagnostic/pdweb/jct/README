@@ -1,0 +1,81 @@
+This tool is designed to help you look through junction files.
+
+Setup:   Ensure that "awkfile" in the jct.sh points to the proper location of the jct.awk.
+
+Usage: ./jct/sh [search string]
+
+There are two ways to use this tool.    If it is called with no options, it will provide a 
+quick summary of the junctions.  For example...
+
+$ /tools/jct.sh
+
+Junction                              Type      Filename
+========                              ====      ========
+/                                               ./Lw==.xml
+/admin                                 T        ./L2FkbWlu.xml
+/itim/console                          T        ./L2l0aW0vY29uc29sZQ==.xml
+/itim/consolehelp                      T        ./L2l0aW0vY29uc29sZWhlbHA=.xml
+/itim/messagehelp                      T        ./L2l0aW0vbWVzc2FnZWhlbHA=.xml
+/itim/self                             T        ./L2l0aW0vc2VsZg==.xml
+/itim/selfhelp                         T        ./L2l0aW0vc2VsZmhlbHA=.xml
+/itim/services                         T        ./L2l0aW0vc2VydmljZXM=.xml
+/mga                                            ./L21nYQ==.xml
+testvhj                                V        ./dGVzdHZoag==.xml
+
+Type:
+   - Regular Traditional Junction
+ T - Transparent Path Junction
+ V - Virtualhost Junction
+ 
+ 
+
+If you specify a search string, it will dump all the junctions which contain that string.
+
+$ /tools/jct.sh mga
+
+L21nYQ==.xml:
+<JUNCTION>
+        <VERSION>9.0.6.0</VERSION>
+        <NAME>/mga</NAME>
+        <JUCTYPE>ssl</JUCTYPE>
+        <HARDLIMIT>0</HARDLIMIT>
+        <SOFTLIMIT>0</SOFTLIMIT>
+        <BASICAUTH>filter</BASICAUTH>
+        <CLIENTID>insert_pass_usgrcr</CLIENTID>
+        <REMOTEADDRESS/>
+        <STATEFUL/>
+        <REQUESTENCODING>utf8_uri</REQUESTENCODING>
+        <UUID>cd122abc-4e63-11ea-b41d-000c298e464c</UUID>
+        <HOST>127.0.0.1</HOST>
+        <PORT>443</PORT>
+        <VIRTHOSTNM>127.0.0.1</VIRTHOSTNM>
+        <SERVERDN></SERVERDN>
+        <URLQC>/cgi-bin/query_contents</URLQC>
+        <LOCALADDRESS></LOCALADDRESS>
+        <OPERATIONALMODE>online</OPERATIONALMODE>
+        <WHENTHROTTLED>0</WHENTHROTTLED>
+</JUNCTION>
+
+$ /tools/jct.sh dev1
+
+dGVzdHZoag==.xml:
+<JUNCTION>
+        <VERSION>9.0.7.0</VERSION>
+        <NAME>testvhj</NAME>
+        <JUCTYPE>tcp</JUCTYPE>
+        <HARDLIMIT>0</HARDLIMIT>
+        <SOFTLIMIT>0</SOFTLIMIT>
+        <BASICAUTH>filter</BASICAUTH>
+        <CLIENTID>do not insert</CLIENTID>
+        <VIRTUALHOSTJCT/>
+        <REQUESTENCODING>utf8_uri</REQUESTENCODING>
+        <UUID>a1d6b644-5a5f-11ea-b442-000c294d8e58</UUID>
+        <HOST>dev1.mydomain.com</HOST>
+        <PORT>80</PORT>
+        <VIRTHOSTNM>testvhj.domain.com</VIRTHOSTNM>
+        <SERVERDN></SERVERDN>
+        <URLQC>/cgi-bin/query_contents</URLQC>
+        <LOCALADDRESS></LOCALADDRESS>
+        <OPERATIONALMODE>online</OPERATIONALMODE>
+        <WHENTHROTTLED>0</WHENTHROTTLED>
+</JUNCTION>
