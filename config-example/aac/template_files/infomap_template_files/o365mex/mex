@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions name="SecurityTokenService" targetNamespace="http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice">
 <wsp:Policy wsu:Id="CustomBinding_IWSTrustFeb2005Async_policy">
 <wsp:ExactlyOne>
