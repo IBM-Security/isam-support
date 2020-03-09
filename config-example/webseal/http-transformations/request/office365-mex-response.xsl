@@ -38,7 +38,7 @@
 	-->
 	<xsl:template match="//HTTPRequest/RequestLine/Method">
 		<xsl:choose>
-			<xsl:when test="@node() = 'POST'">
+			<xsl:when test="true">
 					<HTTPResponseChange action="replace">
 					<Version>HTTP/1.1</Version>
 					<StatusCode>200</StatusCode>
