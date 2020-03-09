@@ -6,6 +6,18 @@
 	This is a template stylesheet which should be used as a guide when
 	using WebSEAL's HTTP Transformation engine. This sample is relevant to
 	a request only.
+	
+	This is applicable to ISAM 9.0.7.1 only.
+	Use the following configuration file entries to successfully invoke the http transformation:
+	
+	[http-transformations]
+	...
+	O365mex = O365mex
+	
+	[http-transformations:O365mex]
+	request-match = request:* /TrustServerWST13/mex
+	xslt-buffer-size = 409600
+		
 -->
 
 	<!-- Firstly, strip any space elements -->
