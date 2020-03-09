@@ -17,6 +17,9 @@
 	[http-transformations:O365mex]
 	request-match = request:* /TrustServerWST13/mex
 	xslt-buffer-size = 409600
+	
+	Search for '%40POINTOFCONTACT%40' and replace it with a URL encoded version of your Point of Contact URL : 
+	example : https%3A%2F%2Fisam9071.hyperv.lab
 		
 -->
 
