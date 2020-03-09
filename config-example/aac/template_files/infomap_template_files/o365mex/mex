@@ -196,9 +196,9 @@
 							</wsa10:EndpointReference>
 						</wsdl:port>
 						<wsdl:port name="CustomBinding_IWSTrustFeb2005Async" binding="tns:CustomBinding_IWSTrustFeb2005Async">
-							<soap12:address location="https://ibm-acase.kerberos.oktapreview.com/app/office365/exkq6oq7opjWd2QWb0h7/sso/wsfed/windowstransport"/>
+							<soap12:address location="https://@POINTOFCONTACT@"/>
 							<wsa10:EndpointReference>
-								<wsa10:Address>https://ibm-acase.kerberos.oktapreview.com/app/office365/exkq6oq7opjWd2QWb0h7/sso/wsfed/windowstransport</wsa10:Address>
+								<wsa10:Address>https://@POINTOFCONTACT@</wsa10:Address>
 								<Identity>
 									<Spn>HTTP/@POINTOFCONTACT@</Spn>
 								</Identity>
