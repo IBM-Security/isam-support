@@ -1,6 +1,6 @@
 This tool is designed to help you look through junction files.
 
-Setup:   Ensure that "awkfile" in the jct.sh points to the proper location of the jct.awk.
+Setup: Ensure that "awkfile" in the jct.sh points to the proper location of the jct.awk.
 
 Usage: ./jct/sh [search string]
 
