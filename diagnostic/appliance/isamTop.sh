@@ -3,7 +3,7 @@
 # Email:  nlloyd@us.ibm.com
 #
 # Requires enabling the Embedded SNMP Agent at https://appliance_hostname/snmp
-# See doc at https://www.ibm.com/support/knowledgecenter/SSPREK_9.0.6/com.ibm.isam.doc/admin/task/tsk_configuring_snmp.html
+# See doc at https://www.ibm.com/support/knowledgecenter/SSPREK_9.0.7/com.ibm.isam.doc/admin/task/tsk_configuring_snmp.html
 #
 # History:
 #
