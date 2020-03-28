@@ -19,7 +19,7 @@
 * auth_audit_trail: Authentication failures and success.
 * app_audit_trail: Application usage.
 * admin_activity: Tenant Admin activity.
-* user_activity: Activity for a specific user.
+* user_activity: Activity for a specific user.  This supports exporting to a csv file.
 * auth_event_details: Details of a specific event.
 
 ## Sample commands
