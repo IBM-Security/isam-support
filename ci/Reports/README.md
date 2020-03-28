@@ -57,6 +57,8 @@ reports.sh ${tenant} ${access_token} auth_event_details auth_event_details.json
 The output has complete details of the failure.
 
 Use failure-events-details.sh to process an entire failure log.
+* reports.sh ${tenant} ${access_token} auth_audit_trail auth_audit_trail_failure.json | python -mjson.tool > failure.log
+* failure-events-details.sh ${tenant} ${access_token} failure.log
 
 **Application Audit**
 
