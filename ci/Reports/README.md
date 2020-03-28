@@ -2,8 +2,10 @@
 
 ## Setup instructions
 
-* Create an API client at https://tenant/ui/admin/configuration?tab=api-access&subTab=api-clients with the following Manage reports
-   and Read reports access.
+* Create an API client at https://tenant/ui/admin/configuration?tab=api-access&subTab=api-clients with the following access:
+   * Manage reports
+   * Read reports
+   * Read application configuration
 * Generate a token.  Use ../ci/bin/get-token.sh to get an access token
 
       get-token.sh <tenant> <client_id> <client_secret>
