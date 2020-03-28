@@ -56,6 +56,8 @@ reports.sh ${tenant} ${access_token} auth_event_details auth_event_details.json
 
 The output has complete details of the failure.
 
+Use failure-events-details.sh to process an entire failure log.
+
 **Application Audit**
 
 * Use ../Application-Access/applications.sh to get an application's id.
