@@ -58,7 +58,7 @@ The output has complete details of the failure.
 
 **Application Audit**
 
-* Use ../Application-Access/applications.sh to get an applications id.
+* Use ../Application-Access/applications.sh to get an application's id.
 * Update app_audit_trail.json
 * reports.sh ${tenant} ${access_token} app_audit_trail app_audit_trail.json
 
