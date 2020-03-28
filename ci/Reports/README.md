@@ -6,8 +6,9 @@
    and Read reports access.
 * Generate a token.  Use ../ci/bin/get-token.sh to get an access token
 
-        ```get-token.sh <tenant> <client_id> <client_secret>```
-        ```{"access_token":"abcdefg","...."}```
+      get-token.sh <tenant> <client_id> <client_secret>
+      
+      {"access_token":"abcdefg","...."}
    
 * Use the token abcdefg to run the reports:
 
