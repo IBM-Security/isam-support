@@ -10,7 +10,7 @@
    
 3) Use the token to run the reports:
 
-./reports.sh tenant access_token auth_audit_trail auth_audit_trail_failure.json
+reports.sh tenant access_token auth_audit_trail auth_audit_trail_failure.json
 
 {
     "response": {
@@ -50,10 +50,18 @@
 
 4) Take the event ID (_id) of a3d0c396-0206-420f-b1a1-d4b65e30c955, update auth_event_details.json, and run the report:
 
-./reports.sh tenant access_token auth_event_details auth_event_details.json | python -mjson.tool
+reports.sh tenant access_token auth_event_details auth_event_details.json
 
 The output has complete details of the failure.
 
 **Application Audit**
 
 ./reports.sh ${tenant} ${access_token} app_audit_trail app_audit_trail.json
+
+**User Activity**
+
+reports.sh ${tenant} ${access_token} user_activity user_activity.json
+
+**Admin Activity**
+
+reports.sh ${tenant} ${access_token} admin_activity admin_activity.json
