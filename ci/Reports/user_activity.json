@@ -1,0 +1,9 @@
+{
+        "USERID":"50TJX2TD7C",
+        "USERNAME":"testuser",
+        "REALM":"cloudIdentityRealm",
+        "FROM":"now-168h",
+        "TO":"now", "SIZE":"10000",
+        "SORT_BY":"time",
+        "SORT_ORDER":"asc"
+}
