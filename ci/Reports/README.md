@@ -16,7 +16,7 @@
   * export access_token=abcdefg
 
 ## Explanation of Reports
-* auth_audit_trail: Authentications failures and success.
+* auth_audit_trail: Authentication failures and success.
 * app_audit_trail: Application usage.
 * admin_activity: Tenant Admin activity.
 * user_activity: Activity for a specific user.
