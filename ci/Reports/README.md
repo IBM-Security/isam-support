@@ -25,17 +25,14 @@
 **Finding login failures and getting the details.**
 
 * reports.sh <tenant> <access_token> auth_audit_trail auth_audit_trail_failure.json
-
-{
-    "response": {
-        "report": {
-            "hits": [
-                {
+  
+  ```
+                  {
                     "_id": "a3d0c396-0206-420f-b1a1-d4b65e30c955",
                     "_index": "event-authentication-2020.3-000001",
                     "_source": {
                         "data": {
-                            "origin": "X.X.X.X",
+                            "origin": "70.114.164.111",
                             "realm": "cloudIdentityRealm",
                             "result": "failure",
                             "subject": "UNKNOWN",
@@ -49,18 +46,8 @@
                         },
                         "time": 1585362232823
                     },
-                    "_type": "_doc",
-                    "sort": [
-                        1585362232823,
-                        "a3d0c396-0206-420f-b1a1-d4b65e30c955"
-                    ]
-                }
-            ],
-            "total": 1
-        }
-    },
-    "success": true
-}
+
+```
 
 4) Take the event ID (_id) of a3d0c396-0206-420f-b1a1-d4b65e30c955, update auth_event_details.json, and run the report:
 
