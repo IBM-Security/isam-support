@@ -10,8 +10,10 @@
 
       get-token.sh <tenant> <client_id> <client_secret>
       {"access_token":"abcdefg","...."}
-   
-* Use the token abcdefg to run the reports:
+
+* Setting tenant and access_token environent variables makes this very easy.
+  * export tenant=tenant.ice.ibmcloud.com
+  * export access_token=abcdefg
 
 ## Explanation of Reports
 * auth_audit_trail: Authentications failures and success.
@@ -24,7 +26,7 @@
 
 **Finding login failures and getting the details.**
 
-* reports.sh <tenant> <access_token> auth_audit_trail auth_audit_trail_failure.json
+* reports.sh ${tenant} ${access_token} auth_audit_trail auth_audit_trail_failure.json
   
   ```
                   {
