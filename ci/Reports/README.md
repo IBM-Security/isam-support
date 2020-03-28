@@ -52,3 +52,6 @@
 ./reports.sh tenant access_token auth_event_details auth_event_details.json | python -mjson.tool
 
 The output has complete details of the failure.
+
+**Application Audit**
+./reports.sh ${tenant} ${access_token} app_audit_trail app_audit_trail.json
