@@ -53,7 +53,7 @@
 
 4) Take the event ID (_id) of a3d0c396-0206-420f-b1a1-d4b65e30c955, update auth_event_details.json, and run the report:
 
-reports.sh tenant access_token auth_event_details auth_event_details.json
+reports.sh ${tenant} ${access_token} auth_event_details auth_event_details.json
 
 The output has complete details of the failure.
 
