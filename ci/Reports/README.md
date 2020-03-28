@@ -62,9 +62,8 @@ reports.sh ${tenant} ${access_token} app_audit_trail app_audit_trail.json
 
 **User Activity**
 
-reports.sh ${tenant} ${access_token} user_activity user_activity.json
-
-reports-export.sh ${tenant} ${access_token} user_activity_csv user_activity_export.json  > user.csv
+* reports.sh ${tenant} ${access_token} user_activity user_activity.json
+* reports-export.sh ${tenant} ${access_token} user_activity_csv user_activity_export.json  > user.csv
 
 **Admin Activity**
 
