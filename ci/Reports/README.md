@@ -8,7 +8,7 @@
    * Read application configuration
 * Generate a token.  Use ../ci/bin/get-token.sh to get an access token
 
-      get-token.sh <tenant> <client_id> <client_secret>
+      get-token.sh tenant client_id client_secret
       {"access_token":"abcdefg","...."}
 
 * Setting tenant and access_token environent variables makes this very easy.
