@@ -13,6 +13,15 @@
    
 * Use the token abcdefg to run the reports:
 
+## Explanation of Reports
+* auth_audit_trail: Authentications failures and success.
+* app_audit_trail: Application usage.
+* admin_activity: Tenant Admin activity.
+* user_activity: Activity for a specific user.
+* auth_event_details: Details of a specific event.
+
+## Sample commands
+
 **Finding login failures and getting the details.**
 
 * reports.sh tenant access_token auth_audit_trail auth_audit_trail_failure.json
