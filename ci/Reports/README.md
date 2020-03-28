@@ -24,7 +24,7 @@
 
 **Finding login failures and getting the details.**
 
-* reports.sh tenant access_token auth_audit_trail auth_audit_trail_failure.json
+* reports.sh <tenant> <access_token> auth_audit_trail auth_audit_trail_failure.json
 
 {
     "response": {
