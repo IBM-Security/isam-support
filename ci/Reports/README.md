@@ -11,6 +11,7 @@
 3) Use the token to run the reports:
 
 ./reports.sh tenant access_token auth_audit_trail auth_audit_trail_failure.json | python -mjson.tool
+
 {
     "response": {
         "report": {
