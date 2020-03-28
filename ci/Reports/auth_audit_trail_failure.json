@@ -1,0 +1,8 @@
+{
+    "FROM":"now-72h",
+    "TO":"now",
+    "SIZE":"200",
+    "SORT_BY":"time",
+    "SORT_ORDER":"DESC",
+    "RESULT":"\"failure\""
+}
