@@ -20,3 +20,14 @@ cd bin
 ./create-symlinks.sh
 export PATH=”`pwd`:$PATH"
 ```
+
+Use:
+
+* Generate a token.  Use ci/bin/get-token.sh to get an access token
+
+      get-token.sh tenant client_id client_secret
+      {"access_token":"abcdefg","...."}
+
+* Setting tenant and access_token environent variables makes this very easy.
+  * export tenant=tenant.ice.ibmcloud.com
+  * export access_token=abcdefg
