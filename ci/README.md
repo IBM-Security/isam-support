@@ -2,6 +2,7 @@ Various RAPI for working with a CI tenant
 
 To setup:
 
+```
 mkdir git
 cd git
 git clone https://github.com/IBM-Security/isam-support
@@ -18,3 +19,4 @@ chmod +x -R .
 cd bin
 ./create-symlinks.sh
 export PATH=”`pwd`:$PATH"
+```
