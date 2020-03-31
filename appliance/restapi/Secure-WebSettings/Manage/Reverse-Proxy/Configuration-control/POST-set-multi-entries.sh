@@ -14,10 +14,10 @@ if [ ! -z ${inputtype} ]
 then
 	if [ ${inputtype} -eq "json" ]
 	then
-		payload=`UTILITY-create-multi-entry-json.sh ${entry} |tail -1`
+		payload=`UTILITY_input-json_output-json_create-multiple-entries.sh ${entry} |tail -1`
 	elif [ ${inputtype} -eq "csv" ]
 	then
-		payload=`UTILITY_input-csv_output-json_create-multi-entry-json.sh ${entry} |tail -1`
+		payload=`UTILITY_input-csv_output-json_create-multiple-entries.sh ${entry} |tail -1`
 	else
 		printf "Invalid file type specified\n"
 	fi
