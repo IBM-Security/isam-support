@@ -8,14 +8,15 @@ password=$3
 id=$4
 stanza=$5
 entry=$6
-json=$7
-inputtype=$8
+inputtype=$7
+json=$8
+
 if [ ! -z ${inputtype} ]
 then
-	if [ ${inputtype} -eq "json" ]
+	if [ ${inputtype} = "json" ]
 	then
 		payload=`UTILITY_input-json_output-json_create-multiple-entries.sh ${entry} |tail -1`
-	elif [ ${inputtype} -eq "csv" ]
+	elif [ ${inputtype} = "csv" ]
 	then
 		payload=`UTILITY_input-csv_output-json_create-multiple-entries.sh ${entry} |tail -1`
 	else
