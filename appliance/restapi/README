@@ -16,4 +16,4 @@ curl https://raw.githubusercontent.com/dominictarr/JSON.sh/master/JSON.sh > ./bi
 chmod +x -R .
 cd bin
 ./create-symlinks.sh
-export PATH=”`pwd`:$PATH"
+export PATH="`pwd`:$PATH"
