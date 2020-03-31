@@ -24,7 +24,7 @@ then
 	fi
 else
 	printf "No input file type specified, defaulting to JSON input\n"
-	payload=`UTILITY-create-multi-entry-json.sh ${entry} |tail -1`
+	payload=`UTILITY_input-json_output-json_create-multiple-entries.sh ${entry} |tail -1`
 fi
 
 echo ${payload}
