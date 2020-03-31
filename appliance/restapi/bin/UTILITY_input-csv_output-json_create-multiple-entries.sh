@@ -1,5 +1,5 @@
 #!/bin/sh
-# UTILITY-create-multi-entry-json.sh
+# UTILITY-create-multiple-entries.sh
 # input a file containing comma separated values and output a single JSON with format : 
 #{"entries"[["entry","value"]]}
 [ "$DEBUG" ] && set -x
@@ -27,9 +27,9 @@ then
 	do
 		if [ ! -z ${file} ]
 		then
-			for value in $(cat ${path}/${file} | sed 's/:/\n/g' )
+			for value in $(cat ${path}/${file} | sed 's/,/\n/g' )
 			do
-				values='["'${entry}'","'$(cat ${path}/${file})'"],'$values
+				values='["'${entry}'","'${value}'"],'$values
 				echo $values
 			done
 		fi
