@@ -29,7 +29,7 @@ then
 		then
 			for value in $(cat ${path}/${file} | sed 's/,/\n/g' )
 			do
-				values='["'${entry}'","'${value}'"],'$values
+				values=$values',["'${entry}'","'${value}'"],'
 				echo $values
 			done
 		fi
