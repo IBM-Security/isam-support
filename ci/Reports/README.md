@@ -78,3 +78,15 @@ reports.sh ${tenant} ${access_token} admin_activity admin_activity.json
 ## Quick Scripts
 
 application-access-total.sh: Quick script to print out applications usage.
+```
+application-access-total.sh ${tenant} ${access_token}
+Access total for application 4752047461889988465
+            "total": 0
+
+Access total for application 2499022642760863167
+            "total": 1
+
+Access total for application 579801718927167424
+            "total": 2
+```
+
