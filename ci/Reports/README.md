@@ -74,3 +74,7 @@ Use failure-events-details.sh to process an entire failure log.
 **Admin Activity**
 
 reports.sh ${tenant} ${access_token} admin_activity admin_activity.json
+
+## Quick Scripts
+
+application-access-total.sh: Quick script to print out applications usage.
