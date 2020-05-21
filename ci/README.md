@@ -15,7 +15,7 @@ Receiving objects: 100% (545/545), 1.18 MiB | 1.78 MiB/s, done.
 Resolving deltas: 100% (186/186), done.
 
 cd isam-support/ci
-chmod +x -R .
+chmod -R +x .
 cd bin
 ./create-symlinks.sh
 export PATH=”`pwd`:$PATH"
