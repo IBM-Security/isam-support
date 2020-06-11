@@ -27,7 +27,7 @@ request-match = response:GET /dashboard/logout*
 	<StatusCode>302</StatusCode>
 	<Reason>Found</Reason>
 	<HTTPResponseChange>
-	  <Header action="add" name="location">https://isam9070-web.level2.org/pkmslogout</Header>
+	  <Header action="add" name="location">https://www.example.org/pkmslogout</Header>
 	</HTTPResponseChange>
       </xsl:when>
     </xsl:choose>
