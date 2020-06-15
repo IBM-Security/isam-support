@@ -12,10 +12,10 @@ volumes:
 
 services:
   openldap:
-    image: ibmcom/isam-openldap:${VERSION}
-    container_name: openldap${VERSION}
+    image: ibmcom/verify-access-openldap:${VERSION}
+    container_name: openldap-${VERSION}
     environment:
-      LDAP_LOG_LEVEL: "256"
+      LDAP_LOG_LEVEL: "3"
       LDAP_ORGANISATION: "$ORG_NAME"
       LDAP_DOMAIN: "$DOMAIN_NAME"
       LDAP_BASE_DN: "dc=$DC1,dc=$DC2"
@@ -50,18 +50,20 @@ services:
       - "389"
       - "636"
     ports:
-      - 0.0.0.0:$LDAP_PORT:389
+      - 0.0.0.0:${LDAP_PORT}:389
+      - 0.0.0.0:${LDAPS_PORT}:636
     domainname: "$DOMAIN_NAME"
-    hostname: "openldap.$DOMAIN_NAME"
+    hostname: "openldap"
 
   postgres:
-    image: ibmcom/isam-postgresql:${VERSION}
-    container_name: postgres${VERSION}
+    image: ibmcom/verify-access-postgresql:${VERSION}
+    container_name: postgres-${VERSION}
     environment:
       POSTGRES_UNSECURE: "true"
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWSORD: "$PASSWORD"
-      POSTGRES_DB: "isam"
+      POSTGRES_PASSWORD: "$PASSWORD"
+      POSTGRES_DB: "isva"
+      POSTGRES_SSL_CN: "postgres"
     tty: true
     stdin_open: true
     volumes:
@@ -69,17 +71,21 @@ services:
       - var-lib-postgresql-data:/var/lib/postgresql/data
     expose:
       - "5432"
+    ports:
+      - 0.0.0.0:${POSTGRES_PORT}:5432
     domainname: "$DOMAIN_NAME"
     hostname: "postgres"
     depends_on:
       - openldap
 
-  isamconfig:
-    image: store/ibmcorp/isam:${ISAM_VERSION}
-    container_name: isamconfig${ISAM_VERSION}
+  isvaconfig:
+    image: ibmcom/verify-access:${ISAM_VERSION}
+    container_name: isvaconfig-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=${TZ}
       - SERVICE=config
+      - ADMIN_PWD=${PASSWORD}
+      - USE_CONTAINER_LOG_DIR=1
     volumes:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
@@ -94,19 +100,20 @@ services:
       - openldap
       - postgres
     domainname: "$DOMAIN_NAME"
-    hostname: "isamconfig"
+    hostname: "isvaconfig"
 
-  isamdscone:
-    image: store/ibmcorp/isam:${ISAM_VERSION}
-    container_name: isamdscone${ISAM_VERSION}
+  isvadscone:
+    image: ibmcom/verify-access:${ISAM_VERSION}
+    container_name: isvadscone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
       - SERVICE=dsc
       - INSTANCE=1
-      - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
+      - CONFIG_SERVICE_URL=https://isvaconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
       - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
+      - USE_CONTAINER_LOG_DIR=1
     volumes:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
@@ -119,20 +126,21 @@ services:
     depends_on:
       - openldap
       - postgres
-      - isamconfig
+      - isvaconfig
     domainname: "$DOMAIN_NAME"
-    hostname: "isamdscone"
+    hostname: "isvadscone"
 
-  isamruntimeone:
-    image: store/ibmcorp/isam:${ISAM_VERSION}
-    container_name: isamruntimeone${ISAM_VERSION}
+  isvaruntimeone:
+    image: ibmcom/verify-access:${ISAM_VERSION}
+    container_name: isvaruntimeone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
       - SERVICE=runtime
-      - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
+      - CONFIG_SERVICE_URL=https://isvaconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
       - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
+      - USE_CONTAINER_LOG_DIR=1
     volumes:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
@@ -145,22 +153,23 @@ services:
     depends_on:
       - openldap
       - postgres
-      - isamconfig
-      - isamdscone
+      - isvaconfig
+      - isvadscone
     domainname: "$DOMAIN_NAME"
-    hostname: "isamruntimeone"
-
-  isamrpone:
-    image: store/ibmcorp/isam:${ISAM_VERSION}
-    container_name: isamrpone${ISAM_VERSION}
+    hostname: "isvaruntimeone"
+    
+  isvarpone:
+    image: ibmcom/verify-access:${ISAM_VERSION}
+    container_name: isvarpone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
       - SERVICE=webseal
       - INSTANCE=default
-      - CONFIG_SERVICE_URL=https://isamconfig:9443/shared_volume
+      - CONFIG_SERVICE_URL=https://isvaconfig:9443/shared_volume
       - CONFIG_SERVICE_USER_NAME=cfgsvc
       - CONFIG_SERVICE_USER_PWD=${PASSWORD}
       - AUTO_RELOAD_FREQUENCY=30
+      - USE_CONTAINER_LOG_DIR=1
     volumes:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
@@ -176,8 +185,8 @@ services:
     depends_on:
       - openldap
       - postgres
-      - isamconfig
-      - isamdscone
-      - isamruntimeone
+      - isvaconfig
+      - isvadscone
+      - isvaruntimeone
     domainname: "$DOMAIN_NAME"
-    hostname: "isamrpone"
+    hostname: "isvarpone"
