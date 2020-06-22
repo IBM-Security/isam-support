@@ -9,6 +9,9 @@
 #
 # 2020-06-19:       Intitial version.
 #
+# Convert 4096 Bytes to GB: (X * 4) / 1048576
+# Convert 1024 Bytes to GB: X / 1048576
+#
 [ "$DEBUG" ] && set -x
 
 refresh_rate=300
