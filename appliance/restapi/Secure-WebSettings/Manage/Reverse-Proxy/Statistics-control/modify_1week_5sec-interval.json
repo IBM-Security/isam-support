@@ -1,0 +1,11 @@
+{
+        "status": "on",
+        "interval_hours":"0",
+        "interval_mins":"0",
+        "interval_secs":"5",
+        "count":"120960",
+        "flush_interval":"30",
+        "rollover_size":"2000000",
+        "max_rollover_files":"50",
+        "compress":false
+}
