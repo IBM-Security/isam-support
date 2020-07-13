@@ -5,7 +5,7 @@ importPackage(Packages.com.tivoli.am.fim.trustserver.sts.uuser);
 importClass(Packages.com.tivoli.am.fim.trustserver.sts.utilities.IDMappingExtUtils);
 
 // Get the current principal name.
-var origPrincipalName = stsuu.getPrincipalName();
+var origPrincipalName = stsuu.getAttributeValueByName("mail");
 
 // Get a list of groups.
 var groups = stsuu.getGroups();
@@ -67,7 +67,7 @@ if (!isEmptySTSUU) {
     var immutableIDAttr = new Attribute(
       "ImmutableID",
       "http://schemas.microsoft.com/LiveID/Federation/2008/05",
-      shortName);
+      origPrincipalName);
     stsuu.addAttribute(immutableIDAttr);
 
     // set the groups (claims) attribute
