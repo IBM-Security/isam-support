@@ -17,17 +17,21 @@ function create_UUID(){
 
 macros.put("@WSUID@",create_UUID());
 
-var username = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:header", "iv-user");
+var username = "" + context.get(Scope.REQUEST, "urn:ibm:security:asf:request:header", "iv-user");
+
+var email = "" + context.get(Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute", "emailAddress");
 
 var anonRst = "<s:Envelope xmlns:s=" + context.get(Scope.REQUEST, "urn:ibm:security:asf:request:parameter", "<s:Envelope xmlns:s");
 
 IDMappingExtUtils.traceString(username);
 IDMappingExtUtils.traceString(anonRst);
+IDMappingExtUtils.traceString(email);
 
 if(username != null && username != "" && username.toLowerCase() != "unauthenticated") {
 	
 	var stsbase = new STSUniversalUser();
 	stsbase.setPrincipalName(username);
+	stsbase.addAttribute(new Attribute("mail","",email));
 	xmlstsuu = IDMappingExtUtils.stringToXMLElement(stsbase.toString());
 	
 	var res = LocalSTSClient.doRequest("http://schemas.xmlsoap.org/ws/2005/02/trust/Issue","urn:federation:MicrosoftOnline","stshandler", xmlstsuu, null);
