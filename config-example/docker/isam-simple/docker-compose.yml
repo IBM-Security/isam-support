@@ -5,7 +5,7 @@ volumes:
   etc-ldap-slapd:
   container-service-slapd-assests-certs:
   var-lib-ldap.secAuthority:
-  var-lib-postgres-cert:
+  var-lib-postgresql-cert:
   var-lib-postgresql-data:
   var-shared:
   var-application.logs:
@@ -55,26 +55,26 @@ services:
     domainname: "$DOMAIN_NAME"
     hostname: "openldap"
 
-  postgres:
+  postgresql:
     image: ibmcom/verify-access-postgresql:${VERSION}
-    container_name: postgres-${VERSION}
+    container_name: postgresql-${VERSION}
     environment:
-      POSTGRES_UNSECURE: "true"
-      POSTGRES_USER: "postgres"
+      POSTGRES_CERT_DN: "/CN=postgresql"
+      POSTGRES_UNSECURE: "false"
+      POSTGRES_USER: "postgresql"
       POSTGRES_PASSWORD: "$PASSWORD"
       POSTGRES_DB: "isva"
-      POSTGRES_SSL_CN: "postgres"
     tty: true
     stdin_open: true
     volumes:
-      - var-lib-postgres-cert:/var/lib/postgres/cert:rw
+      - var-lib-postgresql-cert:/var/lib/postgresql/cert:rw
       - var-lib-postgresql-data:/var/lib/postgresql/data
     expose:
       - "5432"
     ports:
-      - 0.0.0.0:${POSTGRES_PORT}:5432
+      - 0.0.0.0:${POSTGRESQL_PORT}:5432
     domainname: "$DOMAIN_NAME"
-    hostname: "postgres"
+    hostname: "postgresql"
     depends_on:
       - openldap
 
@@ -98,7 +98,7 @@ services:
       - SYS_RESOURCE
     depends_on:
       - openldap
-      - postgres
+      - postgresql
     domainname: "$DOMAIN_NAME"
     hostname: "isvaconfig"
 
@@ -124,8 +124,6 @@ services:
       - SYS_PTRACE
       - SYS_RESOURCE
     depends_on:
-      - openldap
-      - postgres
       - isvaconfig
     domainname: "$DOMAIN_NAME"
     hostname: "isvadscone"
@@ -151,9 +149,6 @@ services:
       - SYS_PTRACE
       - SYS_RESOURCE
     depends_on:
-      - openldap
-      - postgres
-      - isvaconfig
       - isvadscone
     domainname: "$DOMAIN_NAME"
     hostname: "isvaruntimeone"
@@ -183,10 +178,6 @@ services:
       - SYS_PTRACE
       - SYS_RESOURCE
     depends_on:
-      - openldap
-      - postgres
-      - isvaconfig
-      - isvadscone
       - isvaruntimeone
     domainname: "$DOMAIN_NAME"
     hostname: "isvarpone"
