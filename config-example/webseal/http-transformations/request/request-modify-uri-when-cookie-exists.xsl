@@ -11,7 +11,7 @@
 
 
   <xsl:template match="//HTTPRequest/RequestLine/URI">
-	<xsl:if test='//HTTPRequest/Cookies/Cookie/@name="COOKIE_NAME"' />
+	<xsl:if test='//HTTPRequest/Cookies/Cookie/@name="COOKIE_NAME"' >
       <xsl:variable name="output">
         <xsl:call-template name="string-replace-all">
           <xsl:with-param name="text" select="node()" />
