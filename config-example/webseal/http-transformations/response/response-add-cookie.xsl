@@ -9,7 +9,8 @@
     </HTTPResponseChange>
   </xsl:template>
 
-<-- Uncomment this if you don't need JavaScript to access the cookie
+<!-- 
+    Uncomment this if you don't need JavaScript to access the cookie
   <xsl:template match="//HTTPResponse/Cookies">
     <Cookie action="add" name="COOKIE_NAME">
       <Secure>1</Secure>
@@ -20,7 +21,7 @@
   </xsl:template>
 -->
 
-<-- Uncomment this if you need to allow JavaScript to access the cookie
+<!-- Uncomment this if you need to allow JavaScript to access the cookie
   <xsl:template match="//HTTPResponse/Cookies">
     <Cookie action="add" name="COOKIE_NAME">
       <Secure>1</Secure>
