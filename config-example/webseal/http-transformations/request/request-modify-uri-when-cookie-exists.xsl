@@ -15,7 +15,7 @@
         <xsl:call-template name="string-replace-all">
           <xsl:with-param name="text" select="//HTTPRequest/RequestLine/URI/node()" />
           <xsl:with-param name="replace" select="'modify-uri.html'" />
-          <xsl:with-param name="by" select="'modify-uri.html'" />
+          <xsl:with-param name="by" select="'new-modify-uri.html'" />
         </xsl:call-template>
       </xsl:variable>
     <URI action="update" name="{@name}"><xsl:value-of select="$output" /></URI>
