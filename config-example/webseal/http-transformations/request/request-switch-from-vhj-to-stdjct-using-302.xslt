@@ -23,7 +23,7 @@ request-match = request:[www.vhj.org]GET /LRR/passwordreset*
           <Version>HTTP/1.1</Version>
           <StatusCode>302</StatusCode>
           <Reason>Found</Reason>
-          <Header action="add" name="location">https://isam9070-web.level2.org/LRR/passwordreset.html</Header>
+          <Header action="add" name="location">https://webseal.example.org/LRR/passwordreset.html</Header>
           <Body>Redirecting To Password Reset</Body>
 	</HTTPResponseChange>
   </xsl:template>
