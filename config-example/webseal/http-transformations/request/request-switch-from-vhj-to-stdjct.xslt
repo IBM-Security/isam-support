@@ -25,7 +25,7 @@ request-match = request:[www.vhj.org]GET /LRR/passwordreset*
   <xsl:template match="//HTTPRequest/Headers/Header">
     <xsl:choose>
       <xsl:when test="contains(@name, 'host')">
-        <Header action="update" name="host">isam9070-web.level2.org</Header>
+        <Header action="update" name="host">webseal.example.org</Header>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
