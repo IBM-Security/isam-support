@@ -11,7 +11,12 @@ do
                 continue
         fi
 
-        if [ "$file" = "$PWD/deploy-pending-changes.sh" ]
+        if [ "$file" = "$PWD/get-token.sh" ]
+        then
+                continue
+        fi
+        
+        if [ "$file" = "$PWD/get-token-ba.sh" ]
         then
                 continue
         fi
