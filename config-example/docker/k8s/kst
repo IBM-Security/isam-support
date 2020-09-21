@@ -1,0 +1,62 @@
+#!/bin/sh
+[ "$DEBUG" ] && set -x
+
+Usage()
+{
+    echo ""
+    echo "Usage: $0 [-a] [-c] [-i] [-h]"
+    echo ""
+    echo "where:"
+    echo "  -a:         Get all Pods, Containers, Services, Etc."
+    echo "  -c:         Container name."
+    echo "  -d:         Describe a Deployment"
+    echo "  -l:         Get Pod Logs"
+    echo "  -i:         Describe Ingress"
+    echo "  -p:         Describe Pod"
+    echo "  -h:         Help"
+
+    exit 1
+}
+
+if [ $# -eq 0  ]
+then
+        Usage
+fi
+
+clear
+
+while getopts ac:d:i:l:p:h name
+do
+        case $name in
+                a) kubectl get all
+                   echo ""
+                   echo "Ingress"
+                   kubectl get ingress
+                   ;;
+
+                c) CONTAINER_NAME=$OPTARG
+                   ;;
+
+                d) DEPLOYMENT=$OPTARG
+                   kubectl describe deployment $OPTARG
+                   ;;
+
+                i) kubectl describe ingress $OPTARG
+                   ;;
+
+                l) kubectl logs $OPTARG --container=$CONTAINER_NAME
+                   ;;
+
+                p) POD=$OPTARG
+                   kubectl describe pod $OPTARG
+                   ;;
+
+                h) Usage
+                   ;;
+
+                *) Usage
+                   ;;
+        esac
+done
+
+exit 0
