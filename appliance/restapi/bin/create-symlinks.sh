@@ -15,6 +15,16 @@ do
         then
                 continue
         fi
+        
+        if [ "$file" = "$PWD/UTILITY_input-csv_output-json_create-multiple-entries.sh" ]
+        then
+                continue
+        fi
+        
+        if [ "$file" = "$PWD/UTILITY_input-json_output-json_create-multiple-entries.sh" ]
+        then
+                continue
+        fi
 
         ln -s $file .
 done
