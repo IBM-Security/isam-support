@@ -1,1 +1,1 @@
-README
+Debugging functions for Info Maps
