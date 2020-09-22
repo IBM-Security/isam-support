@@ -16,9 +16,29 @@ importMappingRule("INFOMAP_COMMON");
 
 trace("INFOMAPDEBUGGER: ", "ENTER");
 
+
 var moveon = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:parameter", "moveon");
 
 if (moveon == null) {
+
+    //
+    // Request Token Attributes
+    //
+    trace("INFOMAPDEBUGGER: ", "Single Request Token Attribute");
+    var userName = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute", "username");
+    if (userName != null) {
+    trace("INFOMAPDEBUGGER:   userName = ", userName);
+    }
+
+    trace("INFOMAPDEBUGGER: ", "All Request Attributes");
+    var requestAttrs = context.get(Scope.REQUEST, "urn:ibm:security:asf:request", "attributes");
+    if (requestAttrs != null) {
+        trace("INFOMAPDEBUGGER:    request attributes = ", requestAttrs);
+        dumpContextArray(requestAttrs.toArray(), Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute");
+    }
+
+    trace("INFOMAPDEBUGGER:", "");
+
     //
     // CBA attributes.
     //
@@ -35,28 +55,12 @@ if (moveon == null) {
     trace("INFOMAPDEBUGGER:", "");
 
     //
-    // Request Token Attributes
-    //
-    trace("INFOMAPDEBUGGER: ", "Request Token Attributes");
-    var userName = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute", "username");
-    if (userName != null) {
-	trace("INFOMAPDEBUGGER:   userName = ", userName);
-    }
-
-    var emailAddress = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute", "emailAddress");
-    if (emailAddress != null) {
-	trace("INFOMAPDEBUGGER:   emailAddress = ", emailAddress);
-    }
-
-    trace("INFOMAPDEBUGGER:", "");
-
-    //
     // AAC transaction info
     //
     trace("INFOMAPDEBUGGER: ", "ACC Transaction Info");
     var policyID = context.get(Scope.SESSION, "urn:ibm:security:asf:policy", "policyID");
     if (policyID != null) {
-	trace("INFOMAPDEBUGGER: policyID = ", policyID);
+    trace("INFOMAPDEBUGGER: policyID = ", policyID);
         macros.put("@CUSTOM_MACRO@", policyID);
     }
 
@@ -73,7 +77,7 @@ if (moveon == null) {
     trace("INFOMAPDEBUGGER: ", "Request Headers");
     var reqHeader = context.get(Scope.REQUEST, "urn:ibm:security:asf:request:header", "Cookie");
     if (reqHeader != null) {
-	trace("INFOMAPDEBUGGER:   Cookie = ", reqHeader);
+    trace("INFOMAPDEBUGGER:   Cookie = ", reqHeader);
     }
 
     trace("INFOMAPDEBUGGER:   ", "Dumping headersMap");
@@ -115,4 +119,5 @@ trace("INFOMAPDEBUGGER: ", "EXIT");
 
 //
 // Must update sps.page.htmlEscapedMacros at https://appliance_hostname/mga/advanced_config
+// to use custom macros.
 //
