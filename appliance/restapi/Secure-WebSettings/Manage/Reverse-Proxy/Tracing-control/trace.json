@@ -1,0 +1,7 @@
+{
+   "level": "9",
+   "flush_interval":"1",
+   "rollover_size":"20000000",
+   "max_rollover_files":"5",
+   "compress":false
+}
