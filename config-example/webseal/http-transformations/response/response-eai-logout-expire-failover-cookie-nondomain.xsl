@@ -7,6 +7,13 @@
 
 	<!-- 
 		Author: jcyarbor@us.ibm.com
+		
+		********* DISCLAIMER *********
+		This HTTP Transformation only works when the following is set:
+		[session]
+		...
+		resend-webseal-cookies = no
+		********************************
 	
 		The intention of this HTTP Transformation is to provide a way to remove failover cookies when performing an EAI logout.
 		Currently, Security Access Manager does not remove the failover or session cookies during an EAI logout even if the following are set : 
