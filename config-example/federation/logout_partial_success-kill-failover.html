@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Logout Partial Success</title>
+        <link rel="stylesheet" type="text/css" href="/sps/static/styles.css" />
+    </head>
+    <body>
+        <div class="header">
+		    <div class="brandingLogo">
+		    	<img src="/sps/static/ibm-logo.png" />
+		    </div>
+		</div>
+		<div class="content">
+			<div class="contentHeader">
+			    <h1 class="pageTitle error">Logout Partial Success</h1>
+			    <div class="instructions"></div>
+			</div>
+			<div class="pageContent">
+	            <div id="infoDiv">
+<!--  START NON-TRANSLATABLE  -->
+                	<em>@REQ_ADDR@</em> <br />
+                	<em>@TIMESTAMP@</em> <br />
+<!--  END NON-TRANSLATABLE  -->
+            	</div>
+	            <br />
+	            <div id="detailDiv" >
+	                <h4>Detail</h4>
+                	Local logout was successful, but one or more partner providers failed logout for user
+<!--  START NON-TRANSLATABLE  -->
+                	@TOKEN:UserName@
+<!--  END NON-TRANSLATABLE  -->
+					.
+	            </div>
+	        </div>
+        </div>
+		<script>
+			var address="@REQ_ADDR@";
+			if(address.indexOf("slo") > 0) {
+				var req = new XMLHttpRequest();
+				var url = "" + "https://" + location.hostname + "/pkmslogout";
+				req.open("GET", url, true);
+				req.onload = function (e) {
+				  if (req.readyState === 4) {
+					if (req.status === 200) {
+					  console.log(req.responseText);
+					} else {
+					  console.error(req.statusText);
+					}
+				  }
+				};
+				req.onerror = function (e) {
+				  console.error(req.statusText);
+				};
+				req.send(null); 
+			} 
+		</script>
+    </body>
+</html>
