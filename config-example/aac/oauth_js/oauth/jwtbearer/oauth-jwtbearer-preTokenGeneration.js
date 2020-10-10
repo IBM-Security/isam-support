@@ -1,12 +1,9 @@
 /*
-	File Name : oauth-oidc-implicit-preTokenGeneration-attributeSource-with-scope-and-auditing.js
+	File Name : oauth-jwtbearer-preTokenGeneration.js
 	Author : Jack Yarborough
 	Contact : jcyarbor@us.ibm.com
 	
-	Usage : This mapping rule is the 'PreTokenGeneration' mapping rule to be used with an 'Implicit' OIDC flow.
-		- Retrieve Attribute Source values from the STSUU
-		- Check the provided OIDC scope values and conditionally insert the Attribute Source values into the resultant JWT
-		- Audit missing attributes for investigation
+	Usage : This mapping rule is the 'PreTokenGeneration' mapping rule to be used with an 'JWT Bearer' OAUTH flow.
 		
 	**This JavaScript mapping rule is provided as-is and is supported by the author.
 	** All variable names, attribute names, and logic are provided as an example
@@ -29,7 +26,7 @@ importClass(Packages.com.ibm.security.access.httpclient.Parameters);
 importClass(Packages.java.util.ArrayList);
 importClass(Packages.java.util.HashMap);
 
-importMappingRule(assertionGrantValidationTools);
+importMappingRule("assertionGrantValidationTools");
 
 /**
  * This mapping rule uses a user registry for verification of the username 
@@ -584,22 +581,45 @@ if (enableAssertionGrants) {
 
 		// Implement Assertion validation here. For example, invoke the
 		// STS using the STSClientHelper. See the Javadoc for more information.
-		var assertionValid = false;
-		assertionValid = validateAssertionGrant(assertion);
-
+		var assertionValid = true;
+		
+		var currentSPSSession = IDMappingExtUtils.getSPSSessionID();
+		
+		assertionValid = validateAssertionGrant(assertion, grant_type);
+		
+		IDMappingExtUtils.traceString(assertionValid);
+		
 		if (!assertionValid) {
-			OAuthMappingExtUtils.throwSTSUserMessageException("Invalid Assertion. Authentication failed.");
+			var reason = IDMappingExtUtils.getSPSSessionData(currentSPSSession);
+			IDMappingExtUtils.removeSPSSessionData(currentSPSSession);
+			OAuthMappingExtUtils.throwSTSUserMessageException("Invalid Assertion. Authentication failed. Reason : "+reason);
 		}
+		
+		var jwtHeader = getJWTHeader(assertion);
+		trace("validateAssertionGrant::JWT Header : " + JSON.stringify(jwtHeader));
+		
+		var jwtClaims = getJWTClaims(assertion);
+		trace("validateAssertionGrant::JWT Claims : " + JSON.stringify(jwtClaims));
+		
+		var jwtSig = getJWTSig(assertion);
+		trace("validateAssertionGrant::JWT Signature : " + jwtSig);
 
 		// Someone may have provided a username in this request as a post parameter, remove it!
 		stsuu.getContextAttributes().removeAttributes("username", null);
 
 		// Use the subject of the assertion as the username
-		var subject = null;
+		var subject = jwtClaims["sub"];
+		
+		var scope = "";
+		
+		if(hasClaim("scope",jwtClaims)) {
+			scope = jsonObjectToJSArray(jwtClaims["scope"]);
+		}
 
 		if (assertionValid) {
 			// set the username	
 			stsuu.addContextAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute("username", "urn:ibm:names:ITFIM:oauth:rule:decision", subject));
+			stsuu.addContextAttribute(new com.tivoli.am.fim.trustserver.sts.uuser.Attribute("scope","urn:ibm:names:ITFIM:oauth:rule:decsision", scope));
 		}
 	}
 }
