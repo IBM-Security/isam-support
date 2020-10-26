@@ -1,4 +1,5 @@
 #!/bin/sh
+# Note: Require ISVA username of CLIENT_ID/CLIENT_SECRET
 [ "$DEBUG" ] && set -x
 
 HOST=$1
