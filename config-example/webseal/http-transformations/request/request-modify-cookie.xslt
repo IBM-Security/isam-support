@@ -9,7 +9,6 @@
     </HTTPRequestChange>
   </xsl:template>
 
-
   <xsl:template match="//HTTPRequest/Cookies">
     <xsl:if test="Cookie/@name='servicesUrl'">
       <Cookie action="update" name="servicesUrl">%2Fnavigator</Cookie>
