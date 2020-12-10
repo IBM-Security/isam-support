@@ -1,0 +1,1 @@
+tshark -r $1 -l -R "ssl.record.content_type==23" -T fields -e frame.time_relative -e ip.src -e tcp.srcport -e ip.dst -e tcp.dstport -e tcp.len | awk '$5==443{requests[$3]++}END{for (port in requests) if (requests[port]>1) print port, requests[port]}'
