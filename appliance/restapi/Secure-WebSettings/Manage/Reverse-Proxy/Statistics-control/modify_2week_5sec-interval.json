@@ -4,7 +4,7 @@
         "interval_mins":"0",
         "interval_secs":"5",
         "count":"17280,
-        "flush_interval":"20",
+        "flush_interval":"5",
         "rollover_size":"750000",
         "max_rollover_files":"14",
         "compress":false
