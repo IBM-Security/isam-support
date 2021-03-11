@@ -1,0 +1,8 @@
+{
+    "admin_domain": "Default",
+    "admin_id": "sec_master",
+    "admin_pwd": "bighulk99",
+    "commands": [
+        "server task default-webseald-isam9070.level2.org stats get pdweb.threads"
+    ]
+}
