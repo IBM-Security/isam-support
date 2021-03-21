@@ -1,0 +1,8 @@
+{
+    "admin_domain": "Default",
+    "admin_id": "sec_master",
+    "admin_pwd": "password",
+    "commands": [
+        "server task default-webseald-hostname stats get pdweb.threads"
+    ]
+}
