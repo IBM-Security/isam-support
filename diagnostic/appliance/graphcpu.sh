@@ -1,4 +1,10 @@
 #!/bin/sh
+# Author: Nick Lloyd
+# email: nlloyd@us.ibm.com
+#
+# History:
+#
+# 2021-03-20: Initial version.
 
 RRD_FILE=$1
 DATE=`date +"%Y-%m-%d-%H-%M-%S"`
