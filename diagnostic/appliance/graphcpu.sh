@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 RRD_FILE=$1
 DATE=`date +"%Y-%m-%d-%H-%M-%S"`
