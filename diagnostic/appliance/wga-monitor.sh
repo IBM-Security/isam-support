@@ -108,7 +108,7 @@ do
 	echo "$SNMP_SYSTEM_NAME ($OUTPUT_LOG)"
 	echo "$SNMP_SYSTEM_NAME ($TIME_STAMP)" > $OUTPUT_LOG
 	
-	for table in rStorageTable hrSWRunTable hrSWRunPerfTable tcpConnTable udpTable
+	for table in rStorageTable hrSWRunTable hrSWRunPerfTable tcpConnTable udpTable hrProcessorTable
 	do
 		echo "=================================================="
 		echo "TABLE = $table"
