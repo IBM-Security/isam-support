@@ -4,7 +4,7 @@
     "emails": [
         {
             "type": "work",
-            "value": "nlloyd@us.ibm.com"
+            "value": "newuser@example.org"
         }
     ],
     "name": {
@@ -16,7 +16,7 @@
     "phoneNumbers": [
         {
             "type": "mobile",
-            "value": "1-512-740-8524"
+            "value": "1-555-123-4567"
         }
     ],
     "preferredLanguage": "en-US",
