@@ -49,11 +49,11 @@ while (<>) {
                         $pd1 = $time{$thread}{'PD2BackEnd'} - $time{$thread}{'Browser2PD'};
                         $be  = $time{$thread}{'BackEnd2PD'} - $time{$thread}{'PD2BackEnd'};
                         $pd2 = $time{$thread}{'PD2Browser'} - $time{$thread}{'BackEnd2PD'};
-                       #printf "\tDelay:\t\tPD\t%6.3f secs\t\tBackEnd\t%6.3f secs\t\tPD\t%6.3f secs\n", $pd1, $be, $pd2;
+                        #printf "\tDelay:\t\tPD\t%6.3f secs\t\tBackEnd\t%6.3f secs\t\tPD\t%6.3f secs\n", $pd1, $be, $pd2;
                         printf "%6.3f\t%6.3f\t%6.3f\t", $pd1, $be, $pd2;
                     } else {
                         print 
-						    strftime( "%H:%M:%S", localtime $time{$thread}{'Browser2PD'} ), $frac{$thread}{'Browser2PD'}, "\t\t\t",
+                            strftime( "%H:%M:%S", localtime $time{$thread}{'Browser2PD'} ), $frac{$thread}{'Browser2PD'}, "\t\t\t",
                             strftime( "%H:%M:%S", localtime $time{$thread}{'PD2Browser'} ), $frac{$thread}{'PD2Browser'}, "\t";
                         $pd  = $time{$thread}{'PD2Browser'} - $time{$thread}{'Browser2PD'};
                         #printf "\tDelay:\t\t\t\t\t\tPD\t%6.3f secs\n", $pd;
