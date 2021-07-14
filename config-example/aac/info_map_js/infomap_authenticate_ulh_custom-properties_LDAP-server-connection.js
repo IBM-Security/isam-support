@@ -61,8 +61,7 @@ if(username == null && password == null|| username == null || password == null){
 		var keystore = "";
 		var label = "";
 		if(isSSL){
-			keystore = currentHost.getKeystore();
-			label = currentHost.getLabel();
+			IDMappingExtUtils.throwSTSException("TLS is not currently supported with user lookup helper. The initialization using 'Custom Properties' requires the keystore passwords and there is not a way to get those passwords at this point in time");
 			
 		}
 		
@@ -82,14 +81,7 @@ if(username == null && password == null|| username == null || password == null){
 			//
 			// Valid Priority : 1 - 10, where 10 is highest
 			searchOverrideProperties.setProperty("ldap.svrs",ldapHosts[host].Hostname+":"+ldapHosts[host].Port+":readwrite:5");
-			
-			// Check to see if TLS is enabled and if so, set the information.
-			if(ldapHosts[host].isSSL) {
-				searchOverrideProperties.setProperty("ldap.ssl-enable","true");
-				searchOverrideProperties.setProperty("ldap.ssl-truststore",ldapHosts[host].Keystore);;
-				searchOverrideProperties.setProperty("ldap.ssl-keystore",ldapHosts[host].Keystore);
-				searchOverrideProperties.setProperty("ldap.client-cert-label",ldapHosts[host].KeyLabel);
-			}
+		
 			
 			// Set the Bind information
 			IDMappingExtUtils.traceString("ULH_DEBUG : Bind DN : " + ldapHosts[host].BindDn);
