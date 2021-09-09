@@ -2,7 +2,7 @@
 <!--
 Author: Nick Lloyd
 Email:  nlloyd@us.ibm.com
-Usage:  Normalizes incoming requests entire URI.
+Usage:  Normalizes incoming request's entire URI.
 	For example,
           https://www.level2.org/DasHBoard/helLo.hTML to /dashboard/hello.html
 	  https://www.level2.org/DasHBoard/A/B/C/D/E to /dashboard/a/b/c/d/e
