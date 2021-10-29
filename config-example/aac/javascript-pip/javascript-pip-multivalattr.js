@@ -1,5 +1,5 @@
 /*
-*		Name: pip_multivalattr.js
+*		Name: javascript-pip-multivalattr.js
 *		Author: jcyarbor@us.ibm.com
 *
 *		Purpose:
