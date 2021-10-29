@@ -53,10 +53,10 @@ function getAttributes (context, requestedAttribute, category) {
 	var issuerId = instanceName;
 	
 	// This creates an empty array of type String.
-	var loopAttrArray = java.lang.reflect.Array.newInstance(java.lang.String, 3);
+	var loopAttrArray = [];
 	
 	// This will be an example of a loop to fill the array.
-	for(var i = 0; i < loopAttrArray.length(); i++){
+	for(var i = 0; i < 5; i++){
 		loopAttrArray[i] = "value" + i;
 	}
 	
@@ -67,13 +67,14 @@ function getAttributes (context, requestedAttribute, category) {
 					       issuerId);
 	
 	// Add the attribute to the RTSS context using the Identifier and Array.
-	context.addAttribute(multivalIdentifier,[multivalueStringArray]);
+	context.addAttribute(loopAttrIdentifier,loopAttrArray);
 
 	// This is an example of a String comma separated value.
 	var multivalueString = "value1,value2,valueN";
 	
 	// Use the 'split' method to create a Java Array.
-	var multivalueStringArray = multivalueString.split(",");
+	var multivalueStringArray = [];
+	multivalueStringArray = multivalueString.split(",");
 	
 	// Create an Attribute Identifier for the multivalued attribute.
 	var multivalIdentifier = new AttributeIdentifier(
@@ -82,6 +83,6 @@ function getAttributes (context, requestedAttribute, category) {
 					       issuerId);
 	
 	// Add the attribute to the RTSS context using the Identifier and Array.
-	context.addAttribute(multivalIdentifier,[multivalueStringArray]);
+	context.addAttribute(multivalIdentifier,multivalueStringArray);
 	
 }
