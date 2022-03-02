@@ -54,7 +54,7 @@ if(reqXFF != "" && reqXFF != null) {
 }
 
 // Further validation of the IPs, etc, may be performed here
-if(addxff != null && addxff != "" && addxff != "null"){
+if(addxff != null && addxff != "" && addxff != "null" && addxff != "missing"){
 	// This means that the credential has the 'addxff' credential attribute and this is an actual error.
 	// We need to then populate the error template with macros
 	macros.put("%ERROR_TEXT%",errText);
