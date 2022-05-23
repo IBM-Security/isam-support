@@ -75,7 +75,8 @@ parsedJson.keys[j].alg=algToAdd;
 page.setValue("/authsvc/authenticator/addAlToJwt/success.json");
 
 macros.put("@result@", JSON.stringify(parsedJson));
-success.setValue(false);
+//success.setValue(false);
+success.endPolicyWithoutCredential();
 }
 else
 {
