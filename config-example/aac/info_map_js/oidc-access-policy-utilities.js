@@ -1,14 +1,14 @@
 /*
-*		Title: oauth-access-policy-utilities.js
+*		Title: oidc-access-policy-utilities.js
 *		Author : Jack Yarborough (jcyarbor@us.ibm.com)
 *
 *		Intended Purpose : 
-*			This mapping rule will contain utility functions for the different contexts.
+*			This mapping rule will contain utility functions for the OIDC contexts.
 *
 *		Appliance Implementation :
 *			1) Navigate to 'Secure Access Control -> Global Settings -> Mapping Rules'
 *			2) Select 'Add' to create a new mapping rule
-*				- Name : 'oauth-access-policy-utilities'
+*				- Name : 'oidc-access-policy-utilities'
 *				- Category : infomap
 *
 */
