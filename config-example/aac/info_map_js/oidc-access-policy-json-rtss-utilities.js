@@ -1,20 +1,20 @@
 /*
-*		Title: oauth-json-rtss-utilities.js
+*		Title: oidc-access-policy-json-rtss-utilities.js
 *		Author : Jack Yarborough (jcyarbor@us.ibm.com)
 *
 *		Intended Purpose : 
-*			This mapping rule will contain utility functions for setting up and creating JSON formatted RTSS requests.
+*			This mapping rule will contain utility functions for setting up and creating JSON formatted RTSS requests for OIDC Access Policies.
 *
 *		Appliance Implementation :
 *			1) Navigate to 'Secure Access Control -> Global Settings -> Mapping Rules'
 *			2) Select 'Add' to create a new mapping rule
-*				- Name : 'oauth-json-rtss-utilities'
+*				- Name : 'oidc-access-policy-json-rtss-utilities'
 *				- Category : infomap
 *
 */
 
 importClass(Packages.com.tivoli.am.fim.trustserver.sts.utilities.IDMappingExtUtils);
-importMappingRule("oauth-access-policy-utilities");
+importMappingRule("oidc-access-policy-utilities");
 
 function buildEmptyJSONBody() {
 	var JSONBody = {};
@@ -93,6 +93,10 @@ function addContextId(contextValue, JSONBody){
 	var stringValue = "" + contextValue;
 	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
 }
+
+function addApplicationId(applicationValue, JSONBody){
+	var stringValue = "" + applicationValue;
+	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ApplicationId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});
 
 function buildDefaultBehaviorRiskProfile(JSONBody) {
 	/*
