@@ -94,7 +94,14 @@ var requestJSON = (
 		var cookies;
 		var parameters;
 		
-		var claims = stsuu.getRequestSecurityToken().getAttributeByName("Claims").getNodeValues();
+		var claims;
+		
+		var rstClaims = stsuu.getRequestSecurityToken().getAttributeByName("Claims")
+		if(rstClaims != null && rstClaims != "" && rstClaims != "null") {
+			claims.getNodeValues();
+		} else {
+			claims = "";
+		}
 
 		for (var i = 0; i < claims.length; i++) {
 			var dialect = claims[i].getAttribute("Dialect");
@@ -103,76 +110,107 @@ var requestJSON = (
 				headers = claims[i].getElementsByTagName("Header");
 				cookies = claims[i].getElementsByTagName("Cookie");
 				parameters = claims[i].getElementsByTagName("Parameter");
+			} else {
+				headers = "";
+				cookies = "";
+				parameters = "";
 			}
 		}
 		
-		var headersJSON = (
-			function() {
-				var headersReturn = {};
+		if( headers != null && headers != "" && headers != "null"){
+			var headersJSON = (
+				function() {
+					var headersReturn = {};
 
-				// Loop through headers
-				for (var j = 0; j < headers.getLength(); j++) {
-					var header = headers.item(j);
-					var name   = header.getAttribute("Name");
-					var values = header.getElementsByTagName("Value");
-					
-					for (var k = 0; k < values.getLength(); k++) {
-						var value = values.item(k).getTextContent();
-
-						IDMappingExtUtils.traceString("Header with name [" + name + "] and value [" + value + "]");
-						headersReturn["" + name] = {value: "" + value};
-					}
-				}
-
-				return headersReturn;
-	   })();
-	   
-		var cookiesJSON = (
-			function() {
-				var cookiesReturn = {};
-
-				// Loop through cookies
-				for (var j = 0; j < cookies.getLength(); j++) {
-					var cookie = cookies.item(j);
-					var name = cookie.getAttribute("Name");
-					var values = cookie.getElementsByTagName("Value");
-					
-					for (var k = 0; k < values.getLength(); k++) {
-						var value = values.item(k).getTextContent();
-
-						IDMappingExtUtils.traceString("Cookie with name [" + name + "] and value [" + value + "]");
-						cookiesReturn["" + name] = {value: "" + value};
-					}
-				}
-				return cookiesReturn;
-	   })();
-	   
-		var parametersJSON = (function() {
-				var parametersReturn = {};
-
-				/*for (var it = parameterNames.iterator(); it.hasNext();) {
-					var parameterName = it.next();
-					var parameterValue = request.getParameter(parameterName);
-
-					parametersReturn["" + parameterName] = "" + parameterValue;
-				}*/
-				// Loop through Parameters
-				for (var j = 0; j < parameters.getLength(); j++) {
-					var parameter = parameters.item(j);
-					var name = parameter.getAttribute("Name");
-					var values = parameter.getElementsByTagName("Value");
-					
-					for (var k = 0; k < values.getLength(); k++) {
-						var value = values.item(k).getTextContent();
-
-						IDMappingExtUtils.traceString("Parameter with name [" + name + "] and value [" + value + "]");
+					// Loop through headers
+					for (var j = 0; j < headers.getLength(); j++) {
+						var header = headers.item(j);
+						var name   = header.getAttribute("Name");
+						var values = header.getElementsByTagName("Value");
 						
-						parametersReturn["" + name] = {value: "" + value};
-					}
-				}
+						for (var k = 0; k < values.getLength(); k++) {
+							var value = values.item(k).getTextContent();
 
-			  return parametersReturn;
-	   })();
+							IDMappingExtUtils.traceString("Header with name [" + name + "] and value [" + value + "]");
+							headersReturn["" + name] = {value: "" + value};
+						}
+					}
+
+					return headersReturn;
+		   })();
+		} else {
+			var headersJSON = (
+				function() {
+					var headersReturn = {};
+
+					return headersReturn;
+		   })();
+		}
+
+		if( headers != null && headers != "" && headers != "null"){
+			var cookiesJSON = (
+				function() {
+					var cookiesReturn = {};
+
+					// Loop through cookies
+					for (var j = 0; j < cookies.getLength(); j++) {
+						var cookie = cookies.item(j);
+						var name = cookie.getAttribute("Name");
+						var values = cookie.getElementsByTagName("Value");
+						
+						for (var k = 0; k < values.getLength(); k++) {
+							var value = values.item(k).getTextContent();
+
+							IDMappingExtUtils.traceString("Cookie with name [" + name + "] and value [" + value + "]");
+							cookiesReturn["" + name] = {value: "" + value};
+						}
+					}
+					return cookiesReturn;
+		   })();
+		} else {
+			var cookiesJSON = (
+				function() {
+					var cookiesReturn = {};
+
+					return cookiesReturn;
+		   })();
+		}
+
+		if( headers != null && headers != "" && headers != "null"){
+			var parametersJSON = (function() {
+					var parametersReturn = {};
+
+					/*for (var it = parameterNames.iterator(); it.hasNext();) {
+						var parameterName = it.next();
+						var parameterValue = request.getParameter(parameterName);
+
+						parametersReturn["" + parameterName] = "" + parameterValue;
+					}*/
+					// Loop through Parameters
+					for (var j = 0; j < parameters.getLength(); j++) {
+						var parameter = parameters.item(j);
+						var name = parameter.getAttribute("Name");
+						var values = parameter.getElementsByTagName("Value");
+						
+						for (var k = 0; k < values.getLength(); k++) {
+							var value = values.item(k).getTextContent();
+
+							IDMappingExtUtils.traceString("Parameter with name [" + name + "] and value [" + value + "]");
+							
+							parametersReturn["" + name] = {value: "" + value};
+						}
+					}
+
+				  return parametersReturn;
+		   })();
+		} else {
+			var parametersJSON = (
+				function() {
+					var parametersReturn = {};
+
+					return parametersReturn;
+		   })();
+		}
 
 	   requestReturn["headers"] = headersJSON;
 	   requestReturn["parameters"] = parametersJSON;
