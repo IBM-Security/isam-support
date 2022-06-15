@@ -96,7 +96,7 @@ var requestJSON = (
 		
 		var claims;
 		
-		var rstClaims = stsuu.getRequestSecurityToken().getAttributeByName("Claims")
+		var rstClaims = stsuu.getRequestSecurityToken().getAttributeByName("Claims");
 		if(rstClaims != null && rstClaims != "" && rstClaims != "null") {
 			claims = rstClaims.getNodeValues();
 		} else {
@@ -113,35 +113,40 @@ var requestJSON = (
 			}
 		}
 		
-		var headersJSON = (
-			function() {
-				var headersReturn = {};
+		var headersJSON = {};
+		
+		if( headers != null && headers != "" && headers != "null"){
+			headersJSON = (
+				function() {
+					var headersReturn = {};
 
-				if( headers != null && headers != "" && headers != "null"){
-					// Loop through headers
-					for (var j = 0; j < headers.getLength(); j++) {
-						var header = headers.item(j);
-						var name   = header.getAttribute("Name");
-						var values = header.getElementsByTagName("Value");
-						
-						for (var k = 0; k < values.getLength(); k++) {
-							var value = values.item(k).getTextContent();
+						// Loop through headers
+						for (var j = 0; j < headers.getLength(); j++) {
+							var header = headers.item(j);
+							var name   = header.getAttribute("Name");
+							var values = header.getElementsByTagName("Value");
+							
+							for (var k = 0; k < values.getLength(); k++) {
+								var value = values.item(k).getTextContent();
 
-							IDMappingExtUtils.traceString("Header with name [" + name + "] and value [" + value + "]");
-							headersReturn["" + name] = {value: "" + value};
+								IDMappingExtUtils.traceString("Header with name [" + name + "] and value [" + value + "]");
+								headersReturn["" + name] = {value: "" + value};
+							}
 						}
-					}
-				}
 
-				return headersReturn;
-	   })();
+					return headersReturn;
+				})();
+		}
+			
 
 		
-		var cookiesJSON = (
-			function() {
-				var cookiesReturn = {};
-				
-				if( headers != null && headers != "" && headers != "null"){
+		var cookiesJSON = {};
+		
+		if( cookies != null && cookies != "" && cookies != "null"){
+			cookiesJSON = (
+				function() {
+					var cookiesReturn = {};
+					
 					// Loop through cookies
 					for (var j = 0; j < cookies.getLength(); j++) {
 						var cookie = cookies.item(j);
@@ -155,15 +160,20 @@ var requestJSON = (
 							cookiesReturn["" + name] = {value: "" + value};
 						}
 					}
-				}
-				return cookiesReturn;
-	   })();
+					
+					return cookiesReturn;
+		   })();
+		}
 
 
 		
-		var parametersJSON = (function() {
-				var parametersReturn = {};
-				if( headers != null && headers != "" && headers != "null"){
+		var parametersJSON = {};
+		
+		if( parameters != null && parameters != "" && parameters != "null"){
+			parametersJSON = (
+				function() {
+					var parametersReturn = {};
+					
 					// Loop through Parameters
 					for (var j = 0; j < parameters.getLength(); j++) {
 						var parameter = parameters.item(j);
@@ -178,10 +188,10 @@ var requestJSON = (
 							parametersReturn["" + name] = {value: "" + value};
 						}
 					}
-				}
 
-				return parametersReturn;
-	   })();
+					return parametersReturn;
+				})();
+		}
 
 	   requestReturn["headers"] = headersJSON;
 	   requestReturn["parameters"] = parametersJSON;
