@@ -110,10 +110,6 @@ var requestJSON = (
 				headers = claims[i].getElementsByTagName("Header");
 				cookies = claims[i].getElementsByTagName("Cookie");
 				parameters = claims[i].getElementsByTagName("Parameter");
-			} else {
-				headers = "";
-				cookies = "";
-				parameters = "";
 			}
 		}
 		
