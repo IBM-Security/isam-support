@@ -98,7 +98,7 @@ var requestJSON = (
 		
 		var rstClaims = stsuu.getRequestSecurityToken().getAttributeByName("Claims")
 		if(rstClaims != null && rstClaims != "" && rstClaims != "null") {
-			claims.getNodeValues();
+			claims = rstClaims.getNodeValues();
 		} else {
 			claims = "";
 		}
