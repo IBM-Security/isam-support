@@ -117,11 +117,11 @@ var requestJSON = (
 			}
 		}
 		
-		if( headers != null && headers != "" && headers != "null"){
-			var headersJSON = (
-				function() {
-					var headersReturn = {};
+		var headersJSON = (
+			function() {
+				var headersReturn = {};
 
+				if( headers != null && headers != "" && headers != "null"){
 					// Loop through headers
 					for (var j = 0; j < headers.getLength(); j++) {
 						var header = headers.item(j);
@@ -135,23 +135,17 @@ var requestJSON = (
 							headersReturn["" + name] = {value: "" + value};
 						}
 					}
+				}
 
-					return headersReturn;
-		   })();
-		} else {
-			var headersJSON = (
-				function() {
-					var headersReturn = {};
+				return headersReturn;
+	   })();
 
-					return headersReturn;
-		   })();
-		}
-
-		if( headers != null && headers != "" && headers != "null"){
-			var cookiesJSON = (
-				function() {
-					var cookiesReturn = {};
-
+		
+		var cookiesJSON = (
+			function() {
+				var cookiesReturn = {};
+				
+				if( headers != null && headers != "" && headers != "null"){
 					// Loop through cookies
 					for (var j = 0; j < cookies.getLength(); j++) {
 						var cookie = cookies.item(j);
@@ -165,27 +159,15 @@ var requestJSON = (
 							cookiesReturn["" + name] = {value: "" + value};
 						}
 					}
-					return cookiesReturn;
-		   })();
-		} else {
-			var cookiesJSON = (
-				function() {
-					var cookiesReturn = {};
+				}
+				return cookiesReturn;
+	   })();
 
-					return cookiesReturn;
-		   })();
-		}
 
-		if( headers != null && headers != "" && headers != "null"){
-			var parametersJSON = (function() {
-					var parametersReturn = {};
-
-					/*for (var it = parameterNames.iterator(); it.hasNext();) {
-						var parameterName = it.next();
-						var parameterValue = request.getParameter(parameterName);
-
-						parametersReturn["" + parameterName] = "" + parameterValue;
-					}*/
+		
+		var parametersJSON = (function() {
+				var parametersReturn = {};
+				if( headers != null && headers != "" && headers != "null"){
 					// Loop through Parameters
 					for (var j = 0; j < parameters.getLength(); j++) {
 						var parameter = parameters.item(j);
@@ -200,17 +182,10 @@ var requestJSON = (
 							parametersReturn["" + name] = {value: "" + value};
 						}
 					}
+				}
 
-				  return parametersReturn;
-		   })();
-		} else {
-			var parametersJSON = (
-				function() {
-					var parametersReturn = {};
-
-					return parametersReturn;
-		   })();
-		}
+				return parametersReturn;
+	   })();
 
 	   requestReturn["headers"] = headersJSON;
 	   requestReturn["parameters"] = parametersJSON;
