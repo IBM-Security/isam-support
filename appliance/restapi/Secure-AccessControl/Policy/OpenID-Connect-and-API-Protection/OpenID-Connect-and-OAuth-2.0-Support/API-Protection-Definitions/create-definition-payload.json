@@ -1,0 +1,38 @@
+{
+    "accessTokenLength": 20,
+    "accessTokenLifetime": 3600,
+    "authorizationCodeLength": 30,
+    "authorizationCodeLifetime": 300,
+    "description": "RAPI_EXAMPLE",
+    "enableMultipleRefreshTokensForFaultTolerance": false,
+    "enforceSingleAccessTokenPerGrant": true,
+    "enforceSingleUseAuthorizationGrant": false,
+    "grantTypes": [
+        "AUTHORIZATION_CODE"
+    ],
+    "issueRefreshToken": true,
+    "maxAuthorizationGrantLifetime": 604800,
+    "name": "RAPI_EXAMPLE",
+    "oidc": {
+        "alg": "RS256",
+        "attributeSources": [],
+        "cert": "oidc-signer",
+        "db": "rt_profile_keys",
+        "dynamicClients": false,
+        "enabled": true,
+        "enc": {
+            "enabled": false
+        },
+        "fapiCompliant": false,
+        "iss": "https://wrp.level2.org",
+        "issueSecret": false,
+        "lifetime": 3600,
+        "oidcCompliant": false,
+        "poc": "https://wrp.level2.org/mga"
+    },
+    "pinLength": 4,
+    "pinPolicyEnabled": false,
+    "refreshTokenLength": 40,
+    "tcmBehavior": "NEVER_PROMPT",
+    "tokenCharSet": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+}
