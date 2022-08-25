@@ -1,0 +1,11 @@
+{
+    "admin_domain": "Default",
+    "admin_id": "sec_master",
+    "admin_pwd": "secret",
+    "commands": [
+        "user create user1 cn=user1,dc=level2,dc=org User One Passw0rd",
+        "user modify user1 account-valid yes",
+        "user create user2 cn=user2,dc=level2,dc=org User One Passw0rd",
+        "user modify user2 account-valid yes"
+    ]
+}
