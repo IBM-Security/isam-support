@@ -8,4 +8,4 @@
 ## Lifetime steps
   * Export-a-specific-bundle.sh (Get the .jar back)
   * Update-a-bundle.sh (Upload a new .jar)
-  * Delete-a-bundle.sh (Delete entire bundle from appliance.  This removed .jar and the bundle id)
+  * Delete-a-bundle.sh (Delete entire bundle from appliance.  This removes the .jar and the bundle id)
