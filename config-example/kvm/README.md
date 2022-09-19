@@ -13,11 +13,13 @@ virsh undefine ISVA1040  ## This deletes the VM.
 
 How do I know which internal IP is being used?
 
+```
 virsh domiflist ISVA1040
  Interface   Type     Source   Model    MAC
 -----------------------------------------------------------
  tap0        bridge   virbr0   virtio   52:54:00:6c:6a:05
- 
+```
+
  arp -e | grep 52:54:00:6c:6a:05
 192.168.122.200          ether   52:54:00:6c:6a:05   C                     virbr0
 192.168.122.201          ether   52:54:00:6c:6a:05   C                     virbr0
