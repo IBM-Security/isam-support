@@ -28,3 +28,11 @@ virsh domiflist ISVA1040
 ```
 
 Initial KVM will have IP randomly assigned.  Log into LMI and change to static.
+
+SSH to the console using internal IP:
+```
+ ssh admin@192.168.122.200
+Password:
+Welcome to the IBM Security Verify Access appliance
+Enter "help" for a list of available commands
+```
