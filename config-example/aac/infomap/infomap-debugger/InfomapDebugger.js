@@ -36,6 +36,12 @@ if (moveon == null) {
         trace("INFOMAPDEBUGGER:    request attributes = ", requestAttrs);
         dumpContextArray(requestAttrs.toArray(), Scope.REQUEST, "urn:ibm:security:asf:request:token:attribute");
     }
+    
+    trace("INFOMAPDEBUGGER: ", "Request METHOD");
+    var requestMethod = context.get(Scope.REQUEST, "urn:ibm:security:asf:request", "method");
+    if (requestMethod != null) {
+        trace("INFOMAPDEBUGGER:    request METHOD = ", requestMethod);
+    }
 
     trace("INFOMAPDEBUGGER:", "");
 
