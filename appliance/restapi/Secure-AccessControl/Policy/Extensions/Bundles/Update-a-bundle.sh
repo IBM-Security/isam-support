@@ -9,7 +9,7 @@ bundle_id=$4
 bundle=$5
 
 ${CURL} -u "$username:$password" -H "Accept: application/json"									\
-				--data-ascii "{\"filename\":\"${bundle}\"}"                 					\
+				--data-ascii "{\"filename\":\"@${bundle}\"}"                 					\
 				-X PUT https://${appliance_hostname}/iam/access/v8/bundles/${bundle_id}/file
 
 exit $?
