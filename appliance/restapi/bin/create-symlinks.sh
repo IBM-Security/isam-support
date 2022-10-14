@@ -15,6 +15,11 @@ do
         then
                 continue
         fi
+
+        if [ "$file" = "$PWD/get-pending-changes.sh" ]
+        then
+                continue
+        fi
         
         if [ "$file" = "$PWD/UTILITY_input-csv_output-json_create-multiple-entries.sh" ]
         then

@@ -6,7 +6,6 @@ appliance_hostname=$1
 username=$2
 password=$3
 
-
-${CURL} -u "$username:$password" -H "Accept: application/json" -X PUT https://${appliance_hostname}/isam/pending_changes
+${CURL} -u "$username:$password" -H "Accept: application/json" -X GET https://${appliance_hostname}/isam/pending_changes
 
 exit $?
