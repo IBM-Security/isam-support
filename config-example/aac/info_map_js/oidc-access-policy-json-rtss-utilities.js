@@ -97,6 +97,7 @@ function addContextId(contextValue, JSONBody){
 function addApplicationId(applicationValue, JSONBody){
 	var stringValue = "" + applicationValue;
 	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ApplicationId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});
+}
 
 function buildDefaultBehaviorRiskProfile(JSONBody) {
 	/*
