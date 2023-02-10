@@ -1,4 +1,4 @@
-# Cloud Identity Reports
+# Security Verify Reports
 
 ## Setup instructions
 
@@ -12,7 +12,7 @@
       {"access_token":"abcdefg","...."}
 
 * Setting tenant and access_token environent variables makes this very easy.
-  * export tenant=tenant.ice.ibmcloud.com
+  * export tenant=tenant.verify.ibm.com
   * export access_token=abcdefg
 
 ## Explanation of Reports
