@@ -57,23 +57,23 @@ reports.sh ${tenant} ${access_token} auth_event_details auth_event_details.json
 The output has complete details of the failure.
 
 Use failure-events-details.sh to process an entire failure log.
-* reports.sh ${tenant} ${access_token} auth_audit_trail auth_audit_trail_failure.json | python -mjson.tool > failure.log
-* failure-events-details.sh ${tenant} ${access_token} failure.log > events.log
+* reports.sh $tenant $access_token auth_audit_trail auth_audit_trail_failure.json | python -mjson.tool > failure.log
+* failure-events-details.sh $tenant $access_token failure.log > events.log
 
 **Application Audit**
 
 * Use ../Application-Access/applications.sh to get an application's id.
 * Update app_audit_trail.json
-* reports.sh ${tenant} ${access_token} app_audit_trail app_audit_trail.json
+* reports.sh $tenant $access_token app_audit_trail app_audit_trail.json
 
 **User Activity**
 
-* reports.sh ${tenant} ${access_token} user_activity user_activity.json
-* reports-export.sh ${tenant} ${access_token} user_activity_csv user_activity_export.json  > user_activity.csv
+* reports.sh $tenant $access_token user_activity user_activity.json
+* reports-export.sh $tenant $access_token user_activity_csv user_activity_export.json  > user_activity.csv
 
 **Admin Activity**
 
-reports.sh ${tenant} ${access_token} admin_activity admin_activity.json
+reports.sh $tenant $access_token admin_activity admin_activity.json
 
 ## Quick Scripts
 
