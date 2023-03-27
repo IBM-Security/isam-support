@@ -115,7 +115,7 @@ if (rc == true) {
   var searchFilter = "(racfid="+racfid+")";
   
   // Perform search for input racfid.
-  // REPACE:
+  // REPLACE:
   // 	replace the suffix with the desired suffix to search in.
   var ldapResult = ldapCtx.search("zOS_suffix",searchFilter);
   

@@ -1,0 +1,63 @@
+{
+    "configuration": {
+        "assertionConsumerService": [
+            {
+                "binding": "post",
+                "default": "false",
+                "index": "1"
+            },
+            {
+                "binding": "redirect",
+                "default": "false",
+                "index": "2"
+            }
+        ],
+        "companyName": "ISVA L2 Application Dashboard",
+        "ecpEnabled": "false",
+        "encryptionSettings": {
+            "decryptionKeyIdentifier": {
+                "keystore": ""
+            }
+        },
+        "extensionMapping": {
+            "activeDelegateId": "skip-extension-map"
+        },
+        "identityMapping": {
+            "activeDelegateId": "default-map",
+            "properties": {
+                "identityMappingRuleReference": "133"
+            }
+        },
+        "messageIssuerFormat": "",
+        "messageIssuerNameQualifier": "",
+        "messageValidTime": 300,
+        "nameIDFormat": {
+            "default": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+        },
+        "pointOfContactUrl": "https://isva1020.kvm.org:4434/isam/sps",
+        "sessionTimeout": 7200,
+        "signatureSettings": {
+            "keyInfoElements": {
+                "includePublicKey": "false",
+                "includeX509CertificateData": "true",
+                "includeX509IssuerDetails": "false",
+                "includeX509SubjectKeyIdentifier": "false",
+                "includeX509SubjectName": "false"
+            },
+            "signingKeyIdentifier": {
+                "keystore": "Federation",
+                "label": "saml-signer"
+            },
+            "signingOptions": {
+                "signAuthnRequest": "true"
+            },
+            "validationOptions": {
+                "validateAssertion": "true"
+            }
+        },
+        "wayfCookieLifetime": 86400
+    },
+    "name": "ISVAL2_DASHBOARD",
+    "protocol": "SAML2_0",
+    "role": "sp"
+}

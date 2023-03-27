@@ -1,0 +1,63 @@
+{
+    "configuration": {
+        "assertionSettings": {
+            "assertionValidAfter": 300,
+            "assertionValidBefore": 300
+        },
+        "companyName": "ISVA L2 DOCKER IDP",
+        "ecpEnabled": "false",
+        "encryptionSettings": {
+            "decryptionKeyIdentifier": {
+                "keystore": ""
+            }
+        },
+        "extensionMapping": {
+            "activeDelegateId": "skip-extension-map"
+        },
+        "identityMapping": {
+            "activeDelegateId": "default-map",
+            "properties": {
+                "identityMappingRuleReference": "103"
+            }
+        },
+        "messageIssuerFormat": "",
+        "messageIssuerNameQualifier": "",
+        "messageValidTime": 300,
+        "nameIDFormat": {
+            "default": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+        },
+        "needConsentToFederate": "false",
+        "pointOfContactUrl": "https://wrp.docker.org:20026/isam/sps",
+        "sessionTimeout": 7200,
+        "signatureSettings": {
+            "keyInfoElements": {
+                "includePublicKey": "false",
+                "includeX509CertificateData": "true",
+                "includeX509IssuerDetails": "false",
+                "includeX509SubjectKeyIdentifier": "false",
+                "includeX509SubjectName": "true"
+            },
+            "signingKeyIdentifier": {
+                "keystore": "federation-signer",
+                "label": "saml-signer"
+            },
+            "signingOptions": {
+                "signAuthnResponse": "true"
+            },
+            "validationOptions": {
+                "validateAuthnRequest": "true"
+            }
+        },
+        "singleSignOnService": [
+            {
+                "binding": "post"
+            },
+            {
+                "binding": "redirect"
+            }
+        ]
+    },
+    "name": "DOCKER_IDP",
+    "protocol": "SAML2_0",
+    "role": "ip"
+}
