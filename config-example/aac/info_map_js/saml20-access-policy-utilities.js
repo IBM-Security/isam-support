@@ -26,7 +26,7 @@ var userJSON = (function() {
               for (var it = groups.iterator(); it.hasNext();) {
                      var group = it.next();
                      var groupName = group.getName().trim();
-                     groupsReturn.push("" + groupName).trim();
+                     groupsReturn.push("" + groupName);
               }
 
               return groupsReturn;
@@ -43,7 +43,7 @@ var userJSON = (function() {
                      var attributeValues = attribute.getValues();
 					 if(attributeValues.size() > 1 || attributeValues.get(0).includes(",")) {
 						for(var attr = attributeValues.iterator(); attr.hasNext();) {
-							var currentAttr = attr.next();
+							var currentAttr = attr.next().trim();
 							attributeValue.push(currentAttr);
 						}
 						attributesReturn["" + attributeName] = attributeValue.trim();
