@@ -25,7 +25,7 @@ var userJSON = (function() {
 
               for (var it = groups.iterator(); it.hasNext();) {
                      var group = it.next();
-                     var groupName = group.getName().trim();
+                     var groupName = group.getName().toString().trim();
                      groupsReturn.push("" + groupName);
               }
 
@@ -46,10 +46,10 @@ var userJSON = (function() {
 							var currentAttr = attr.next().trim();
 							attributeValue.push(currentAttr);
 						}
-						attributesReturn["" + attributeName] = attributeValue.trim();
+						attributesReturn["" + attributeName] = attributeValue.toString().trim();
 					 } else {
 						 attributeValue = attributeValues.get(0);
-						 attributesReturn["" + attributeName] = "" + attributeValue.trim();
+						 attributesReturn["" + attributeName] = "" + attributeValue.toString().trim();
 					 }
               }
 
@@ -76,7 +76,7 @@ var requestJSON = (function() {
                      var headerName = it.next();
                      var headerValue = request.getHeader(headerName);
 
-                     headersReturn["" + headerName] = "" + headerValue.trim();
+                     headersReturn["" + headerName] = "" + headerValue.toString().trim();
               }
 
               return headersReturn;
@@ -121,7 +121,7 @@ var requestJSON = (function() {
                      var parameterName = it.next();
                      var parameterValue = request.getParameter(parameterName);
 
-                     parametersReturn["" + parameterName] = "" + parameterValue.trim();
+                     parametersReturn["" + parameterName] = "" + parameterValue.toString().trim();
               }
 
               return parametersReturn;
