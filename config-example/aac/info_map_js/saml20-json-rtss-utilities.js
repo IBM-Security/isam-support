@@ -94,6 +94,11 @@ function addContextId(contextValue, JSONBody){
 	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ContextId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
 }
 
+function addApplicationId(applicationValue, JSONBody){
+	var stringValue = "" + applicationValue;
+	JSONBody.Request.Environment.Attribute.push({"AttributeId":"ApplicationId","DataType":"string","Value":stringValue,"Issuer":"http://security.tivoli.ibm.com/policy/distribution"});	
+}
+
 function buildDefaultBehaviorRiskProfile(JSONBody) {
 	/*
 	*		Attributes provided by RTSS : 
