@@ -160,10 +160,10 @@ function buildDefaultBrowserRiskProfile (JSONBody) {
 	var httpAcceptLanguage = requestJSON.headers["Accept-Language"];
 	var httpUserAgent = requestJSON.headers["User-Agent"];
 	
-	addStringSubjAttr("urn:ibm:security:environment:http:accept",httpAccept,JSONBody);
-	addStringSubjAttr("urn:ibm:security:environment:http:acceptEncoding",httpAcceptEncoding,JSONBody);
-	addStringSubjAttr("urn:ibm:security:environment:http:acceptLanguage",httpAcceptLanguage,JSONBody);
-	addStringSubjAttr("urn:ibm:security:environment:http:userAgent",httpUserAgent,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:accept",httpAccept,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:acceptEncoding",httpAcceptEncoding,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:acceptLanguage",httpAcceptLanguage,JSONBody);
+	addStringEnvAttr("urn:ibm:security:environment:http:userAgent",httpUserAgent,JSONBody);
 	
 	return JSONBody;
 }
