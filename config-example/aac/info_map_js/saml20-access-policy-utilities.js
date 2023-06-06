@@ -25,7 +25,7 @@ var userJSON = (function() {
 
               for (var it = groups.iterator(); it.hasNext();) {
                      var group = it.next();
-                     var groupName = group.getName().toString().trim();
+                     var groupName = group.getName().trim();
                      groupsReturn.push("" + groupName);
               }
 
@@ -44,12 +44,22 @@ var userJSON = (function() {
 					 if(attributeValues.size() > 1 || attributeValues.get(0).includes(",")) {
 						for(var attr = attributeValues.iterator(); attr.hasNext();) {
 							var currentAttr = attr.next().trim();
-							attributeValue.push(currentAttr);
+							var currentAttrArray;
+							if(currentAttr.includes(",")){
+								currentAttrArray = currentAttr.split(",");
+							}
+							if(currentAttrArray != null && currentAttrArray != ""){
+								for(var value in currentAttrArray){
+									attributeValue.push(currentAttrArray[value].trim());
+								}
+							} else {
+								attributeValue.push(currentAttr);
+							}
 						}
-						attributesReturn["" + attributeName] = attributeValue.toString().trim();
+						attributesReturn["" + attributeName] = attributeValue;
 					 } else {
 						 attributeValue = attributeValues.get(0);
-						 attributesReturn["" + attributeName] = "" + attributeValue.toString().trim();
+						 attributesReturn["" + attributeName] = "" + attributeValue.trim();
 					 }
               }
 
@@ -76,7 +86,7 @@ var requestJSON = (function() {
                      var headerName = it.next();
                      var headerValue = request.getHeader(headerName);
 
-                     headersReturn["" + headerName] = "" + headerValue.toString().trim();
+                     headersReturn["" + headerName] = "" + headerValue.trim();
               }
 
               return headersReturn;
@@ -121,7 +131,7 @@ var requestJSON = (function() {
                      var parameterName = it.next();
                      var parameterValue = request.getParameter(parameterName);
 
-                     parametersReturn["" + parameterName] = "" + parameterValue.toString().trim();
+                     parametersReturn["" + parameterName] = "" + parameterValue.trim();
               }
 
               return parametersReturn;
