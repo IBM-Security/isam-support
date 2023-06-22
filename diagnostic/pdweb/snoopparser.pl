@@ -3,6 +3,7 @@
 # Comments more than welcome.
 # Snoop parser
 # 2018-05-17  Version 1 -- First public version   (Jewel edition)
+# 2023-06-21  Version 1.2022.7.6 Added check for per junction snoop files
 # Author - Annelise Quap
 # aquap@us.ibm.com
 
@@ -99,7 +100,7 @@ print "Writing output using file name $Filename\n";
 binmode(OUTFILE);
 open(SNOOPFILE, $ARGFile);
 while ($line = <SNOOPFILE>) {
-   if ($line =~ /(\d*\-\d*\-\d*\-\d*:\d*:\d*\.\d*).*thread\((\d*)\).*pdweb\.snoop\.(\w*):(\d).*/) {
+   if ($line =~ /(\d*\-\d*\-\d*\-\d*:\d*:\d*\.\d*).*thread\((\d*)\).*pdweb\.snoop\.(\w*)(?:\.[\/\w]*)?:(\d).*/) {
       $timestamp = $1;
       $thread    = $2;
       $part      = $3;
