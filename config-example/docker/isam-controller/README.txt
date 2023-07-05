@@ -1,3 +1,5 @@
+***NOTE*** EXTRMELY OBSOLUTE.  HAVE LEFT FOR REFERENCE
+
 P L E A S E  R E A D  A L L  S E C T I O N S
 
 I) Update the license and activate keys.
