@@ -12,7 +12,7 @@ volumes:
 
 services:
   openldap:
-    image: ibmcom/verify-access-openldap:${VERSION}
+    image: icr.io/isva/verify-access-openldap:${VERSION}
     container_name: openldap-${VERSION}
     environment:
       LDAP_LOG_LEVEL: "3"
@@ -56,7 +56,7 @@ services:
     hostname: "openldap"
 
   postgresql:
-    image: ibmcom/verify-access-postgresql:${VERSION}
+    image: icr.io/isva/verify-access-postgresql:${VERSION}
     container_name: postgresql-${VERSION}
     environment:
       POSTGRES_CERT_DN: "/CN=postgresql"
@@ -79,7 +79,7 @@ services:
       - openldap
 
   isvaconfig:
-    image: ibmcom/verify-access:${ISAM_VERSION}
+    image: icr.io/isva/verify-access:${ISAM_VERSION}
     container_name: isvaconfig-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=${TZ}
@@ -103,7 +103,7 @@ services:
     hostname: "isvaconfig"
 
   isvadscone:
-    image: ibmcom/verify-access:${ISAM_VERSION}
+    image: icr.io/isva/verify-access-dsc:${ISAM_VERSION}
     container_name: isvadscone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
@@ -129,7 +129,7 @@ services:
     hostname: "isvadscone"
 
   isvaruntimeone:
-    image: ibmcom/verify-access:${ISAM_VERSION}
+    image: icr.io/isva/verify-access-runtime:${ISAM_VERSION}
     container_name: isvaruntimeone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
@@ -143,8 +143,7 @@ services:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
     expose:
-      - "443"
-      - "80"
+      - "9443"
     cap_add:
       - SYS_PTRACE
       - SYS_RESOURCE
@@ -154,7 +153,7 @@ services:
     hostname: "isvaruntimeone"
     
   isvarpone:
-    image: ibmcom/verify-access:${ISAM_VERSION}
+    image: icr.io/isva/verify-access-wrp:${ISAM_VERSION}
     container_name: isvarpone-${ISAM_VERSION}
     environment:
       - CONTAINER_TIMEZONE=America/Chicago
@@ -169,11 +168,9 @@ services:
       - var-shared:/var/shared
       - var-application.logs:/var/application.logs
     expose:
-      - "443"
-      - "80"
+      - "9443"
     ports:
-      - 0.0.0.0:$ONE_HTTPS_PORT:443
-      - 0.0.0.0:$ONE_HTTP_PORT:80
+      - 0.0.0.0:$ONE_HTTPS_PORT:9443
     cap_add:
       - SYS_PTRACE
       - SYS_RESOURCE
