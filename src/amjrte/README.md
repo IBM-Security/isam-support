@@ -13,7 +13,12 @@ find /opt/IBM/WebSphere/AppServer -name "\*PD.jar\*"
 /opt/IBM/WebSphere/AppServer/tivoli/tam/PD.jar.bak   <================ NO.  REMOVE THIS.
 /opt/IBM/WebSphere/AppServer/java/jre/lib/ext/PD.jar <================ NO.  REMOVE THIS.
 
-======== C O N T E N T S ========
+Use the scripts:
 
-* For WAS config use *was* scripts.
-* For stand-alone JVM, e.g. SDI, use *jvm* scripts.
+PDJrteCfg-config-was.sh
+SvrSslCfg-config-jvm.sh
+PDJrteCfg-unconfig-was.sh
+SvrSslCfg-unconfig-jvm.sh
+
+
+### Stand-alone JVM Related Information ###
