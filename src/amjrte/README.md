@@ -17,9 +17,11 @@ Use the scripts:
 
 PDJrteCfg-config-was.sh  
 SvrSslCfg-config-jvm.sh  
+SvrSslCfg-unconfig-jvm.sh  
 PDJrteCfg-unconfig-was.sh  
-SvrSslCfg-unconfig-jvm.sh
-
 
 
 ### Stand-alone JVM Related Information ###
+
+Use the pdjrtecfg command in the download zip for config/unconfig of the JVM.  
+Use the scripts for application config.
