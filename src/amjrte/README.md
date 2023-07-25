@@ -10,7 +10,9 @@ The should only be a single PD.jar at $WAS_HOME/tivoli/tam/PD.jar.  No PD.jar.ol
 
 find /opt/IBM/WebSphere/AppServer -name "\*PD.jar\*"
 /opt/IBM/WebSphere/AppServer/tivoli/tam/PD.jar
+
 /opt/IBM/WebSphere/AppServer/tivoli/tam/PD.jar.bak   <================ NO.  REMOVE THIS.
+
 /opt/IBM/WebSphere/AppServer/java/jre/lib/ext/PD.jar <================ NO.  REMOVE THIS.
 
 Use the scripts:
