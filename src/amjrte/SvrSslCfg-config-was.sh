@@ -16,6 +16,7 @@ WAS=/opt/IBM/WebSphere/AppServer
 ## NOTE:
 ## The -authzsvr argument is required but there does not need to actually be a PDACLD running.
 ## The -port and -dbdir arguments are required but a remote mode app does not actually use them.
+##
 
 java -cp $WAS/tivoli/tam/PD.jar -Dpd.cfg.home=$WAS/tivoli/tam com.tivoli.pd.jcfg.SvrSslCfg -action config                 \
                                   -admin_id sec_master -admin_pwd sec_master_password                                     \
