@@ -15,7 +15,10 @@ find /opt/IBM/WebSphere/AppServer -name "\*PD.jar\*"
 
 Use the scripts:
 
-PDJrteCfg-config-was.sh  SvrSslCfg-config-jvm.sh  PDJrteCfg-unconfig-was.sh  SvrSslCfg-unconfig-jvm.sh
+PDJrteCfg-config-was.sh  
+SvrSslCfg-config-jvm.sh  
+PDJrteCfg-unconfig-was.sh  
+SvrSslCfg-unconfig-jvm.sh
 
 
 
