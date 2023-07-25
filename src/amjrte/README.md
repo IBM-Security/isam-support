@@ -24,4 +24,7 @@ PDJrteCfg-unconfig-was.sh
 ### Stand-alone JVM Related Information ###
 
 Use the pdjrtecfg command in the download zip for config/unconfig of the JVM.  
-Use the scripts for application config.
+Use the scripts for application config:  
+
+SvrSslCfg-config-jvm.sh
+SvrSslCfg-config-was.sh
