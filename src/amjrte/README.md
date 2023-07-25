@@ -1,5 +1,4 @@
-# isam-support
-## **Helper scripts for AMJRTE.**
+# **Helper scripts for AMJRTE.**
 
 ### WAS Related Information ###
 Starting back at WAS 8 the AMJRTE locations are handled differently than previous locations.
