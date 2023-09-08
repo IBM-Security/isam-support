@@ -8,6 +8,6 @@ password=$3
 instance_id=$4
 file_id=$5
 
-${CURL} -u "$username:$password" -H "Accept: application/json" -X GET "https://{$appliance_hostname}/wga/reverseproxy_logging/instance/{$instance_id}/${file_id}?export" > $file_id
+${CURL} -u "$username:$password" -H "Accept: application/json" -X GET "https://${appliance_hostname}/wga/reverseproxy_logging/instance/${instance_id}/${file_id}?export" > $file_id
 
 exit $?

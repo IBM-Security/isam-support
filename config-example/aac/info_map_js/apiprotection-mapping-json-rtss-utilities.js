@@ -120,7 +120,9 @@ function buildDefaultBehaviorRiskProfile(JSONBody) {
 	} else {
 		acuuidvalue = "";
 	}
-	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	if(acuuid != null && acuuid != ""){
+		addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	}
 	
 	// Get headers and add them
 	var httpUserAgent = requestJSON.headers["User-Agent"];
@@ -152,7 +154,9 @@ function buildDefaultBrowserRiskProfile (JSONBody) {
 	} else {
 		acuuidvalue = "";
 	}
-	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	if(acuuid != null && acuuid != ""){
+		addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	}
 	
 	// Get headers and add them
 	var httpAccept = requestJSON.headers["Accept"];
@@ -192,7 +196,9 @@ function buildDefaultDeviceRiskProfile(JSONBody) {
 	} else {
 		acuuidvalue = "";
 	}
-	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	if(acuuid != null && acuuid != ""){
+		addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	}
 	
 	return JSONBody;
 }
@@ -217,7 +223,9 @@ function buildDefaultLocationRiskProfile (JSONBody) {
 	} else {
 		acuuidvalue = "";
 	}
-	addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	if(acuuid != null && acuuid != ""){
+		addStringEnvAttr("ac.uuid",acuuidvalue, JSONBody);
+	}
 	
 	return JSONBody;
 }
