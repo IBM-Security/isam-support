@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  *********************************************************************
+  *   Licensed Materials - Property of IBM
+  *   (C) Copyright IBM Corp. 2016. All Rights Reserved
+  *
+  *   US Government Users Restricted Rights - Use, duplication, or
+  *   disclosure restricted by GSA ADP Schedule Contract with
+  *   IBM Corp.
+  *********************************************************************
+  -->
+<HTML>
+<HEAD>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <TITLE>Password Reset</TITLE>
+  <!--
+    /authsvc/usc/password-reset/collectEmail.html
+  -->
+  <LINK REL="stylesheet" TYPE="text/css" HREF="/sps/static/styles.css">
+  <LINK REL="stylesheet" TYPE="text/css" HREF="/sps/static/usc.css">
+
+  <SCRIPT TYPE="text/javascript">
+  function onLoadPage() {
+    showError();
+    setFocus();
+  }
+
+  // Do not translate the macro ERROR_MESSAGE
+  var errorMessage = "@ERROR_MESSAGE@";
+
+  function showError() {
+    var elem = document.getElementById("errId");
+    elem.innerHTML = errorMessage;
+    if (errorMessage == "") { 
+      elem.setAttribute("CLASS", "");
+    } else {
+      elem.setAttribute("CLASS", "errorMessage");
+    }
+  }
+
+  function setFocus() {
+    document.getElementById("emailAddress").focus();
+  } 
+  
+  function toggleSubmit(enabled) {
+    document.getElementById("submitButton").disabled = !enabled;
+  }
+  
+  function enableSubmit() {
+    toggleSubmit(true);
+  }
+  
+  function disableSubmit(){
+    toggleSubmit(false);
+  }
+
+  var formElements = [
+    "emailAddress", "surname"
+  ];
+
+  function clearForm() {
+    var i;
+    for (i=0; i<formElements.length; i++) {
+      document.getElementById(formElements[i]).value = "";
+    }
+    errorMessage = "";
+    showError();
+    setFocus();
+  }
+</SCRIPT>
+</HEAD>
+<BODY ONLOAD="onLoadPage()">
+  <DIV CLASS="header">
+    <DIV CLASS="prodname">IBM Security Verify Access - SCIM Password Reset</DIV>
+    <SPAN CLASS="headerLogo"><DIV></DIV></SPAN>
+  </DIV>
+  <!-- Do not translate the macro ACTION -->
+  <FORM ID="emailForm" ACTION="@ACTION@" METHOD="post">
+    <DIV CLASS="content">
+      <DIV CLASS="contentHeader">
+        <h1 CLASS="pageTitle">Password Reset</h1>
+        <DIV CLASS="instructions">Confirm your details to begin the password reset process.</DIV>
+      </DIV>
+      <DIV CLASS="pageContent">
+        <!-- Do not translate the macro ERROR_MESSAGE -->
+        <DIV ID="errId">@ERROR_MESSAGE@</DIV>
+          <FIELDSET>
+            <DIV CLASS="box">
+              <!-- Do not translate the macro EMAIL -->
+              <LABEL FOR="emailAddress">Email Address</LABEL> <INPUT TYPE="text" NAME="emailAddress" ID="emailAddress" VALUE="@EMAIL@">
+            </DIV>
+            <DIV CLASS="box">
+              <!-- Do not translate the macro SURNAME -->
+              <LABEL FOR="surname">Family Name</LABEL> <INPUT TYPE="text" NAME="surname" ID="surname" VALUE="@SURNAME@">
+            </DIV>
+          </FIELDSET>
+
+          <INPUT TYPE="hidden" NAME="operation" VALUE="verify">
+      </DIV>
+    </DIV>
+    <DIV CLASS="content footer">
+      <BUTTON TYPE="submit" ID="submitButton" >Submit</BUTTON>
+      <BUTTON TYPE="reset" ONCLICK="clearForm()">Reset</BUTTON>
+    </DIV>
+  </FORM>
+</BODY>
+</HTML>
