@@ -1,0 +1,137 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: verify-bridge-stateful
+metadata:
+  creationTimestamp: null
+  name: verify-bridge-stateful
+  annotations:
+    openshift.io/display-name: IBM Security Verify Bridge StatefulSets
+    iconClass: icon-sso
+    description: IBM Security Verify Bridge Statefulsets 
+    openshift.io/long-description: Bridge
+    openshift.io/documentation-url: https://ibm.biz/
+    openshift.io/provider-display-name: IBM Security Verify Bridge StatefulSets
+    openshift.io/support-url: https://ibm.biz/iamcommunity
+    tags: ibm, verifybridge,statefulsets
+message: |-
+  Application Name: ${APP_NAME}
+objects:
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    annotations:
+      template.openshift.io/expose-tenant_uri: '{.data[''tenant-uri'']}'
+      template.openshift.io/expose-bridgeclientid: '{.data[''client-id'']}'
+      template.openshift.io/expose-bridgesecret: '{.data[''client-secret'']}'
+    name: ${APP_NAME}
+    labels:
+      app: ${APP_NAME}
+  stringData:
+    tenant-uri: ${TENANT_URI}
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
+- apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: ${APP_NAME}
+      name: ${APP_NAME}-config
+      app.kubernetes.io/part-of: ${ENV_NAME}
+    name: ${APP_NAME}-config
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    podManagementPolicy: Parallel
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        name: ${APP_NAME}-config
+    triggers:
+      - type: ConfigChange
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: ${APP_NAME}
+          name: ${APP_NAME}-config
+      spec:
+        containers:
+        - env:
+          - name: LICENSE_ACCEPT
+            value: ${ACCEPT_LICENSE}
+          - name: TRACE
+            value: ${TRACE}
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: client-id
+                name: ${APP_NAME}
+          - name: OBF_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: client-secret
+                name: ${APP_NAME}
+          - name: TENANT_URI
+            valueFrom:
+              secretKeyRef:
+                key: tenant-uri
+                name: ${APP_NAME}
+          image: icr.io/isv-saas/verify-bridge:${BRIDGE_IMAGE}
+          imagePullPolicy: IfNotPresent
+          name: ${APP_NAME}-config
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: 200m
+              memory: 500Mi
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        terminationGracePeriodSeconds: 30
+parameters:
+  - displayName: Bridge Application Name
+    description: This is the name for the application which is used to create unique object names in the cluster even linked to replica
+    name: APP_NAME
+    value: verifybridge
+  - displayName: Verify Bridge Image Version
+    description: The tag that will be used to pull the ibmcom/verify-access images.
+    name: BRIDGE_IMAGE
+    value: "latest"
+  - displayName: License Acceptance
+    description: License Acceptance is passed to config service
+    name: ACCEPT_LICENSE
+    value: "yes"
+  - displayName: Client Identifier
+    description: This will be the password for the config service admin user (for both Web and REST access)
+    name: CLIENT_ID
+    value: "9edfd451-8c4e-4162-a9f1-a3a084e13500"
+  - displayName: Client Secret 
+    description: Can be Obfuscated
+    name: CLIENT_SECRET
+    value: "r2kESNgGHj"
+  - displayName: TENANT URI
+    description: The password that will be used to authenticate as the Config Read user.
+    name: TENANT_URI
+    value: "https://isamlevel2-us.verify.ibm.com"
+  - displayName: Tenant Proxy
+    description: This is an (existing) docker login secret for pulling the Access Manager image.
+      Only required if hosting images on a private repository
+    name: TENANT_PROXY
+    value: proxyurl
+  - displayName: ENV_NAME
+    description: Distinguish type of environment
+    name: ENV_NAME
+    value: UAT
+  - displayName: Enable Tracing
+    description: Set true to enable tracing and false to disable
+    name: TRACE
+    value: "true"
