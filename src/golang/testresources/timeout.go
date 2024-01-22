@@ -2,7 +2,9 @@
 // Title: timeout.go
 // 
 // Description: A simple HTTP server that has a single endpoint, timeout, that takes an optional query parameter, timeout.
-// 				The script will timeout in seconds equivalent to the query parameter or after 31 seconds by default.
+// 		The script will timeout in seconds equivalent to the query parameter or after 31 seconds by default.
+//
+// Execution: go run timeout.go &
 //
 package main
 
