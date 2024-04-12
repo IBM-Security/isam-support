@@ -1,0 +1,6 @@
+{
+    "command": "isam/logs/delete",
+    "input": [
+        "YES"
+    ]
+}
