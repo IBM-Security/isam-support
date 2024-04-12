@@ -1,5 +1,5 @@
 {
     "files": [
-        {"fullname":"access_control/runtime/trace.log"}
+        {"fullname":"access_control/auditing/audit.log"}
     ]
 }

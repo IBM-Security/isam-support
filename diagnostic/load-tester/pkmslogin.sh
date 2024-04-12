@@ -9,7 +9,7 @@ COOKIEJAR=$4
 
 rm -f "$COOKIEJAR"
 
-${CURL} -s -k --cookie-jar ${COOKIEJAR}  --cookie ${COOKIEJAR} -H 'Content-Type: application/x-www-form-urlencoded' \
+${CURL} --cookie-jar ${COOKIEJAR} --cookie ${COOKIEJAR} -H 'Content-Type: application/x-www-form-urlencoded' -H 'X-Forwarded-For: 1.2.3.4'\
         -X POST https://$HOST/pkmslogin.form?token=Unknown --data-ascii "username=$USER&password=$PASS&login-form-type=pwd"
 
 exit 0

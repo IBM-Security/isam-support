@@ -30,7 +30,7 @@ ListDetail()
 ##
 SetComponent()
 {
-	curl -s -k -u "$CREDS" -H 'Accept: application/json' -H 'Content-Type: application/json' -X PUT https://${appliance_hostname}/wga/reverseproxy/${id}/tracing/${component_id}  --data-ascii @trace.json
+	curl  -s -k -u "$CREDS" -H 'Accept: application/json' -H 'Content-Type: application/json' -X PUT https://${appliance_hostname}/wga/reverseproxy/${id}/tracing/${component_id}  --data-ascii @trace.json
 }
 
 ##

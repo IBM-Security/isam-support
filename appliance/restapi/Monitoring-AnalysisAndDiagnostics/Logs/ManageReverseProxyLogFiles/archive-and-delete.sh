@@ -7,7 +7,7 @@ password=$3
 instance_id=$4
 
 echo "Retrieving all files for intance $instance_id..."
-./Retrieving-the-names-of-all-instance-specific-log-files-and-file-sizes.sh "$appliance_hostname" "$username" "$password" "$instance_id" | python -mjson.tool | grep id | awk '{ print $2 }' | sed -e 's/[,"]//g' > list.log
+./Retrieving-the-names-of-all-instance-specific-log-files-and-file-sizes.sh "$appliance_hostname" "$username" "$password" "$instance_id" | python2 -mjson.tool | grep id | awk '{ print $2 }' | sed -e 's/[,"]//g' > list.log
 
 echo ""
 echo "Exporting files..."

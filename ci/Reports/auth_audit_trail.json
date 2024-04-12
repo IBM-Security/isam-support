@@ -1,6 +1,7 @@
 {
-    "FROM":"now-72h",
-    "TO":"now","SIZE":"10",
-    "SORT_BY":"time",
-    "SORT_ORDER":"asc"
+    "FROM": "now-72h",
+    "SIZE": "1",
+    "SORT_BY": "time",
+    "SORT_ORDER": "asc",
+    "TO": "now"
 }
