@@ -1,0 +1,8 @@
+{
+    "FROM": "now-72h",
+    "SIZE": "1",
+    "SORT_BY": "time",
+    "SORT_ORDER": "asc",
+    "SEARCH_AFTER":"\"1701060031967\",\"1e5530bb-3c1e-4e3f-a044-90c756605a8c\"",
+    "TO": "now"
+}

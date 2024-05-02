@@ -1,0 +1,8 @@
+{
+    "FROM": "now-24h",
+    "SIZE": 1000,
+    "SORT_BY": "time",
+    "SORT_ORDER": "DESC",
+    "SUBTYPE": "\"passwordless\"",
+    "TO": "now"
+}
