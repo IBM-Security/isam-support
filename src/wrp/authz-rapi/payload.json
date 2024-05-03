@@ -1,0 +1,8 @@
+{
+    "object_name": "/WebSEAL/Lab/test",
+    "permission_bits": "Tr",
+    "user_attributes": {
+        "AUTHENTICATION_LEVEL": "1"
+    },
+    "user_name": "iuser"
+}
