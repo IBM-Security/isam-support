@@ -16,7 +16,7 @@ my $payload = {
         exp => time + 86400,
 };
 
-my $keyfile = "/home/nlloyd/git/isam-support/src/bin/key.pem";
+my $keyfile = "key.pem";
 my $key = Crypt::PK::RSA->new($keyfile);
 my $alg = "RS256";
 
@@ -28,7 +28,7 @@ print "token: $token\n\n";
 # Decode (Verify signature)
 ########################
 
-my $pubkeyfile = "/home/nlloyd/git/isam-support/src/bin/certificate.pem";
+my $pubkeyfile = "certificate.pem";
 my $pubkey = Crypt::PK::RSA->new($pubkeyfile);
 my $data = decode_jwt(token => $token, key => $pubkey);
 print Dumper $data;
