@@ -47,4 +47,5 @@ After the container finishes successfully you should update your docker-compose.
 docker rm isva-pg-updater
 
 ## Contact
-If you have any questions please contact 'jcyarbor@us.ibm.com' for assistance.
+If you have any questions please contact please open a support case:  
+https://www.ibm.com/mysupport/s/?language=en_US
