@@ -5,7 +5,7 @@ Created to address the following errors when starting the 'verify-access-postgre
 >
 >2024-09-18 15:33:46.822 UTC [1] DETAIL:  The data directory was initialized by PostgreSQL version 9.6, which is not compatible with this version 15.7.
 
-The PostgreSQL version changed from 9.6.24 in ISVA firmware version 10.0.6.0 to version 15.7 in ISVA firmware versions 10.0.7.0+.
+The PostgreSQL version changed from 9.6.24 in IBM Security Verify Access (ISVA) firmware version 10.0.6.0 to version 15.7 in ISVA firmware versions 10.0.7.0+.
 The format of the PostgreSQL 9.X database is not compatible with 15.7 format.
 
 To continue to use the data from firmware versions prior to 10.0.6.0 when using the ISVA PostgreSQL Docker container please use
