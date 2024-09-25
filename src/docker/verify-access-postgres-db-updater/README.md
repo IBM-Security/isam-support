@@ -1,4 +1,9 @@
-verify-access-postgres-db-updater
+# verify-access-postgres-db-updater
+
+Created to address the following errors when starting the 'verify-access-postgresql' container at versions '10.0.7.0' and higher:
+>2024-09-18 15:33:46.822 UTC [1] FATAL:  database files are incompatible with server
+>
+>2024-09-18 15:33:46.822 UTC [1] DETAIL:  The data directory was initialized by PostgreSQL version 9.6, which is not compatible with this version 15.7.
 
 The PostgreSQL version changed from 9.6.24 in ISVA firmware version 10.0.6.0 to version 15.7 in ISVA firmware versions 10.0.7.0+.
 The format of the PostgreSQL 9.X database is not compatible with 15.7 format.
@@ -6,7 +11,7 @@ The format of the PostgreSQL 9.X database is not compatible with 15.7 format.
 To continue to use the data from firmware versions prior to 10.0.6.0 when using the ISVA PostgreSQL Docker container please use
 this utility to upgrade the database version.
 
-USAGE:
+## USAGE:
 1) Create a new volume for the PostgreSQL 15.7 data:
 docker volume create var-lib-postgresql15-data
  - If you are using a project with docker compose use the following command:
@@ -41,4 +46,5 @@ After the container finishes successfully you should update your docker-compose.
 7) Remove the docker container:
 docker rm isva-pg-updater
 
+## Contact
 If you have any questions please contact 'jcyarbor@us.ibm.com' for assistance.
