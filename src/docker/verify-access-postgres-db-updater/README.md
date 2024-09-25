@@ -26,13 +26,14 @@ setup.sh
 
 3) Download the source package for PostgreSQL 9.6.24 and PostgreSQL 15.7 for Linux from the following location into this directory:
 https://ftp.postgresql.org/pub/source/v9.6.24/postgresql-9.6.24.tar.gz
+
 https://ftp.postgresql.org/pub/source/v15.7/postgresql-15.7.tar.gz
 
-4) Unzip the archives to tarballs:
+5) Unzip the archives to tarballs:
 gunzip postgresql-9.6.24.tar.gz
 gunzip postgresql-15.7.tar.gz
 
-5) Build the container from the Dockerfile:
+6) Build the container from the Dockerfile:
 docker build -f Dockerfile ./ -t verify-access-postgres-db-updater:24.09
 
 -- This will take about 15 minutes to build since it has to install and compile PostgreSQL from source.
