@@ -6,7 +6,7 @@ of the pattern with the specified value.
 Add the following to the Reverse Proxy config after importing the rule.
 [http-transformations]
 modify-uri = request-modify-uri.lua
-[http-transformations:vhj-to-stdjct]
+[http-transformations:modify-uri]
 request-match = request:GET /path/to/modify/file.ext*
 ]]
 
