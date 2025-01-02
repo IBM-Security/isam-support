@@ -49,7 +49,9 @@ for(let i = 0; i < numberOfAttrs; i++) {
 	//    http://schemas.microsoft.com/identity/claims/<attr>
 	//
 	fixedAttrName = prefix + extractEntraAttributeShortName(currentAttrName);
-	
-	currentAttr.setName(fixedAttrName);
-	stsuu.addAttribute(currentAttr)
+
+	if(fixedAttrName != "null" && fixedAttrName != null && fixedAttrName != prefix && fixedAttrName != ""){
+		currentAttr.setName(fixedAttrName);
+		stsuu.addAttribute(currentAttr)
+	}
 }
