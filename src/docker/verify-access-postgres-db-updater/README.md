@@ -40,7 +40,7 @@ docker build -f Dockerfile ./ -t verify-access-postgres-db-updater:24.09
 6) Run the docker container to perform the upgrade  
 docker run --name isva-pg-updater -it --volume var-lib-postgresql-data:/var/lib/postgresql9/data --volume var-lib-postgresql15-data:/var/lib/postgresql15/data verify-access-postgres-db-updater:24.09
 
-The original data will be held in the '<var-lib-postgresql-data>' volume and the new data will be in the 'var-lib-postgresql15-data' volume.
+The original data will be held in the 'var-lib-postgresql-data' volume and the new data will be in the 'var-lib-postgresql15-data' volume.
 After the container finishes successfully you should update your docker-compose.yaml files to reference the 'var-lib-postgresql15-data' volume.
 
 7) Remove the docker container:  
