@@ -8,7 +8,8 @@ importClass(Packages.com.tivoli.am.fim.trustserver.sts.uuser.Group);
 
 let matchingPatterns = [
 	/^http:\/\/schemas.xmlsoap.org\/ws\/2005\/05\/identity\/claims\/([^\/]+)$/,
-	/^http:\/\/schemas.microsoft.com\/identity\/claims\/([^\/]+)$/
+	/^http:\/\/schemas.microsoft.com\/identity\/claims\/([^\/]+)$/,
+	/^http:\/\/schemas.microsoft.com\/claims\/([^\/]+)$/
 ];
 
 function extractEntraAttributeShortName(s) {
@@ -49,7 +50,9 @@ for(let i = 0; i < numberOfAttrs; i++) {
 	//    http://schemas.microsoft.com/identity/claims/<attr>
 	//
 	fixedAttrName = prefix + extractEntraAttributeShortName(currentAttrName);
-	
-	currentAttr.setName(fixedAttrName);
-	stsuu.addAttribute(currentAttr)
+
+	if(fixedAttrName != "null" && fixedAttrName != null && fixedAttrName != prefix && fixedAttrName != ""){
+		currentAttr.setName(fixedAttrName);
+		stsuu.addAttribute(currentAttr)
+	}
 }
