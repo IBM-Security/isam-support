@@ -24,6 +24,7 @@ In this scenario '10.2.1.2' was the backend server and '10.2.5.110' is my Revers
 The LUA rule substitutes the values as expected globally allowing the content to be filtered correctly.
 
 --]]
+local lpeg = require "lpeg"
 
 function gsub (s, patt, repl)
   patt = lpeg.P(patt)
