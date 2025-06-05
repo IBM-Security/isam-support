@@ -14,9 +14,9 @@ This causes problems when the Body needs to be filtered but the content-type doe
 The following was how the HTTP transformation stanzas were setup:
 
 [http-transformations]
-changeResponse = response-changeResponse.lua
+changeResponseBody = response-changeResponseBody.lua
 
-[http-transformations]
+[http-transformations:changeResponseBody]
 request-match = response: GET /teamworks/*
 
 In this scenario '10.2.1.2' was the backend server and '10.2.5.110' is my Reverse Proxy IP address.
