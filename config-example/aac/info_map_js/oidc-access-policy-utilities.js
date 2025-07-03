@@ -43,15 +43,26 @@ var userJSON = (function() {
                      var attributeValues = attribute.getValues();
 					 if(attributeValues.size() > 1 || attributeValues.get(0).includes(",")) {
 						for(var attr = attributeValues.iterator(); attr.hasNext();) {
-							var currentAttr = attr.next();
-							attributeValue.push(currentAttr);
+							var currentAttr = attr.next().trim();
+							var currentAttrArray;
+							if(currentAttr.includes(",")){
+								currentAttrArray = currentAttr.split(",");
+							}
+							if(currentAttrArray != null && currentAttrArray != ""){
+								for(var value in currentAttrArray){
+									attributeValue.push(currentAttrArray[value].trim());
+								}
+							} else {
+								attributeValue.push(currentAttr);
+							}
 						}
 						attributesReturn["" + attributeName] = attributeValue;
 					 } else {
 						 attributeValue = attributeValues.get(0);
-						 attributesReturn["" + attributeName] = "" + attributeValue;
+						 attributesReturn["" + attributeName] = "" + attributeValue.trim();
 					 }
               }
+
               return attributesReturn;
        })();
       
