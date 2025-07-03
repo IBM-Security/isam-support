@@ -58,24 +58,35 @@ var userJSON = (
 
        var attributesJSON = (function() {
               var attributesReturn = {};
-              var attributesIterator = stsuu.getAttributes();
+              var attributes = user.getAttributes();
 
-              for (var it = attributesIterator; it.hasNext();) {
+             for (var it = attributes.iterator(); it.hasNext();) {
                      var attribute = it.next();
                      var attributeName = attribute.getName();
 					 var attributeValue = [];
                      var attributeValues = attribute.getValues();
-					 if(attributeValues.length > 1 || attributeValues[0].includes(",")) {
+					 if(attributeValues.size() > 1 || attributeValues.get(0).includes(",")) {
 						for(var attr = attributeValues.iterator(); attr.hasNext();) {
-							var currentAttr = attr.next();
-							attributeValue.push(currentAttr);
+							var currentAttr = attr.next().trim();
+							var currentAttrArray;
+							if(currentAttr.includes(",")){
+								currentAttrArray = currentAttr.split(",");
+							}
+							if(currentAttrArray != null && currentAttrArray != ""){
+								for(var value in currentAttrArray){
+									attributeValue.push(currentAttrArray[value].trim());
+								}
+							} else {
+								attributeValue.push(currentAttr);
+							}
 						}
 						attributesReturn["" + attributeName] = attributeValue;
 					 } else {
-						 attributeValue = attributeValues[0];
-						 attributesReturn["" + attributeName] = "" + attributeValue;
+						 attributeValue = attributeValues.get(0);
+						 attributesReturn["" + attributeName] = "" + attributeValue.trim();
 					 }
               }
+
               return attributesReturn;
        })();
       
@@ -130,7 +141,7 @@ var requestJSON = (
 								var value = values.item(k).getTextContent();
 
 								IDMappingExtUtils.traceString("Header with name [" + name + "] and value [" + value + "]");
-								headersReturn["" + name] = {value: "" + value};
+								headersReturn["" + name] = {value: "" + value.trim()};
 							}
 						}
 
@@ -157,7 +168,7 @@ var requestJSON = (
 							var value = values.item(k).getTextContent();
 
 							IDMappingExtUtils.traceString("Cookie with name [" + name + "] and value [" + value + "]");
-							cookiesReturn["" + name] = {value: "" + value};
+							cookiesReturn["" + name] = {value: "" + value.trim()};
 						}
 					}
 					
@@ -185,7 +196,7 @@ var requestJSON = (
 
 							IDMappingExtUtils.traceString("Parameter with name [" + name + "] and value [" + value + "]");
 							
-							parametersReturn["" + name] = {value: "" + value};
+							parametersReturn["" + name] = {value: "" + value.trim()};
 						}
 					}
 
