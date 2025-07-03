@@ -91,7 +91,7 @@ var requestJSON = (function() {
                      var headerName = it.next();
                      var headerValue = request.getHeader(headerName);
 
-                     headersReturn["" + headerName] = "" + headerValue;
+                     headersReturn["" + headerName] = "" + headerValue.trim();
               }
 
               return headersReturn;
@@ -136,7 +136,7 @@ var requestJSON = (function() {
                      var parameterName = it.next();
                      var parameterValue = request.getParameter(parameterName);
 
-                     parametersReturn["" + parameterName] = "" + parameterValue;
+                     parametersReturn["" + parameterName] = "" + parameterValue.trim();
               }
 
               return parametersReturn;
