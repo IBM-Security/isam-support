@@ -32,3 +32,4 @@ my $pubkeyfile = "certificate.pem";
 my $pubkey = Crypt::PK::RSA->new($pubkeyfile);
 my $data = decode_jwt(token => $token, key => $pubkey);
 print Dumper $data;
+
