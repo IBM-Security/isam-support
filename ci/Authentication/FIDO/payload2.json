@@ -1,0 +1,11 @@
+{
+	"displayName": "Example User",
+	"attestation": "none",
+	"userId": "662002C8HJ",
+	"extensions": {},
+	"authenticatorSelection": {
+		"requiredResidentKey": true,
+		"authenticatorAttachment": "cross-platform",
+		"userVerification": "preferred"
+	}
+}
