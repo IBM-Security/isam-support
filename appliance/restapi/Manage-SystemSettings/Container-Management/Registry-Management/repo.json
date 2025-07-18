@@ -1,0 +1,5 @@
+{
+	"host": "registry.example.org",
+	"user": "repouser",
+	"secret": "reposecret"
+}
