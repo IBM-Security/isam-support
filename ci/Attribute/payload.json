@@ -1,0 +1,2 @@
+{"constraints":{"writeAccessForEndUser":false,"mandatory":false,"unique":true},"datatype":"string","description":"custom1","id":"custom1","name":"custom1","schemaAttribute":{"customAttribute":true,"name":"customAttribute1","scimName":"custom1"},"scope":"tenant","sourceType":"schema","tags":["sso"],"credName":"custom1"}
+
