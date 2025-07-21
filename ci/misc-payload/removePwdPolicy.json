@@ -1,0 +1,23 @@
+{
+    "Operations": [
+        {
+            "bulkId": "XXXXXXXXXX",
+            "data": {
+                "Operations": [
+                    {
+                        "op": "remove",
+                        "path": "urn:ietf:params:scim:schemas:extension:ibm:2.0:Group:attachedPasswordPolicy.value"
+                    }
+                ],
+                "schemas": [
+                    "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+                ]
+            },
+            "method": "PATCH",
+            "path": "/Groups/XXXXXXXXXX"
+        }
+    ],
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:BulkRequest"
+    ]
+}
