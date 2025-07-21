@@ -1,0 +1,15 @@
+{
+    "displayName": "XXXXX",
+    "members": [],
+    "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:Group",
+        "urn:ietf:params:scim:schemas:extension:ibm:2.0:Notification",
+        "urn:ietf:params:scim:schemas:extension:ibm:2.0:Group"
+    ],
+    "urn:ietf:params:scim:schemas:extension:ibm:2.0:Group": {
+        "description": "XXXXX"
+    },
+    "urn:ietf:params:scim:schemas:extension:ibm:2.0:Notification": {
+        "notifyType": "NONE"
+    }
+}
