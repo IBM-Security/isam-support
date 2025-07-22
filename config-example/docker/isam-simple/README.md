@@ -1,3 +1,6 @@
+##
+## This left for legacy.  Outdated
+##
 docker-compose up
 
 docker-compose stop
