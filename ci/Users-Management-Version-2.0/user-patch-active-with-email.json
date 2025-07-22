@@ -1,0 +1,16 @@
+{
+    "Operations": [
+        {
+            "op": "replace",
+            "path": "active",
+            "value": false
+        }
+    ],
+    "schemas": [
+       "urn:ietf:params:scim:api:messages:2.0:PatchOp",
+       "urn:ietf:params:scim:schemas:extension:ibm:2.0:Notification"
+    ],
+    "urn:ietf:params:scim:schemas:extension:ibm:2.0:Notification": {
+        "notifyType": "EMAIL"
+    }
+}
