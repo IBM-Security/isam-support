@@ -1,0 +1,16 @@
+{
+    "hvdb_type": "on",
+    "hvdb_db_type": "postgresql",
+    "hvdb_embedded": false,
+    "hvdb_address": "postgresql",
+    "hvdb_port": "5432",
+    "hvdb_db_truststore": "",
+    "hvdb_user": "postgresql",
+    "hvdb_password": "Passw0rd!",
+    "hvdb_db_name": "isam",
+    "hvdb_mssql_instance_name": "",
+    "hvdb_driver_type": "thin",
+    "hvdb_mssql_failover_partner": "",
+    "hvdb_db_secure": false,
+    "cfgdb_embedded": true
+}
