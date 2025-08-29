@@ -1,1 +1,0 @@
-{"id":"removeCookieByPattern.lua","content":"function string.starts(String,Start)\n   return string.sub(String,1,string.len(Start))==Start\nend\n\nfor key, val in pairs(HTTPRequest.getCookieNames()) do\n  if string.starts(val, \"_ga\") then\n    HTTPRequest.removeCookie(val)\n  end\nend\n"}
